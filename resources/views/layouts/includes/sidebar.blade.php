@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{route('dasboard.index') }}" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
+            <a href="{{route('admin') }}" class="nav-link {{ Request::is('admin') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -92,7 +92,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ ('userpages/layouts/index') }}" class="nav-link  ">
+            <a href="{{ route('user.home') }}" class="nav-link  ">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Halaman Customer

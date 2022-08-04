@@ -1,13 +1,9 @@
-@extends('layouts.app')
-
-@section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Log in</title>
+  <title>Login</title>
 
    <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -33,6 +29,11 @@
         @csrf
         <div class="input-group mb-3">
           <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+          @error('email')
+            <span class="invalid-feedback" role="alert">
+                 <strong>{{ $message }}</strong>
+            </span>
+          @enderror
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -41,6 +42,11 @@
         </div>
         <div class="input-group mb-3">
           <input type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
+           @error('password')
+             <span class="invalid-feedback" role="alert">
+                   <strong>{{ $message }}</strong>
+             </span>
+           @enderror       
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -70,7 +76,7 @@
       </p>
       @endif
       <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+        <a href="{{ route('register') }}" class="text-center">Register a new account</a>
       </p>
 
     </div>
@@ -87,4 +93,3 @@
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 </body>
 </html>
-@endsection

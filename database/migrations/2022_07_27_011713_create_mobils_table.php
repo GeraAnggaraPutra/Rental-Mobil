@@ -17,6 +17,7 @@ class CreateMobilsTable extends Migration
             $table->id();
             $table->string('merk');
             $table->string('nama_mobil');
+            $table->string('foto');
             $table->integer('stock');
             $table->integer('harga');
             $table->timestamps();

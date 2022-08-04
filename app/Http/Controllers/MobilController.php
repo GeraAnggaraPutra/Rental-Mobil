@@ -43,6 +43,7 @@ class MobilController extends Controller
         $validated = $request->validate([
             'merk' => 'required',
             'nama_mobil' => 'required',
+            'foto' => 'required|image|max:2048',
             'stock' => 'required',
             'harga' => 'required',
         ]);
@@ -50,6 +51,12 @@ class MobilController extends Controller
         $mobil = new Mobil();
         $mobil->merk = $request->merk;
         $mobil->nama_mobil = $request->nama_mobil;
+        if($request->hasFile('foto')){
+            $image = $request->file('foto');
+            $name = rand(1000,9999).$image->getClientOriginalName();
+            $image->move('images/mobil/', $name);
+            $mobil->foto = $name;
+        }
         $mobil->stock = $request->stock;
         $mobil->harga = $request->harga;
         $mobil->save();
@@ -94,6 +101,7 @@ class MobilController extends Controller
         $validated = $request->validate([
             'merk' => 'required',
             'nama_mobil' => 'required',
+            'foto' => 'required|image|max:2048',
             'stock' => 'required',
             'harga' => 'required',
         ]);
@@ -101,6 +109,13 @@ class MobilController extends Controller
         $mobil = Mobil::findOrFail($id);
         $mobil->merk = $request->merk;
         $mobil->nama_mobil = $request->nama_mobil;
+        if($request->hasFile('foto')){
+            $mobil->deleteImage(); // menghapus foto sebelum di update
+            $image = $request->file('foto');
+            $name = rand(1000,9999).$image->getClientOriginalName();
+            $image->move('images/mobil/', $name);
+            $mobil->foto = $name;
+        }
         $mobil->stock = $request->stock;
         $mobil->harga = $request->harga;
         $mobil->save();
@@ -117,7 +132,8 @@ class MobilController extends Controller
     public function destroy($id)
     {
         $mobil = Mobil::findOrFail($id);
-        $mobil->delete();
+        $wali->deleteImage();
+        $article->delete();
         return redirect()->route('mobil.index')
             ->with('success', 'Data berhasil dihapus!');
     }

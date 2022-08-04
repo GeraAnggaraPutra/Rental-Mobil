@@ -21,6 +21,7 @@
                                         <th>No</th>
                                         <th>Merk</th>
                                         <th>Nama Mobil</th>
+                                        <th>Foto</th>
                                         <th>Stock</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
@@ -33,6 +34,9 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->merk }}</td>
                                             <td>{{ $data->nama_mobil }}</td>
+                                            <td>
+                                            <img src="{{ $data->image() }}" style="width: 150px; height: 150px;">
+                                            </td>
                                             <td>{{ $data->stock }}</td>
                                             <td>Rp. {{ number_format($data->harga,0,',','.') }}/hari</td>
                                             <td>

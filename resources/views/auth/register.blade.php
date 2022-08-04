@@ -1,7 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -93,7 +89,7 @@
         </div>
       </form>
 
-      <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+      <a href="{{ route('login') }}" class="text-center">I already have a account</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -108,5 +104,3 @@
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
 </body>
 </html>
-
-@endsection

@@ -84,6 +84,9 @@ class LaporanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+        $laporan->delete();
+        return redirect()->route('laporan.index')
+            ->with('success', 'Data berhasil dihapus!');
     }
 }

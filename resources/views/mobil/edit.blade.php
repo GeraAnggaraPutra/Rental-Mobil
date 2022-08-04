@@ -34,6 +34,22 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label class="form-label">Foto Mobil</label>
+                                @if(isset($mobil) && $mobil->foto)
+                                    <p>
+                                        <img src="{{ asset('images/mobil/'). $mobil->foto }}" 
+                                        class="img-rounded img-responsive" style="width: 75px; height: 75px">
+                                    </p>
+                                @endif
+                                <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"
+                                value="{{ $mobil->nama }}">
+                                @error('foto')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Stock</label>
                                 <input type="number" class="form-control  @error('stock') is-invalid @enderror"
                                     name="stock" value="{{ $mobil->stock }}">

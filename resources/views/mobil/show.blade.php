@@ -18,6 +18,15 @@
                             <input type="text" class="form-control " name="nama_mobil" value="{{ $mobil->nama_mobil }}" readonly>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Foto Mobil</label>
+                            @if(isset($mobil) && $mobil->foto)
+                                <p>
+                                    <img src="{{ asset('images/mobil/'. $mobil->foto) }}" class="img-rounded img-responsive"
+                                    style="width: 75px; height: 75px;" alt="">
+                                </p>
+                            @endif
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Stock</label>
                             <input type="text" class="form-control " name="stock" value="{{ $mobil->stock }}"
                                 readonly>
