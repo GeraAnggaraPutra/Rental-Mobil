@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Supir;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class SupirController extends Controller
 {
     public function __construct()
@@ -53,8 +53,8 @@ class SupirController extends Controller
         $supir->no_telp = $request->no_telp;
         $supir->alamat = $request->alamat;
         $supir->save();
-        return redirect()->route('supir.index')
-            ->with('success', 'Data berhasil dibuat!');
+        Alert::success('Done', 'Data berhasil dibuat');
+        return redirect()->route('supir.index');
     }
 
     /**
@@ -104,8 +104,8 @@ class SupirController extends Controller
         $supir->no_telp = $request->no_telp;
         $supir->alamat = $request->alamat;
         $supir->save();
-        return redirect()->route('supir.index')
-            ->with('success', 'Data berhasil diedit!');
+        Alert::success('Done', 'Data berhasil diedit');
+        return redirect()->route('supir.index');
     }
 
     /**
@@ -118,7 +118,7 @@ class SupirController extends Controller
     {
         $supir = Supir::findOrFail($id);
         $supir->delete();
-        return redirect()->route('supir.index')
-            ->with('success', 'Data berhasil dihapus!');
+        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        return redirect()->route('supir.index');
     }
 }

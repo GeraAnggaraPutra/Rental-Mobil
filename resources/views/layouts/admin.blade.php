@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Admin CarRent</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -33,7 +33,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{ asset('assets/dist/img/car.png') }}" alt="AdminLTELogo" height="225" width="225">
   </div>
 
   <!-- Navbar -->
@@ -45,23 +45,7 @@
   <!-- end main sidebar container -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+  @include('sweetalert::alert')
     <!-- /.content-header -->
 
     <!-- Main content -->
@@ -74,10 +58,10 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2022-2023 <a href="https://adminlte.io">CarRent</a>.</strong>
+    <strong>Copyright &copy; 2022-2023 <a href="#">CarRent</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      
+      Rental Mobil Bandung
     </div>
   </footer>
 
@@ -128,5 +112,27 @@
             $('#dataTable').DataTable();
         });
     </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+  <script type="text/javascript">
+   
+       $('.show_confirm').click(function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `Are you sure you want to delete this record?`,
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                form.submit();
+              }
+            });
+        });
+    
+  </script>
 </body>
 </html>

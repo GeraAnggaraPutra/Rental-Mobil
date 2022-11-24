@@ -9,17 +9,12 @@ class Mobil extends Model
 {
     use HasFactory;
 
-    public $fillable = ['merk', 'nama_mobil', 'foto','stock', 'harga'];
+    public $fillable = ['merk', 'nama_mobil', 'foto','stock', 'harga','tahun','no_polisi','warna'];
     public $timestamps = true;
 
     public function transaksi(){
         
         return $this->hasMany(Transaksi::class, 'id_mobil');
-    }
-
-    public function laporan(){
-        
-        return $this->hasMany(Laporan::class, 'id_mobil');
     }
 
     // method menampilkan image(foto)

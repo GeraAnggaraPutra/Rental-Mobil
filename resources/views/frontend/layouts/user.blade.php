@@ -10,7 +10,9 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/open-iconic-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/animate.css')}}">
-    
+    <link rel="stylesheet" href="{{asset('frontend/css/transaksi.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/magnific-popup.css')}}">
@@ -30,7 +32,7 @@
   <body>
     
 	@include('frontend.layouts.includes.navbar')
-    
+  @include('sweetalert::alert')
     <!-- Main content -->
     <section class="content">
         @yield('content')

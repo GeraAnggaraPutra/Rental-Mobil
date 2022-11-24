@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,15 +43,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function pembayaran()
+    public function transaksi()
     {
         
-        return $this->hasOne(Pembayaran::class, 'id_pembayaran');
+        return $this->hasMany(Transaksi::class, 'id_user');
     }
 
-    public function laporan()
-    {
-        
-        return $this->belongsTo(Laporan::class, 'id_laporan');
-    }
 }

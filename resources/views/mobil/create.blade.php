@@ -1,6 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Data Mobil</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{route('admin') }}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Data Mobil</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -10,7 +28,7 @@
                         Data Mobil
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('mobil.store') }}" method="post">
+                        <form action="{{ route('mobil.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Merk</label>
@@ -57,6 +75,36 @@
                                 <input type="number" class="form-control  @error('harga') is-invalid @enderror"
                                     name="harga">
                                 @error('harga')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tahun</label>
+                                <input type="number" class="form-control  @error('tahun') is-invalid @enderror"
+                                    name="tahun">
+                                @error('tahun')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Warna</label>
+                                <input type="text" class="form-control  @error('warna') is-invalid @enderror"
+                                    name="warna">
+                                @error('warna')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Polisi</label>
+                                <input type="text" class="form-control  @error('no_polisi') is-invalid @enderror"
+                                    name="no_polisi">
+                                @error('no_polisi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

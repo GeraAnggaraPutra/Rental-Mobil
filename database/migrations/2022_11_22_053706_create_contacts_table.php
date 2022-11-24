@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePembayaransTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePembayaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pembayarans', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_bayar');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('customers')
-                  ->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePembayaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pembayarans');
+        Schema::dropIfExists('contacts');
     }
 }

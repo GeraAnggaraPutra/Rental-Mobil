@@ -20,6 +20,9 @@ class CreateMobilsTable extends Migration
             $table->string('foto');
             $table->integer('stock');
             $table->integer('harga');
+            $table->integer('tahun');
+            $table->string('no_polisi');
+            $table->string('warna');
             $table->timestamps();
         });
     }

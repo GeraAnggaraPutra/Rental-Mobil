@@ -18,7 +18,7 @@
 <div class="register-box">
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{ __('Register') }}" class="h1"><b>Admin</b></a>
+      <a href="{{ __('Register') }}" class="h1"><b>REGISTER</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new account</p>

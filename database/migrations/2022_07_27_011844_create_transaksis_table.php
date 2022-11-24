@@ -15,12 +15,21 @@ class CreateTransaksisTable extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_pesan');
+            $table->string('name');
+            $table->string('nik');
+            $table->enum('jenis_kelamin',['Laki-laki', 'Perempuan']);
+            $table->string('alamat');
+            $table->string('no_telp');
+            $table->string('email');
+            $table->date('tgl_sewa');
+            $table->date('tgl_kembali');
             $table->integer('total_bayar');
-            $table->unsignedbigInteger('id_pembayaran');
+            $table->integer('lama_sewa');
+            $table->enum('supir',['Yes', 'No']);
             $table->unsignedbigInteger('id_mobil');
-            $table->foreign('id_pembayaran')->references('id')->on('pembayarans');
             $table->foreign('id_mobil')->references('id')->on('mobils');
+            $table->unsignedbigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
             
         });

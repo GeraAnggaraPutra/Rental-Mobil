@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Mobil;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class MobilController extends Controller
 {
     public function __construct()
@@ -46,6 +46,9 @@ class MobilController extends Controller
             'foto' => 'required|image|max:2048',
             'stock' => 'required',
             'harga' => 'required',
+            'tahun' => 'required',
+            'warna' => 'required',
+            'no_polisi' => 'required',
         ]);
 
         $mobil = new Mobil();
@@ -59,9 +62,12 @@ class MobilController extends Controller
         }
         $mobil->stock = $request->stock;
         $mobil->harga = $request->harga;
+        $mobil->tahun = $request->tahun;
+        $mobil->warna = $request->warna;
+        $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        return redirect()->route('mobil.index')
-            ->with('success', 'Data berhasil dibuat!');
+        Alert::success('Done', 'Data berhasil dibuat');
+        return redirect()->route('mobil.index');
     }
 
     /**
@@ -104,6 +110,9 @@ class MobilController extends Controller
             'foto' => 'required|image|max:2048',
             'stock' => 'required',
             'harga' => 'required',
+            'tahun' => 'required',
+            'warna' => 'required',
+            'no_polisi' => 'required',
         ]);
 
         $mobil = Mobil::findOrFail($id);
@@ -118,9 +127,12 @@ class MobilController extends Controller
         }
         $mobil->stock = $request->stock;
         $mobil->harga = $request->harga;
+        $mobil->tahun = $request->tahun;
+        $mobil->warna = $request->warna;
+        $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        return redirect()->route('mobil.index')
-            ->with('success', 'Data berhasil diedit!');
+        Alert::success('Done', 'Data berhasil diedit');
+        return redirect()->route('mobil.index');
     }
 
     /**
@@ -132,9 +144,9 @@ class MobilController extends Controller
     public function destroy($id)
     {
         $mobil = Mobil::findOrFail($id);
-        $wali->deleteImage();
-        $article->delete();
-        return redirect()->route('mobil.index')
-            ->with('success', 'Data berhasil dihapus!');
+        $mobil->deleteImage();
+        $mobil->delete();
+        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        return redirect()->route('mobil.index');
     }
 }

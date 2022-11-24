@@ -1,6 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Data Mobil</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{route('admin') }}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Data Mobil</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -10,7 +28,7 @@
                         Data Mobil
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('mobil.update', $mobil->id) }}" method="post">
+                        <form action="{{ route('mobil.update', $mobil->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="mb-3">
@@ -42,7 +60,7 @@
                                     </p>
                                 @endif
                                 <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"
-                                value="{{ $mobil->nama }}">
+                                value="{{ $mobil->foto }}">
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -64,6 +82,36 @@
                                 <input type="number" class="form-control  @error('harga') is-invalid @enderror"
                                     name="harga" value="{{ $mobil->harga }}">
                                 @error('harga')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tahun</label>
+                                <input type="number" class="form-control  @error('tahun') is-invalid @enderror"
+                                    name="tahun" value="{{ $mobil->tahun }}">
+                                @error('tahun')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Warna</label>
+                                <input type="text" class="form-control  @error('warna') is-invalid @enderror"
+                                    name="warna" value="{{ $mobil->warna }}">
+                                @error('warna')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Polisi</label>
+                                <input type="text" class="form-control  @error('no_polisi') is-invalid @enderror"
+                                    name="no_polisi" value="{{ $mobil->no_polisi }}">
+                                @error('no_polisi')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

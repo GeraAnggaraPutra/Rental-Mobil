@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Mobil;
+use App\Models\Transaksi;
 class CarController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class CarController extends Controller
      */
     public function index()
     {
-        return view('frontend.car.index', [
+        $mobil = Mobil::all();
+        return view('frontend.car.index', compact('mobil'),[
         'title' => 'Cars'
       ]);
     }
@@ -23,9 +26,12 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $mobil = Mobil::findOrFail($id);
+        return view('frontend.car.transaksi', compact('mobil'),[
+            'title' => 'Cars-Transaksi'
+          ]);
     }
 
     /**

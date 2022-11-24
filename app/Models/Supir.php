@@ -9,6 +9,6 @@ class Supir extends Model
 {
     use HasFactory;
 
-    public $fillable = ['nama', 'jenis_kelamin', 'no_telp', 'status'];
+    public $fillable = ['nama', 'jenis_kelamin', 'no_telp', 'status','alamat'];
     public $timestamps = true;
 }

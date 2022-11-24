@@ -9,22 +9,19 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    public $fillable = ['id_pembayaran', 'id_mobil', 'tgl_pesan', 'total_bayar'];
+    public $fillable = ['id_mobil','id_user', 'tgl_sewa','tgl_kembali', 'lama_sewa','supir','total_bayar','name', 'nik', 'jenis_kelamin', 'alamat','no_telp','email']; //
 
     public $timestamps = true;
 
-    public function pembayaran(){
-        
-        return $this->belongsTo(Pembayaran::class, 'id_pembayaran');
-    }
-
+   
     public function mobil(){
         
-        return $this->belonsTo(Mobil::class, 'id_mobil');
+        return $this->belongsTo(Mobil::class, 'id_mobil');
     }
 
-    public function laporan(){
+    public function user(){
         
-        return $this->hasOne(Laporan::class, 'id_transaksi');
+        return $this->belongsTo(User::class, 'id_user');
     }
+
 }

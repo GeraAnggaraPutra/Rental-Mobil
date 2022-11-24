@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Customer;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
-
-class CustomerController extends Controller
+use App\Models\Contact;
+class ContactController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -17,8 +13,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::all();
-        return view('customer.index', compact('customer'));
+        $contact = Contact::all();
+        return view('kontakMasuk.index', compact('contact'));
     }
 
     /**
@@ -39,7 +35,22 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+            ]);
+
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->subject = $request->subject;
+        $contact->message= $request->message;
+        $contact->save();
+        Alert::success('Done', 'Pesan Terkirim');
+        return redirect()->route('contact');
     }
 
     /**
@@ -50,7 +61,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        return view('kontakMasuk.show', compact('contact'));
     }
 
     /**
@@ -84,7 +96,9 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        $contact->delete();
+        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        return redirect()->route('contact.index');
     }
-
 }
