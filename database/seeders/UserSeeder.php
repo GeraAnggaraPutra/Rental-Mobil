@@ -21,12 +21,27 @@ class UserSeeder extends Seeder
         $admin->role = "admin";
         $admin->save();
 
-        // sample tamu / pendatang
-        $guest = new \App\Models\User();
-        $guest->name = "user Project";
-        $guest->email = "user@gmail.com";
-        $guest->password = bcrypt("rahasia");
-        $guest->role = "user";
-        $guest->save();
+        // user
+        $user = new \App\Models\User();
+        $user->name = "user Project";
+        $user->email = "user@gmail.com";
+        $user->password = bcrypt("rahasia");
+        $user->role = "user";
+        $user->save();
+
+        $user = new \App\Models\User();
+        $user->name = "Gera Anggara";
+        $user->email = "anggaragera@gmail.com";
+        $user->password = bcrypt("12345678");
+        $user->role = "user";
+        $user->save();
+
+        $user = new \App\Models\User();
+        $user->name = "jhon";
+        $user->email = "jhon@gmail.com";
+        $user->password = bcrypt("12345678");
+        $user->role = "user";
+        $user->save();
+        
     }
 }

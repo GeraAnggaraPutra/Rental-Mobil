@@ -30,6 +30,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::resource('supir', SupirController::class);
     Route::resource('mobil', MobilController::class);
     Route::resource('transaksi', TransaksiController::class);
+    Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
+    Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
     Route::resource('contact', ContactController::class);
     Route::resource('adminprofile', AdminController::class);
     Route::resource('customer', CustomerController::class);
@@ -67,4 +69,4 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     });
 
    
-    Route::get('generate-PDF', [PdfController::class,'generatePdf'])->name('pdf.print');
+    Route::get('generate-PDF/', [PdfController::class,'generatePdf'])->name('pdf.print');

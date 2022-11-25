@@ -97,7 +97,10 @@ class TransaksiController extends Controller
         $total_bayar = ($request->lama_sewa * $mobil->harga) + $biayaSupir;
         $car->total_bayar = $total_bayar;
         $car->id_mobil = $request->id_mobil;
+        $car->status = "Process";
         $car->id_user = Auth::user()->id;
+        $mobil->stock = $mobil->stock - 1;
+        $mobil->save();
         $car->save();
         Alert::success('Succes', 'Pesanan Berhasil');
         return redirect()->route('cars');
@@ -149,6 +152,24 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
         Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        return redirect()->route('transaksi.index');
+    }
+
+    public function status1($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = "Telah Dibayar";
+        $transaksi->save();
+        Alert::success('Done', 'Transaksi Telah Dibayar')->autoClose(2000);
+        return redirect()->route('transaksi.index');
+    }
+
+    public function status2($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->status = "Process";
+        $transaksi->save();
+        Alert::success('Done', 'Transaksi Di Process')->autoClose(2000);
         return redirect()->route('transaksi.index');
     }
 }

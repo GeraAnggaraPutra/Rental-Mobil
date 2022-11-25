@@ -26,8 +26,8 @@
                 <div class="card">
                     <div class="card-header">
                         Data Mobil
-                        <a href="{{ route('mobil.create') }}" class="btn btn-sm btn-primary" style="float: right">
-                        <i class="fas fa-plus"> Tambah Data</i>
+                        <a href="{{ route('mobil.create') }}" class="btn btn-primary" style="float: right">
+                        Tambah Data
                         </a>
                     </div>
 

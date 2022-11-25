@@ -70,14 +70,6 @@
               </p>
             </a>
           </li>
-          <li class="nav-item text-white">
-            <a href="{{ route('home') }}" class="nav-link  ">
-              <i class="nav-icon fas fa-arrow-circle-right"></i>
-              <p style="color: white">
-                Halaman User
-              </p>
-            </a>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

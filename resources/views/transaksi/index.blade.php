@@ -41,6 +41,7 @@
                                         <th>Tanggal Kembali</th>
                                         <th>Mobil</th>
                                         <th>Nama</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -55,9 +56,27 @@
                                             <td>{{ $data->mobil->nama_mobil }}</td>
                                             <td>{{ $data->name }}</td>
                                             <td>
+                                                @if($data->status == "Process")
+                                                     @php $color = "secondary";@endphp                                                   
+                                                @else
+                                                     @php $color = "success";@endphp
+                                                @endif
+                                                <span class="bg-{{ $color }} p-1" style="border-radius: 4px">{{ $data->status }}</span></td>
+                                            <td>
                                                 <form action="{{ route('transaksi.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
+                                                    @if ($data->status == "Process")
+                                                    <a href="{{ route('transaksi.status.process', $data->id) }}"
+                                                        class="btn btn-sm btn-outline-success">
+                                                        <i class="nav-icon fas fa-check"></i>
+                                                    </a> |
+                                                    @else
+                                                    <a href="{{ route('transaksi.status.dibayar', $data->id) }}"
+                                                        class="btn btn-sm btn-outline-success">
+                                                        <i class="nav-icon fas fa-times"></i>
+                                                    </a> |
+                                                    @endif
                                                     <a href="{{ route('transaksi.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-warning">
                                                         <i class="nav-icon fas fa-eye"></i>
