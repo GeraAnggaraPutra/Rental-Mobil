@@ -35,7 +35,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::resource('contact', ContactController::class);
     Route::resource('adminprofile', AdminController::class);
     Route::resource('customer', CustomerController::class);
-    Route::resource('laporan', LaporanController::class);
+    Route::post('laporan/print', [PdfController::class, 'laporan'])->name('laporan.print');
+    Route::get('laporan', function (){
+      return view('laporan.index');
+    })->name('laporan');
 
 });
 

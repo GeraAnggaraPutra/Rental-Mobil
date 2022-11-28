@@ -158,16 +158,22 @@ class TransaksiController extends Controller
     public function status1($id)
     {
         $transaksi = Transaksi::findOrFail($id);
-        $transaksi->status = "Telah Dibayar";
+        $mobil = Mobil::findOrFail($transaksi->id_mobil);
+        $transaksi->status = "Selesai";
+        $mobil->stock = $mobil->stock + 1;
+        $mobil->save();
         $transaksi->save();
-        Alert::success('Done', 'Transaksi Telah Dibayar')->autoClose(2000);
+        Alert::success('Done', 'Rental Mobil Selesai')->autoClose(2000);
         return redirect()->route('transaksi.index');
     }
 
     public function status2($id)
     {
         $transaksi = Transaksi::findOrFail($id);
+        $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "Process";
+        $mobil->stock = $mobil->stock - 1;
+        $mobil->save();
         $transaksi->save();
         Alert::success('Done', 'Transaksi Di Process')->autoClose(2000);
         return redirect()->route('transaksi.index');

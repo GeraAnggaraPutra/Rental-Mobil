@@ -1,6 +1,24 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Cetak Laporan</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{route('admin') }}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Cetak Laporan</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -9,46 +27,28 @@
                     <div class="card-header">
                         Laporan
                     </div>
-
                     <div class="card-body">
                          <div class="table-responsive">
-                            <table class="table align-middle" id="dataTable">
+                            <table class="table align-middle">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Nama Customer</th>
-                                        <th>Tanggal Pesan</th>
-                                        <th>Mobil</th>
-                                        <th>Lama Sewa</th>
-                                        <th>Harga</th>
+                                        <th>Tanggal Awal</th>
+                                        <th>Tanggal Akhir</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
-                                    @foreach ($laporan as $data)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->tgl }}</td>
-                                            <td>{{ $data->mobil }}</td>
-                                            <td>{{ $data->lm_sewa }}</td>
-                                            <td>Rp. {{ number_format($data->harga,0,',','.') }}/hari</td>
+                                            <form action="{{ route('laporan.print') }}" method="post">
+                                            <td><input type="date" name="tanggal_awal" style="border: none;border-bottom: 2px solid black"></td>
+                                            <td><input type="date" name="tanggal_akhir" style="border: none;border-bottom: 2px solid black"></td>
                                             <td>
-                                                <form action="{{ route('laporan.destroy', $data->id) }}" method="post">
+                                                
                                                     @csrf
-                                                    @method('delete')
-                                                    <a href="{{ route('laporan.show', $data->id) }}"
-                                                        class="btn btn-sm btn-outline-warning">
-                                                        Show
-                                                    </a> |
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger"
-                                                        onclick="return confirm('Apakah Anda Yakin?')">Delete
-                                                    </button>
+                                                    <input type="submit" class="btn btn-sm btn-success" value="Print">
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

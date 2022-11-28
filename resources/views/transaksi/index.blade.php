@@ -26,13 +26,13 @@
                 <div class="card">
                     <div class="card-header">
                         Transaksi
-                        <a href="{{ route('pdf.print') }}" class="btn btn-outline-success text-bold" style="float: right">
+                        <a href="{{ route('pdf.print') }}" class="btn btn-success text-bold" style="float: right">
                             <i class="nav-icon fas fa-print"></i> Print</a>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table align-middle" id="dataTable">
+                            <table class="table align-middle">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -57,9 +57,9 @@
                                             <td>{{ $data->name }}</td>
                                             <td>
                                                 @if($data->status == "Process")
-                                                     @php $color = "secondary";@endphp                                                   
+                                                     @php $color = "success";@endphp                                                   
                                                 @else
-                                                     @php $color = "success";@endphp
+                                                     @php $color = "secondary";@endphp
                                                 @endif
                                                 <span class="bg-{{ $color }} p-1" style="border-radius: 4px">{{ $data->status }}</span></td>
                                             <td>

@@ -46,7 +46,6 @@
 
   <!-- Content Wrapper. Contains page content -->
   @include('sweetalert::alert')
-    <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
@@ -58,7 +57,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2022-2023 <a href="#">CarRent</a>.</strong>
+    <strong>Copyright &copy; 2022-2023 <a href="{{ route('home') }}">CarRent</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       Rental Mobil Bandung

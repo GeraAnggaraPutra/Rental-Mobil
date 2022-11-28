@@ -70,6 +70,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('laporan') }}" class="nav-link  {{ Request::is('admin/laporan*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-print"></i>
+              <p style="color: white">
+                Cetak Laporan
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
