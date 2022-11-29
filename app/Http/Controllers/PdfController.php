@@ -20,9 +20,8 @@ public function laporan(Request $request){
     $end = $request->tanggal_akhir;
 
     if($end >= $start){
-       
             $transaksi = Transaksi::whereBetween('tgl_sewa', [$start, $end])->get();
-            $pdf = PDF::loadview('laporan.print', compact('transaksi','start','end'))->setPaper('a4', 'landscape');
+            $pdf = PDF::loadview('laporan.print', compact(' transaksi','start','end'))->setPaper('a4', 'landscape');
             return $pdf->stream('laporan.pdf');
     }
     elseif($end < $start){

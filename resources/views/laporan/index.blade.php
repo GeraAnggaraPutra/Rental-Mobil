@@ -43,7 +43,6 @@
                                             <td><input type="date" name="tanggal_awal" style="border: none;border-bottom: 2px solid black"></td>
                                             <td><input type="date" name="tanggal_akhir" style="border: none;border-bottom: 2px solid black"></td>
                                             <td>
-                                                
                                                     @csrf
                                                     <input type="submit" class="btn btn-sm btn-success" value="Print">
                                                 </form>
