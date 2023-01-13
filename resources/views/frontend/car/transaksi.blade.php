@@ -82,6 +82,7 @@
                             <div class="col-12 px-4 my-4">
                                 <p class="fw-bold">Lengkapi Data</p>
                             </div>
+                            @if (Auth::user()->detailUser == null)
                             <div class="col-12 px-4">
                                 <div class="d-flex mb-4">
                                     <span class="mr-3">
@@ -164,6 +165,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-12 px-4">
                                 <div class="d-flex  mb-4">
                                     <span class="">

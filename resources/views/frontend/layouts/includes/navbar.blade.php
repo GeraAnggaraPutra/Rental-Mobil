@@ -20,7 +20,7 @@
                     </a>
 					<div class="dropdown-menu dropdown-menu dropdown-menu-right">
 					  <a href="#" class="dropdown-item">
-                        <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success">Riwayat</a>
+                        <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success" style="font-weight: bold">Riwayat</a>
                         <hr>
 						<a class="nav-link text-dark" style="color: blue; font-weight:bold;" href="{{ route('logout') }}" onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();" role="button">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Mobil;
+use App\Models\User;
 use App\Models\Transaksi;
 class CarController extends Controller
 {
@@ -29,7 +30,8 @@ class CarController extends Controller
     public function create($id)
     {
         $mobil = Mobil::findOrFail($id);
-        return view('frontend.car.transaksi', compact('mobil'),[
+        $user = User::findOrFail($id);
+        return view('frontend.car.transaksi', compact('mobil','user'),[
             'title' => 'Cars-Transaksi'
           ]);
     }

@@ -58,7 +58,7 @@
                                                 @if ($data->status == "Process")
                                                 <form action="{{ route('batal', $data->id) }}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="mt-1 btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                                    <button type="submit" class="mt-1 btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Batalkan'>
                                                         Batalkan
                                                     </button>
                                                 </form>

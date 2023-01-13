@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Mobil;
+use App\Models\DetailUser;
 use Illuminate\Http\Request;
 use Validator;
 use Auth;
@@ -43,33 +44,60 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'name' => 'required',
-            'nik' => 'required',
-            'no_telp' => 'required',
-            'jenis_kelamin' => 'required',
-            'alamat' => 'required',
-            'email' => 'required',
-            'tgl_sewa' => 'required',
-            'tgl_kembali' => 'required',
-            'lama_sewa' => 'required',
-            'supir' => 'required',
-            'id_mobil' => 'required',
-        ];
 
-        $messages = [
-            'name.required' => 'Nama harus di isi!',
-            'nik.required' => 'NIK harus di isi!',
-            'no_telp.required' => 'Nomor Telepon harus di isi!',
-            'jenis_kelamin.required' => 'Jenis Kelamin harus di isi!',
-            'alamat.required' => 'Alamat harus di isi!',
-            'email.required' => 'Email harus di isi!',
-            'tgl_sewa.required' => 'Tgl sewa harus di isi!',
-            'tgl_kembali.required' => 'Tgl kembali harus di isi!',
-            'lama_sewa.required' => 'Lama sewa harus di isi!',
-            'supir.required' => 'Supir harus di isi!',
-            'id_mobil.required' => 'id_mobil harus di isi!',
-        ];
+        if(Auth::user()->detailUser == null){
+            $rules = [
+                'name' => 'required',
+                'nik' => 'required',
+                'no_telp' => 'required',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+                'email' => 'required',
+                'tgl_sewa' => 'required',
+                'tgl_kembali' => 'required',
+                'lama_sewa' => 'required',
+                'supir' => 'required',
+                'id_mobil' => 'required',
+            ];
+            $messages = [
+                'name.required' => 'Nama harus di isi!',
+                'nik.required' => 'NIK harus di isi!',
+                'no_telp.required' => 'Nomor Telepon harus di isi!',
+                'jenis_kelamin.required' => 'Jenis Kelamin harus di isi!',
+                'alamat.required' => 'Alamat harus di isi!',
+                'email.required' => 'Email harus di isi!',
+                'tgl_sewa.required' => 'Tgl sewa harus di isi!',
+                'tgl_kembali.required' => 'Tgl kembali harus di isi!',
+                'lama_sewa.required' => 'Lama sewa harus di isi!',
+                'supir.required' => 'Supir harus di isi!',
+                'id_mobil.required' => 'id_mobil harus di isi!',
+            ];
+            $detailUser = new DetailUser();
+            $detailUser->id_user = Auth::user()->id;
+            $detailUser->nama = $request->name;
+            $detailUser->nik = $request->nik;
+            $detailUser->no_telp = $request->no_telp;
+            $detailUser->jenis_kelamin = $request->jenis_kelamin;
+            $detailUser->email = $request->email;
+            $detailUser->alamat = $request->alamat;
+            $detailUser->save();
+        }else{
+            $rules = [
+                'tgl_sewa' => 'required',
+                'tgl_kembali' => 'required',
+                'lama_sewa' => 'required',
+                'supir' => 'required',
+                'id_mobil' => 'required',
+            ];
+            $messages = [
+                'tgl_sewa.required' => 'Tgl sewa harus di isi!',
+                'tgl_kembali.required' => 'Tgl kembali harus di isi!',
+                'lama_sewa.required' => 'Lama sewa harus di isi!',
+                'supir.required' => 'Supir harus di isi!',
+                'id_mobil.required' => 'id_mobil harus di isi!',
+            ];
+        }
+
 
         $validated = Validator::make($request->all(), $rules, $messages);
         if ($validated->fails()) {
@@ -79,12 +107,7 @@ class TransaksiController extends Controller
 
         $car = new Transaksi();
         $mobil = Mobil::findOrFail($request->id_mobil);
-        $car->name = $request->name;
-        $car->nik = $request->nik;
-        $car->no_telp = $request->no_telp;
-        $car->jenis_kelamin = $request->jenis_kelamin;
-        $car->email = $request->email;
-        $car->alamat = $request->alamat;
+
         $car->tgl_sewa = $request->tgl_sewa;
         $car->tgl_kembali = $request->tgl_kembali;
         $car->lama_sewa = $request->lama_sewa;
@@ -99,10 +122,12 @@ class TransaksiController extends Controller
         $car->id_mobil = $request->id_mobil;
         $car->status = "Process";
         $car->id_user = Auth::user()->id;
+
         $mobil->stock = $mobil->stock - 1;
+
         $mobil->save();
         $car->save();
-        Alert::success('Succes', 'Pesanan Berhasil');
+        Alert::success('Succes', 'Pesanan Berhasil')->autoClose(2000);
         return redirect()->route('cars');
     }
 

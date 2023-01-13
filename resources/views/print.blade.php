@@ -74,10 +74,10 @@
                     </td>
                     <td colspan="2">
                         <h4>Pelanggan: </h4>
-                        <p>{{ $data->name }}<br>
-                          {{ $data->alamat }}<br>
-                          {{ $data->no_telp }} <br>
-                          {{ $data->email }}
+                        <p>{{ $data->user->detailUser->nama }}<br>
+                          {{ $data->user->detailUser->alamat }}<br>
+                          {{ $data->user->detailUser->no_telp }} <br>
+                          {{ $data->user->detailUser->email }}
                         </p>
                     </td>
                 </tr>

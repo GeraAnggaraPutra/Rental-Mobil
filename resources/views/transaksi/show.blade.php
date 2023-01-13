@@ -32,23 +32,23 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama Customer</label>
-                            <input type="text" class="form-control " name="name" value="{{ $transaksi->name }}" readonly>
+                            <input type="text" class="form-control " name="name" value="{{ $transaksi->user->detailUser->nama }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">NIK</label>
-                            <input type="text" class="form-control " name="nik" value="{{ $transaksi->nik }}" readonly>
+                            <input type="text" class="form-control " name="nik" value="{{ $transaksi->user->detailUser->nik }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Jenis Kelamin</label>
-                            <input type="text" class="form-control " name="jenis_kelamin" value="{{ $transaksi->jenis_kelamin }}" readonly>
+                            <input type="text" class="form-control " name="jenis_kelamin" value="{{ $transaksi->user->detailUser->jenis_kelamin }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="text" class="form-control " name="email" value="{{ $transaksi->email }}" readonly>
+                            <input type="text" class="form-control " name="email" value="{{ $transaksi->user->detailUser->email }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Alamat</label>
-                            <input type="text" class="form-control " name="alamat" value="{{ $transaksi->alamat }}" readonly>
+                            <input type="text" class="form-control " name="alamat" value="{{ $transaksi->user->detailUser->alamat }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Total Bayar</label>

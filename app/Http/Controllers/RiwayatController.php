@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\User;
 use App\Models\Mobil;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RiwayatController extends Controller
 {
@@ -17,8 +18,7 @@ class RiwayatController extends Controller
     public function index($id)
     {
         $user = User::findOrFail($id);
-        $transaksi = Transaksi::all();
-        $transaksi->id_user = $user;
+        $transaksi = Transaksi::where('id_user', $user->id_user)->first();
         return view('frontend.riwayat.index', compact('transaksi'),[
             'title' => 'Riwayat'
           ]);
@@ -31,6 +31,7 @@ class RiwayatController extends Controller
         $mobil->stock = $mobil->stock + 1;
         $mobil->save();
         $transaksi->save();
+        Alert::success('Succes', 'Pesanan Dibatalkan')->autoClose(2000);
         return back();
     }
 
