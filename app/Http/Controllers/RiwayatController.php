@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\User;
@@ -17,8 +18,8 @@ class RiwayatController extends Controller
      */
     public function index($id)
     {
-        $user = User::findOrFail($id);
-        $transaksi = Transaksi::where('id_user', $user->id_user)->first();
+        $user = auth()->id();
+        $transaksi = Transaksi::where('id_user', $user)->get();
         return view('frontend.riwayat.index', compact('transaksi'),[
             'title' => 'Riwayat'
           ]);

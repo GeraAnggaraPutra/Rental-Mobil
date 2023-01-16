@@ -37,7 +37,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
+                                    @php
+                                       $no = 1;
+                                    @endphp
                                     @foreach($transaksi as $data)
                                         <tr class="text-center">
                                             <td>{{ $no++ }}</td>
@@ -46,7 +48,7 @@
                                             <td>{{ $data->lama_sewa }}</td>
                                             <td>{{ $data->tgl_sewa }}</td>
                                             <td>{{ $data->tgl_kembali }}</td>
-                                            <td>Rp.  {{ number_format($data->total_bayar,0,',','.') }}</td>
+                                            <td>Rp. {{ number_format($data->total_bayar,0,',','.') }}</td>
                                             <td class="text-center"> @if($data->status == "Process")
                                                    @php $color = "success";@endphp
                                                 @elseif($data->status == "Selesai")
