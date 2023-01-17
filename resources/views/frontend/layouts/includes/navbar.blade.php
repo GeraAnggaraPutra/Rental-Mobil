@@ -20,11 +20,11 @@
                     </a>
 					<div class="dropdown-menu dropdown-menu dropdown-menu-right">
 					  <a href="#" class="dropdown-item">
-                        <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success" style="font-weight: bold">Riwayat</a>
+                        <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Riwayat</a>
                         <hr>
-						<a class="nav-link text-dark" style="color: blue; font-weight:bold;" href="{{ route('logout') }}" onclick="event.preventDefault();
+						<a class="nav-link text-dark text-center" style="font-weight:bold;" href="{{ route('logout') }}" onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();" role="button">
-						<i class="fas fa-sign-out-alt"> Logout</i>
+						<i class="fas fa-sign-out-alt text-primary"> Logout</i>
 						</a>
 						<form action="{{ route('logout') }}" id="logout-form" method="post">
 						@csrf

@@ -230,9 +230,8 @@
                         </div>
                         <div class="row m-0">
                             <div class="col-12  mb-4 p-0">
-                                <div class="btn btn-primary">
-                                    <input type="submit" class="proces" value="Rental ">
-                                    <span class="fas fa-arrow-right ps-2"></span>
+                                <div>
+                                    <input type="submit" class="proces btn btn-primary" value="Rental ">
                                 </div>
                             </div>
                         </div>
