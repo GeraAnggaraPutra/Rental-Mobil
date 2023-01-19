@@ -39,4 +39,14 @@ class MobilController extends Controller
         }
         return response()->json($response);
     }
+
+    public function destroy(Mobil $mobil) {
+        $mobil->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'mobil berhasil dihapus',
+            'data' => $mobil
+        ]);
+    }
+    
 }

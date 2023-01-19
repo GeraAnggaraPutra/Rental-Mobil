@@ -34,9 +34,11 @@
                     <i class="fab fa-twitter"></i>
                   </button>
 
-                  <button type="button" class="btn btn-primary btn-floating mx-1">
-                    <i class="fab fa-linkedin-in"></i>
-                  </button>
+                  <a href="{{ url('auth/google')}}">
+                    <button type="button" class="btn btn-primary btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
+                  </a>
                 </div>
 
                 <div class="divider d-flex align-items-center my-4">

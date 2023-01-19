@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/dist/img/car.png') }}" type="image/x-icon">
   </head>
   <body>
 

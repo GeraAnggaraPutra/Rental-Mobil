@@ -21,10 +21,8 @@ class CreateTransaksisTable extends Migration
             $table->integer('lama_sewa');
             $table->enum('supir',['Yes', 'No']);
             $table->string('status');
-            // $table->unsignedbigInteger('id_mobil');
-            // $table->foreign('id_mobil')->references('id')->on('mobils');
-            $table->integer('id_mobile');
-
+            $table->unsignedbigInteger('id_mobil');
+            $table->foreign('id_mobil')->references('id')->on('mobils');
             $table->unsignedbigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -20,9 +21,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1'], function () {
+    Route::get('get-user', [UsersController::class, 'getUser']);
     Route::post('login', [UsersController::class, 'login']);
     Route::post('register', [UsersController::class, 'register']);
-    Route::get('logout', [UsersController::class, 'logout'])->middleware('auth:api');
+    // Route::post('logout', [UsersController::class, 'logout']);
     Route::get('mobils', [MobilController::class, 'allMobil']);
-    Route::get('mobils/{id}', [MobilController::class, 'singleMobil']);
+    Route::get('mobil/{id}', [MobilController::class, 'singleMobil']);
+    Route::delete('mobil/delete/{id}', [MobilController::class, 'destroy']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('logout', [UsersController::class, 'logout']);
 });

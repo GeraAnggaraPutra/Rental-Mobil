@@ -1,16 +1,16 @@
 <?php
-use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MobilController;
 use App\Http\Controllers\SupirController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GoogleController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
+// Admin/Dashboard Route
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);
@@ -36,8 +36,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
     Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
     Route::resource('contact', ContactController::class);
-    Route::resource('adminprofile', AdminController::class);
-    Route::resource('customer', CustomerController::class);
     Route::post('laporan/print', [PdfController::class, 'laporan'])->name('laporan.print');
     Route::get('laporan', function (){
       return view('laporan.index');
@@ -46,14 +44,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
 });
 
 
+    // Frontend Route
     Route::get('/', [HomeController::class,'index'])->name('home');
-
     Route::get('about', function(){
       return view('frontend.about.index', [
         'title' => 'About'
       ]);
     })->name('about');
-
     Route::get('contact', function(){
       return view('frontend.contact.index', [
         'title' => 'Contact'
@@ -62,7 +59,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
 
 
     Route::get('contact/store', [ContactController::class,'store'])->name('contact.store');
-
     Route::get('cars', [CarController::class,'index'])->name('cars');
     Route::group(['middleware'=>['auth']], function(){
       Route::get('cars-transaksi/{id}', [CarController::class,'create'])->name('cars-transaksi');
@@ -72,5 +68,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
 
     Route::get('riwayat/{id}', [RiwayatController::class,'index'])->name('riwayat');
     Route::post('batal/{id}', [RiwayatController::class,'batal'])->name('batal');
-
     Route::get('generate-PDF/', [PdfController::class,'generatePdf'])->name('pdf.print');
+
+    Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+    Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
