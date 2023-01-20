@@ -29,4 +29,10 @@ public function laporan(Request $request){
         return redirect()->back();
     }
 }
+
+public function singlePrint($id){
+    $transaksi = Transaksi::findOrFail($id);
+    $pdf = PDF::loadView('singlePrint', ['transaksi'=>$transaksi])->setPaper('a4', 'landscape');
+    return $pdf->stream();
+}
 }

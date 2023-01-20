@@ -36,13 +36,16 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
     Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
     Route::resource('contact', ContactController::class);
-    Route::post('laporan/print', [PdfController::class, 'laporan'])->name('laporan.print');
+    Route::post('print', [PdfController::class, 'laporan'])->name('laporan.print');
+    Route::get('print/{id}', [PdfController::class, 'singlePrint'])->name('laporan.singlePrint');
     Route::get('laporan', function (){
       return view('laporan.index');
     })->name('laporan');
 
 });
-
+    Route::get('riwayat/{id}', [RiwayatController::class,'index'])->name('riwayat');
+    Route::post('batal/{id}', [RiwayatController::class,'batal'])->name('batal');
+    Route::get('generate-PDF/', [PdfController::class,'generatePdf'])->name('pdf.print');
 
     // Frontend Route
     Route::get('/', [HomeController::class,'index'])->name('home');
@@ -66,9 +69,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
 
     });
 
-    Route::get('riwayat/{id}', [RiwayatController::class,'index'])->name('riwayat');
-    Route::post('batal/{id}', [RiwayatController::class,'batal'])->name('batal');
-    Route::get('generate-PDF/', [PdfController::class,'generatePdf'])->name('pdf.print');
 
     Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
     Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);

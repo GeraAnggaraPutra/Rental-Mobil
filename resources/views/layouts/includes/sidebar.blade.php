@@ -1,5 +1,5 @@
 <aside class="main-sidebar sidebar-light-primary elevation-4" style="background-color:royalblue;">
-  
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -36,7 +36,7 @@
                 Dashboard
               </p>
             </a>
-            
+
           </li>
           <li class="nav-item">
             <a href="{{ route('mobil.index') }}" class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">

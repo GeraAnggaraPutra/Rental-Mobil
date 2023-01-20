@@ -7,7 +7,7 @@
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
           	<p class="breadcrumbs"><span class="mr-2"><a href="{{route('home')}}">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>About us <i class="ion-ios-arrow-forward"></i></span></p>
-            <h1 class="mb-3 bread">About Us</h1>
+            <h1 class="mb-3 bread">About</h1>
           </div>
         </div>
       </div>
@@ -20,12 +20,12 @@
 					</div>
 					<div class="col-md-6 wrap-about ftco-animate">
 	          <div class="heading-section heading-section-white pl-md-5">
-	          	<span class="subheading">About us</span>
-	            <h2 class="mb-4">Welcome to Carbook</h2>
+	          	<span class="subheading">About</span>
+	            <h2 class="mb-4">Selamat Datang Di Car Rent</h2>
 
-	            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-	            <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-	            <p><a href="#" class="btn btn-primary py-3 px-4">Search Vehicle</a></p>
+	            <p>Car Rent jasa sewa mobil atau rental mobil di Bandung dengan pilihan jenis mobil terlengkap yang bisa Anda pilih sesuai dengan kebutuhan. Dengan harga yang sangat terjangkau Anda sudah bisa menyewa mobil mewah disini seharian penuh.</p>
+	            <p>Sebagai rental mobil Bandung pastinya kami selalu mengutamakan kualitas mobil yang akan disewakan dengan rajin melakukan service dan pencucian sehingga selalu dalam kondisi bersih, wangi, dan prima demi menunjang kenyamanan semua penumpang selama perjalanan. Perjalanan Anda terjamin keamanannya bersama dengan driver profesional kami, bekerja dengan penuh tanggung jawab, ramah, dan sudah pasti memiliki pengalaman tahunan, sewa mobil lepas kunci atau plus driver termurah hanya ada di Kacong Rent Car.</p>
+	            <p><a href="{{ route('cars') }}" class="btn btn-primary py-3 px-4">Cari Mobil</a></p>
 	          </div>
 					</div>
 				</div>
@@ -155,6 +155,6 @@
           </div>
         </div>
     	</div>
-    </section>	
+    </section>
 
 @endsection
