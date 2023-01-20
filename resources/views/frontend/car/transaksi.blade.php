@@ -83,9 +83,9 @@
                                 <p class="fw-bold">Lengkapi Data</p>
                             </div>
                             @if (Auth::user()->detailUser == null)
-                            <div class="col-12 px-4">
+                            <div class="row-12 px-4">
                                 <div class="d-flex mb-4">
-                                    <span class="mr-3">
+                                    <span class="col-sm-6 mr-3">
                                         <p class="text-muted">Nama</p>
                                         <input type="text" name="name" placeholder="name" class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
@@ -95,7 +95,7 @@
                                          @enderror
                                     </span>
                                     <input class="form-control" type="hidden" name="id_mobil" readonly value="{{ $mobil->id }}">
-                                    <div class=" w-100 d-flex flex-column align-items-end">
+                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
                                         <span class="">
                                             <p class="text-muted">Nik</p>
                                             <input type="number" name="nik" placeholder="nik" class="form-control @error('nik') is-invalid @enderror">
@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex  mb-4">
-                                    <span class="mr-3">
+                                    <span class="col-sm-6 mr-3">
                                         <p class="text-muted">No Telepon</p>
                                         <input type="number" name="no_telp" placeholder="No Telepon" class="form-control @error('no_telp') is-invalid @enderror">
                                         @error('no_telp')
@@ -117,7 +117,7 @@
                                           </span>
                                          @enderror
                                     </span>
-                                    <div class=" w-100 d-flex flex-column align-items-end">
+                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
                                         <span class="">
                                             <p class="text-muted">Email</p>
                                             <input type="email" name="email" placeholder="email" class="form-control @error('email') is-invalid @enderror">
@@ -130,7 +130,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex mb-5">
-                                    <span class="me-5 mr-3">
+                                    <span class="col-sm-6 me-5 mr-3">
                                         <p class="text-muted">Jenis Kelamin</p>
                                         <div class="form-check">
                                             <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
@@ -152,7 +152,7 @@
                                             </span>
                                         @enderror
                                     </span>
-                                    <div class="w-100 d-flex flex-column align-items-end">
+                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
                                         <span class="">
                                             <p class="text-muted">Alamat</p>
                                             <textarea name="alamat" style="width: 100%;height:100%;" placeholder="alamat" class="form-control @error('alamat') is-invalid @enderror"></textarea>
@@ -166,9 +166,10 @@
                                 </div>
                             </div>
                             @endif
-                            <div class="col-12 px-4">
-                                <div class="d-flex  mb-4">
-                                    <span class="">
+
+                            <div class="row-12 px-4">
+                                <div class="d-flex mb-4">
+                                    <span class="col-md-6">
                                         <p class="text-muted">Lama Sewa(hari)</p>
                                         <input type="number" name="lama_sewa" placeholder="lama sewa" class="form-control @error('lama_sewa') is-invalid @enderror">
                                         @error('lama_sewa')
@@ -181,7 +182,7 @@
                                         <p class="text-muted"></p>
                                         <input class="form-control" type="hidden" name="id_mobil" readonly value="{{ $mobil->id }}">
                                     </span>
-                                    <div class=" w-100 d-flex flex-column align-items-end">
+                                    <div class="col-md-6 w-100 d-flex flex-column align-items-end">
                                         <p class="text-muted">Tanggal Sewa</p>
                                         <input type="date" placeholder="DATE" class="form-control2 @error('tgl_sewa') is-invalid @enderror"
                                         name="tgl_sewa">
@@ -193,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="d-flex mb-5">
-                                    <span class="me-5">
+                                    <span class="col-md-6">
                                         <p class="text-muted">Supir?</p>
                                         <div class="form-check">
                                             <input class="form-check-input @error('supir') is-invalid @enderror"
@@ -215,7 +216,7 @@
                                             </span>
                                         @enderror
                                     </span>
-                                    <div class="w-100 d-flex flex-column align-items-end">
+                                    <div class="col-md-6 w-100 d-flex flex-column align-items-end">
                                         <p class="text-muted">Tanggal Kembali</p>
                                         <input type="date" placeholder="DATE" class="form-control3 @error('tgl_kembali') is-invalid @enderror"
                                         name="tgl_kembali">

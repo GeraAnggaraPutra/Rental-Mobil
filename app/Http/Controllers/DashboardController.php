@@ -13,7 +13,7 @@ class DashboardController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index(){
       $mobil = new Mobil();
       $contact = new Contact();
