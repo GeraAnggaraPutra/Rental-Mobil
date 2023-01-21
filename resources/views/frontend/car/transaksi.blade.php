@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-4 col-6 ps-30 my-4">
                             <p class="text-muted">Harga</p>
-                            <p class="h5 m-0">Rp. {{ number_format($mobil->harga,0,',','.') }}</p>
+                            <p class="h5 m-0">Rp. {{ number_format($mobil->harga,0,',','.') }}/hari</p>
                         </div>
                         <div class="col-md-4 col-6 ps-30 my-4">
                             <p class="text-muted">Warna</p>
@@ -69,10 +69,7 @@
                             <p class="fs-14 fw-bold">Rp. {{ number_format($mobil->harga,0,',','.') }}/hari</p>
                         </div>
                         <div class="d-flex justify-content-between mb-3">
-                            <p class="textmuted fw-bold">Biaya Tambahan JIka Dengan Supir</p>
-                            <div class="d-flex align-text-top ">
-                                Rp. 80.000
-                            </div>
+                            <p class="textmuted fw-bold">Biaya Tambahan JIka Dengan Supir Rp. 80.000</p>
                         </div>
                     </div>
                     <form action="{{ route('cars.store') }}" method="post" enctype="multipart/form-data">
@@ -83,54 +80,50 @@
                                 <p class="fw-bold">Lengkapi Data</p>
                             </div>
                             @if (Auth::user()->detailUser == null)
-                            <div class="row-12 px-4">
-                                <div class="d-flex mb-4">
-                                    <span class="col-sm-6 mr-3">
+                               <div class="row">
+                             <div class="col-sm-6 mb-3">
                                         <p class="text-muted">Nama</p>
                                         <input type="text" name="name" placeholder="name" class="form-control @error('name') is-invalid @enderror">
-                                        @error('name')
+                                       @error('name')
                                          <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                          </span>
-                                         @enderror
-                                    </span>
-                                    <input class="form-control" type="hidden" name="id_mobil" readonly value="{{ $mobil->id }}">
-                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
-                                        <span class="">
-                                            <p class="text-muted">Nik</p>
-                                            <input type="number" name="nik" placeholder="nik" class="form-control @error('nik') is-invalid @enderror">
-                                            @error('nik')
-                                             <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                         </span>
+                                       @enderror
+                             </div>
+                             <div class="col-sm-6 col-md-6">
+                                         <p class="text-muted">Nik</p>
+                                         <input type="number" name="nik" placeholder="nik" class="form-control @error('nik') is-invalid @enderror">
+                                        @error('nik')
+                                          <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>
-                                              </span>
-                                             @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="d-flex  mb-4">
-                                    <span class="col-sm-6 mr-3">
-                                        <p class="text-muted">No Telepon</p>
-                                        <input type="number" name="no_telp" placeholder="No Telepon" class="form-control @error('no_telp') is-invalid @enderror">
-                                        @error('no_telp')
-                                         <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
                                           </span>
-                                         @enderror
-                                    </span>
-                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
-                                        <span class="">
-                                            <p class="text-muted">Email</p>
-                                            <input type="email" name="email" placeholder="email" class="form-control @error('email') is-invalid @enderror">
-                                            @error('email')
-                                             <span class="invalid-feedback" role="alert">
-                                              <strong>{{ $message }}</strong>
-                                              </span>
-                                             @enderror
+                                        @enderror
+                               </div>
+                             </div>
+                           
+                             <div class="row">
+                               <div class="col-sm-6 col-md-6 mt-3">
+                                       <p class="text-muted">No Telepon</p>
+                                       <input type="number" name="no_telp" placeholder="No Telepon" class="form-control @error('no_telp') is-invalid @enderror">
+                                      @error('no_telp')
+                                        <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
                                         </span>
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-5">
-                                    <span class="col-sm-6 me-5 mr-3">
+                                      @enderror
+                             </div>
+                             <div class="col-sm-6 col-md-6 mt-3">
+                                        <p class="text-muted">Email</p>
+                                        <input type="email" name="email" placeholder="email" class="form-control @error('email') is-invalid @enderror">
+                                       @error('email')
+                                           <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
+                                           </span>
+                                       @enderror
+                             </div>
+                           </div>
+                           
+                           <div class="row">
+                             <div class="col-sm-6 col-md-6 mt-3">
                                         <p class="text-muted">Jenis Kelamin</p>
                                         <div class="form-check">
                                             <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
@@ -146,56 +139,36 @@
                                                 Perempuan
                                             </label>
                                         </div>
-                                        @error('jenis_kelamin')
-                                            <span class="invalid-feedback" role="alert">
+                                       @error('jenis_kelamin')
+                                          <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </span>
-                                    <div class="col-sm-6 w-100 d-flex flex-column align-items-end">
-                                        <span class="">
-                                            <p class="text-muted">Alamat</p>
-                                            <textarea name="alamat" style="width: 100%;height:100%;" placeholder="alamat" class="form-control @error('alamat') is-invalid @enderror"></textarea>
-                                            @error('alamat')
-                                             <span class="invalid-feedback" role="alert">
+                                          </span>
+                                       @enderror
+                               </div>
+                               <div class="col-sm-6 col-md-6 mt-3">
+                                       <p class="text-muted">Alamat</p>
+                                       <textarea name="alamat" style="width: 100%;height:100%;" placeholder="alamat" class="form-control @error('alamat') is-invalid @enderror"></textarea>
+                                       @error('alamat')
+                                          <span class="invalid-feedback" role="alert">
                                               <strong>{{ $message }}</strong>
-                                              </span>
-                                             @enderror
-                                        </span>
-                                    </div>
+                                          </span>
+                                       @enderror
                                 </div>
-                            </div>
+                              </div>
                             @endif
 
-                            <div class="row-12 px-4">
-                                <div class="d-flex mb-4">
-                                    <span class="col-md-6">
-                                        <p class="text-muted">Lama Sewa(hari)</p>
+                            <div class="row">
+                              <div class="col-sm-6 col-md-6 mt-3">
+                                      <p class="text-muted">Lama Sewa(hari)</p>
                                         <input type="number" name="lama_sewa" placeholder="lama sewa" class="form-control @error('lama_sewa') is-invalid @enderror">
-                                        @error('lama_sewa')
-                                         <span class="invalid-feedback" role="alert">
+                                      @error('lama_sewa')
+                                        <span class="invalid-feedback" role="alert">
                                           <strong>{{ $message }}</strong>
-                                          </span>
-                                         @enderror
-                                    </span>
-                                    <span class="">
-                                        <p class="text-muted"></p>
-                                        <input class="form-control" type="hidden" name="id_mobil" readonly value="{{ $mobil->id }}">
-                                    </span>
-                                    <div class="col-md-6 w-100 d-flex flex-column align-items-end">
-                                        <p class="text-muted">Tanggal Sewa</p>
-                                        <input type="date" placeholder="DATE" class="form-control2 @error('tgl_sewa') is-invalid @enderror"
-                                        name="tgl_sewa">
-                                        @error('tgl_sewa')
-                                         <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
-                                          </span>
-                                         @enderror
-                                    </div>
-                                </div>
-                                <div class="d-flex mb-5">
-                                    <span class="col-md-6">
-                                        <p class="text-muted">Supir?</p>
+                                        </span>
+                                      @enderror
+                              </div>
+                              <div class="col-sm-6 col-md-6 mt-3">
+                                    <p class="text-muted">Supir?</p>
                                         <div class="form-check">
                                             <input class="form-check-input @error('supir') is-invalid @enderror"
                                                 type="radio" name="supir" value="Yes">
@@ -210,27 +183,40 @@
                                                 Tanpa Supir
                                             </label>
                                         </div>
-                                        @error('supir')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </span>
-                                    <div class="col-md-6 w-100 d-flex flex-column align-items-end">
-                                        <p class="text-muted">Tanggal Kembali</p>
-                                        <input type="date" placeholder="DATE" class="form-control3 @error('tgl_kembali') is-invalid @enderror"
-                                        name="tgl_kembali">
-                                        @error('tgl_kembali')
-                                         <span class="invalid-feedback" role="alert">
-                                          <strong>{{ $message }}</strong>
+                                      @error('supir')
+                                          <span class="invalid-feedback" role="alert">
+                                              <strong>{{ $message }}</strong>
                                           </span>
-                                        @enderror
-                                    </div>
-                                </div>
+                                      @enderror
+                              </div>
+                            </div>
+                            
+                            <div class="row">
+                              <div class="col-sm-6 col-md-6 mt-3">
+                                       <p class="text-muted">Tanggal Sewa</p>
+                                       <input type="date" placeholder="DATE" class="form-control2 @error('tgl_sewa') is-invalid @enderror"
+                                        name="tgl_sewa">
+                                      @error('tgl_sewa')
+                                        <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                        </span>
+                                      @enderror
+                              </div>
+                              <div class="col-sm-6 col-md-6 mt-3">
+                                       <p class="text-muted">Tanggal Kembali</p>
+                                       <input type="date" placeholder="DATE" class="form-control3 @error('tgl_kembali') is-invalid @enderror"
+                                        name="tgl_kembali">
+                                     @error('tgl_kembali')
+                                       <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                       </span>
+                                     @enderror
+                              </div>
                             </div>
                         </div>
+                        <input class="form-control" type="hidden" name="id_mobil" readonly value="{{ $mobil->id }}">
                         <div class="row m-0">
-                            <div class="col-12  mb-4 p-0">
+                            <div class="col-12 mt-4 mb-4 p-0">
                                 <div>
                                     <input type="submit" class="proces btn btn-primary" value="Rental ">
                                 </div>
