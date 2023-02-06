@@ -127,12 +127,12 @@ class TransaksiController extends Controller
 
         if ($record == null or $record == "") {
             if (date('l', strtotime(date('Y-01-01')))) {
-                $invoice_no = 'rentcar-'.date('Y') . '-0001';
+                $invoice_no = date('Y m d') . '-0001';
             }
         } else {
             $expNum = explode('-', $record->invoice_no);
             $innoumber = ($expNum[1] + 1);
-            $invoice_no = 'rentcar-'.$expNum[0] . '-' . sprintf('%04d', $innoumber);
+            $invoice_no = $expNum[0] . '-' . sprintf('%04d', $innoumber);
         }
 
         $transaksi->invoice_no = $invoice_no;

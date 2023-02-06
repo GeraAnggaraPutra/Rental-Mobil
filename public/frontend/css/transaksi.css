@@ -101,6 +101,7 @@ img {
 
 .textmuted {
     color: #6c757d;
+    font-weight: bold;
     font-size: 13px;
     font-weight: bold;
 }
