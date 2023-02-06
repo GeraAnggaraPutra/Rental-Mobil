@@ -27,8 +27,8 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">No Transaksi</label>
-                            <input type="text" class="form-control " name="id" value="{{ $transaksi->id }}" readonly>
+                            <label class="form-label">Kode Transaksi</label>
+                            <input type="text" class="form-control " name="id" value="{{ $transaksi->invoice_no }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama Customer</label>

@@ -66,7 +66,7 @@ class MobilController extends Controller
         $mobil->warna = $request->warna;
         $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        Alert::success('Done', 'Data berhasil dibuat');
+        toast('Data berhasil dibuat','success');
         return redirect()->route('mobil.index');
     }
 
@@ -131,7 +131,7 @@ class MobilController extends Controller
         $mobil->warna = $request->warna;
         $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        Alert::success('Done', 'Data berhasil diedit');
+        toast('Data berhasil diedit','success');
         return redirect()->route('mobil.index');
     }
 
@@ -146,7 +146,7 @@ class MobilController extends Controller
         $mobil = Mobil::findOrFail($id);
         $mobil->deleteImage();
         $mobil->delete();
-        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        toast('Data berhasil dihapus','success');
         return redirect()->route('mobil.index');
     }
 }

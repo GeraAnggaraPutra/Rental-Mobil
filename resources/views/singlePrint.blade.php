@@ -65,7 +65,7 @@
                 <tr>
                     <td colspan="2">
                         <h4>Perusahaan: </h4>
-                        <p>CarRent.<br>
+                        <p>RentCar.<br>
                             Jl. Situ Tarate<br>
                             085343966997<br>
                             support@carrent.id

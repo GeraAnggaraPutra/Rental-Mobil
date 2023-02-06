@@ -36,7 +36,7 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>No</th>
-                                        <th>No Transaksi</th>
+                                        <th>Kode Transaksi</th>
                                         <th>Tanggal Rental</th>
                                         <th>Tanggal Kembali</th>
                                         <th>Mobil</th>
@@ -50,7 +50,7 @@
                                     @foreach ($transaksi as $data)
                                         <tr class="text-center">
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->id }}</td>
+                                            <td>{{ $data->invoice_no }}</td>
                                             <td>{{ $data->tgl_sewa }}</td>
                                             <td>{{ $data->tgl_kembali }}</td>
                                             <td>{{ $data->mobil->nama_mobil }}</td>

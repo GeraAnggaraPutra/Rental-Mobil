@@ -26,13 +26,18 @@
                 @csrf
                 <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p class="lead fw-normal mb-0 me-3">Sign up with</p>
-                  <button type="button" class="btn btn-primary btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
 
-                  <button type="button" class="btn btn-primary btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
+                  <a href="{{ url('auth/facebook') }}">
+                    <button type="button" class="btn btn-primary btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+                  </a>
+
+                  <a href="{{ url('auth/github') }}">
+                    <button type="button" class="btn btn-primary btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+                  </a>
 
                   <a href="{{ url('auth/google')}}">
                     <button type="button" class="btn btn-primary btn-floating mx-1">

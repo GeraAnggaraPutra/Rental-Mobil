@@ -24,7 +24,7 @@
 	            <h2 class="mb-4">Selamat Datang Di Car Rent</h2>
 
 	            <p>Car Rent jasa sewa mobil atau rental mobil di Bandung dengan pilihan jenis mobil terlengkap yang bisa Anda pilih sesuai dengan kebutuhan. Dengan harga yang sangat terjangkau Anda sudah bisa menyewa mobil mewah disini seharian penuh.</p>
-	            <p>Sebagai rental mobil Bandung pastinya kami selalu mengutamakan kualitas mobil yang akan disewakan dengan rajin melakukan service dan pencucian sehingga selalu dalam kondisi bersih, wangi, dan prima demi menunjang kenyamanan semua penumpang selama perjalanan. Perjalanan Anda terjamin keamanannya bersama dengan driver profesional kami, bekerja dengan penuh tanggung jawab, ramah, dan sudah pasti memiliki pengalaman tahunan, sewa mobil lepas kunci atau plus driver termurah hanya ada di Kacong Rent Car.</p>
+	            <p>Sebagai rental mobil Bandung pastinya kami selalu mengutamakan kualitas mobil yang akan disewakan dengan rajin melakukan service dan pencucian sehingga selalu dalam kondisi bersih, wangi, dan prima demi menunjang kenyamanan semua penumpang selama perjalanan. Perjalanan Anda terjamin keamanannya bersama dengan driver profesional kami, bekerja dengan penuh tanggung jawab, ramah, dan sudah pasti memiliki pengalaman tahunan, sewa mobil lepas kunci atau plus driver termurah hanya ada di Rent Car.</p>
 	            <p><a href="{{ route('cars') }}" class="btn btn-primary py-3 px-4">Cari Mobil</a></p>
 	          </div>
 					</div>

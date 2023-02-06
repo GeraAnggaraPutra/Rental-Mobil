@@ -9,7 +9,7 @@ class Transaksi extends Model
 {
     use HasFactory;
 
-    public $fillable = ['id_mobil', 'tgl_sewa','tgl_kembali', 'lama_sewa','supir','total_bayar','status']; //
+    public $fillable = ['id_mobil', 'tgl_sewa','tgl_kembali', 'lama_sewa','supir','total_bayar','status', 'invoice_no']; //
 
     public $timestamps = true;
 

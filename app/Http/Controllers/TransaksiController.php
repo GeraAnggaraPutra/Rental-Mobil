@@ -1,14 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\DetailUser;
+use App\Models\Mobil;
 use App\Models\Transaksi;
 use App\Models\User;
-use App\Models\Mobil;
-use App\Models\DetailUser;
-use Illuminate\Http\Request;
-use Validator;
 use Auth;
+use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Validator;
+
 class TransaksiController extends Controller
 {
     public function __construct()
@@ -45,9 +47,10 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
 
-        if(Auth::user()->detailUser == null){
+        if (Auth::user()->detailUser == null) {
+
             $rules = [
-                'name' => 'required',
+                'nama' => 'required',
                 'nik' => 'required',
                 'no_telp' => 'required',
                 'jenis_kelamin' => 'required',
@@ -59,8 +62,9 @@ class TransaksiController extends Controller
                 'supir' => 'required',
                 'id_mobil' => 'required',
             ];
+
             $messages = [
-                'name.required' => 'Nama harus di isi!',
+                'nama.required' => 'Nama harus di isi!',
                 'nik.required' => 'NIK harus di isi!',
                 'no_telp.required' => 'Nomor Telepon harus di isi!',
                 'jenis_kelamin.required' => 'Jenis Kelamin harus di isi!',
@@ -72,16 +76,25 @@ class TransaksiController extends Controller
                 'supir.required' => 'Supir harus di isi!',
                 'id_mobil.required' => 'id_mobil harus di isi!',
             ];
+
+            $validated = Validator::make($request->all(), $rules, $messages);
+            if ($validated->fails()) {
+                Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+                return back()->withErrors($validated)->withInput();
+            }
+
             $detailUser = new DetailUser();
             $detailUser->id_user = Auth::user()->id;
-            $detailUser->nama = $request->name;
+            $detailUser->nama = $request->nama;
             $detailUser->nik = $request->nik;
             $detailUser->no_telp = $request->no_telp;
             $detailUser->jenis_kelamin = $request->jenis_kelamin;
             $detailUser->email = $request->email;
             $detailUser->alamat = $request->alamat;
             $detailUser->save();
-        }else{
+
+        } else {
+
             $rules = [
                 'tgl_sewa' => 'required',
                 'tgl_kembali' => 'required',
@@ -89,6 +102,7 @@ class TransaksiController extends Controller
                 'supir' => 'required',
                 'id_mobil' => 'required',
             ];
+
             $messages = [
                 'tgl_sewa.required' => 'Tgl sewa harus di isi!',
                 'tgl_kembali.required' => 'Tgl kembali harus di isi!',
@@ -96,38 +110,52 @@ class TransaksiController extends Controller
                 'supir.required' => 'Supir harus di isi!',
                 'id_mobil.required' => 'id_mobil harus di isi!',
             ];
+
+            $validated = Validator::make($request->all(), $rules, $messages);
+            if ($validated->fails()) {
+                Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+                return back()->withErrors($validated)->withInput();
+            }
+
         }
 
-
-        $validated = Validator::make($request->all(), $rules, $messages);
-        if ($validated->fails()) {
-            Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
-            return back()->withErrors($validated)->withInput();
-        }
-
-        $car = new Transaksi();
+        $transaksi = new Transaksi();
         $mobil = Mobil::findOrFail($request->id_mobil);
 
-        $car->tgl_sewa = $request->tgl_sewa;
-        $car->tgl_kembali = $request->tgl_kembali;
-        $car->lama_sewa = $request->lama_sewa;
-        $car->supir = $request->supir;
-        if($request->supir == "Yes"){
+        $record = Transaksi::latest()->first();
+
+
+        if ($record == null or $record == "") {
+            if (date('l', strtotime(date('Y-01-01')))) {
+                $invoice_no = 'rentcar-'.date('Y') . '-0001';
+            }
+        } else {
+            $expNum = explode('-', $record->invoice_no);
+            $innoumber = ($expNum[1] + 1);
+            $invoice_no = 'rentcar-'.$expNum[0] . '-' . sprintf('%04d', $innoumber);
+        }
+
+        $transaksi->invoice_no = $invoice_no;
+        $transaksi->tgl_sewa = $request->tgl_sewa;
+        $transaksi->tgl_kembali = $request->tgl_kembali;
+        $transaksi->lama_sewa = $request->lama_sewa;
+        $transaksi->supir = $request->supir;
+        if ($request->supir == "Yes") {
             $biayaSupir = 80000;
-        }elseif($request->supir == "No"){
+        } elseif ($request->supir == "No") {
             $biayaSupir = 0;
         }
         $total_bayar = ($request->lama_sewa * $mobil->harga) + $biayaSupir;
-        $car->total_bayar = $total_bayar;
-        $car->id_mobil = $request->id_mobil;
-        $car->status = "Process";
-        $car->id_user = Auth::user()->id;
+        $transaksi->total_bayar = $total_bayar;
+        $transaksi->id_mobil = $request->id_mobil;
+        $transaksi->status = "Process";
+        $transaksi->id_user = Auth::user()->id;
 
         $mobil->stock = $mobil->stock - 1;
 
         $mobil->save();
-        $car->save();
-        Alert::success('Succes', 'Pesanan Berhasil')->autoClose(2000);
+        $transaksi->save();
+        toast('Pesanan Berhasil', 'success');
         return redirect()->route('cars');
     }
 
@@ -176,7 +204,7 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
-        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        toast('Data berhasil dihapus', 'success');
         return redirect()->route('transaksi.index');
     }
 
@@ -188,7 +216,7 @@ class TransaksiController extends Controller
         $mobil->stock = $mobil->stock + 1;
         $mobil->save();
         $transaksi->save();
-        Alert::success('Done', 'Rental Mobil Selesai')->autoClose(2000);
+        toast('Rental mobil selesai', 'success');
         return redirect()->route('transaksi.index');
     }
 
@@ -200,7 +228,7 @@ class TransaksiController extends Controller
         $mobil->stock = $mobil->stock - 1;
         $mobil->save();
         $transaksi->save();
-        Alert::success('Done', 'Transaksi Di Process')->autoClose(2000);
+        toast('Transaksi diprocess', 'success');
         return redirect()->route('transaksi.index');
     }
 }

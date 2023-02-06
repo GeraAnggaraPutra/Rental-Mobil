@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CarRent
+    <title>RentCar
        || {{ $title }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,7 +33,8 @@
   <body>
 
 	@include('frontend.layouts.includes.navbar')
-  @include('sweetalert::alert')
+
+    @include('sweetalert::alert')
     <!-- Main content -->
     <section class="content">
         @yield('content')

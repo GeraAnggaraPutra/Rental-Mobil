@@ -49,7 +49,7 @@ class ContactController extends Controller
         $contact->subject = $request->subject;
         $contact->message= $request->message;
         $contact->save();
-        Alert::success('Done', 'Pesan Terkirim');
+        toast('Pesan Terkirim.','success');
         return redirect()->route('contact');
     }
 

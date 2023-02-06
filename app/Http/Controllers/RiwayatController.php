@@ -32,7 +32,7 @@ class RiwayatController extends Controller
         $mobil->stock = $mobil->stock + 1;
         $mobil->save();
         $transaksi->save();
-        Alert::success('Succes', 'Pesanan Dibatalkan')->autoClose(2000);
+        toast('Pesanan dibatalkan','success');
         return back();
     }
 

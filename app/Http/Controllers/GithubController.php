@@ -8,37 +8,36 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 
-class GoogleController extends Controller
+class GithubController extends Controller
 {
-
-    public function redirectToGoogle() {
-        return Socialite::driver('google')->redirect();
+    public function redirectToGithub() {
+        return Socialite::driver('github')->redirect();
     }
 
-    public function handleGoogleCallback() {
+    public function handleGithubCallback() {
         try {
-            $user = Socialite::driver('google')->user();
-            $findUser = User::where('id_google', $user->getId())->first();
+            $user = Socialite::driver('github')->user();
+            $findUser = User::where('id_github', $user->getId())->first();
 
             if($findUser) {
                 Auth::login($findUser);
-                toast('Anda berhasil masuk dengan Google.','success');
+                toast('Anda berhasil masuk dengan Github.','success');
                 return redirect()->intended('/');
             }else {
                 $newUser = User::create([
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
                     'role' => "user",
-                    'id_google' => $user->getId(),
+                    'id_github' => $user->getId(),
                     'email_verified_at' => now(),
                 ]);
 
                 Auth::login($newUser);
-                toast('Anda berhasil masuk dengan Google.','success');
+                toast('Anda berhasil masuk dengan Github.','success');
                 return redirect()->intended('/');
             }
         } catch (Exception $e) {
-            return redirect('auth/google');
+            return redirect('auth/github');
         }
     }
 }

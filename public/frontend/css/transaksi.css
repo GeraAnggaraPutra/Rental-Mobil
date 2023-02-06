@@ -96,11 +96,13 @@ img {
 
 .text-muted {
     font-size: 10px;
+    font-weight: bold;
 }
 
 .textmuted {
     color: #6c757d;
     font-size: 13px;
+    font-weight: bold;
 }
 
 .fs-14 {

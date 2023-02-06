@@ -53,7 +53,7 @@ class SupirController extends Controller
         $supir->no_telp = $request->no_telp;
         $supir->alamat = $request->alamat;
         $supir->save();
-        Alert::success('Done', 'Data berhasil dibuat');
+        toast('Data berhasil dibuat','success');
         return redirect()->route('supir.index');
     }
 
@@ -104,7 +104,7 @@ class SupirController extends Controller
         $supir->no_telp = $request->no_telp;
         $supir->alamat = $request->alamat;
         $supir->save();
-        Alert::success('Done', 'Data berhasil diedit');
+        toast('Data berhasil diedit','success');
         return redirect()->route('supir.index');
     }
 
@@ -118,7 +118,7 @@ class SupirController extends Controller
     {
         $supir = Supir::findOrFail($id);
         $supir->delete();
-        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        toast('Data berhasil dihapus','success');
         return redirect()->route('supir.index');
     }
 }
