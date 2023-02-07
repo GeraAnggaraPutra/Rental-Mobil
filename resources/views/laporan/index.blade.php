@@ -25,7 +25,7 @@
                 @include('layouts/_flash')
                 <div class="card">
                     <div class="card-header">
-                        Laporan
+                        Menampilkan Data Berdasarkan Tanggal Rental
                     </div>
                     <div class="card-body">
                          <div class="table-responsive">
@@ -44,13 +44,65 @@
                                             <td><input type="date" name="tanggal_akhir" style="border: none;border-bottom: 2px solid black"></td>
                                             <td>
                                                     @csrf
-                                                    <input type="submit" class="btn btn-sm btn-success" value="Print">
+                                                    <input type="submit" class="btn btn-sm btn-outline-success" value="Print PDF">
                                                 </form>
                                             </td>
                                         </tr>
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 mt-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Menampilkan Data Berdasarkan Tanggal Pemesanan</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                                        class="fas fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="start_date" placeholder="Start Date" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text bg-info text-white" id="basic-addon1"><i
+                                                        class="fas fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="end_date" placeholder="End Date" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button id="filter" class="btn btn-outline-info btn-sm">Filter</button>
+                                    <button id="reset" class="btn btn-outline-warning btn-sm">Reset</button>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <!-- Table -->
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless display nowrap" id="records" style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Kode Transaksi</th>
+                                                        <th>Lama Sewa</th>
+                                                        <th>Tanggal Rental</th>
+                                                        <th>Tanggal Kembali</th>
+                                                        <th>ID Mobil</th>
+                                                        <th>ID User</th>
+                                                        <th>DATE</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

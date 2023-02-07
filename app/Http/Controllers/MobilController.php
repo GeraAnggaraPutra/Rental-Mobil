@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Mobil;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Excel;
+use App\Exports\MobilExport;
+
 class MobilController extends Controller
 {
     public function __construct()
@@ -148,5 +151,13 @@ class MobilController extends Controller
         $mobil->delete();
         toast('Data berhasil dihapus','success');
         return redirect()->route('mobil.index');
+    }
+
+    // export
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function export(){
+        return Excel::download(new MobilExport, 'mobil.xlsx');
     }
 }

@@ -29,6 +29,10 @@
                         <a href="{{ route('mobil.create') }}" class="btn btn-primary" style="float: right">
                         Tambah Data
                         </a>
+
+                        <a href="{{ route('mobil.export') }}" class="btn btn-success" style="float: right; margin-right:5px">
+                        Excel
+                        </a>
                     </div>
 
                     <div class="card-body">
@@ -64,15 +68,15 @@
                                                     <a href="{{ route('mobil.edit', $data->id) }}"
                                                         class="btn btn-sm btn-outline-success">
                                                         <i class="nav-icon fas fa-edit"></i>
-                                                        
+
                                                     </a> |
                                                     <a href="{{ route('mobil.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-warning">
                                                         <i class="nav-icon fas fa-eye"></i>
-                                                        
+
                                                     </a> |
                                                     <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                                        <i class="nav-icon fas fa-trash-alt"></i> 
+                                                        <i class="nav-icon fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>

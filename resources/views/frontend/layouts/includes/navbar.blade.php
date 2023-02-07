@@ -22,6 +22,8 @@
 					  <a href="#" class="dropdown-item">
                         <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Riwayat</a>
                         <hr>
+                        <a href="{{ route('profile', Auth::user()->id ) }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Profile</a>
+                        <hr>
 						<a class="nav-link text-dark text-center" style="font-weight:bold;" href="{{ route('logout') }}" onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();" role="button">
 						<i class="fas fa-sign-out-alt text-primary"> Logout</i>

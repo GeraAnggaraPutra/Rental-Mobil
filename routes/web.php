@@ -15,6 +15,7 @@ use App\Http\Controllers\GithubController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\TwitterController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -36,18 +37,20 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);
     Route::resource('mobil', MobilController::class);
+    Route::get('mobil-export', [MobilController::class, 'export'])->name('mobil.export');
     Route::resource('transaksi', TransaksiController::class);
     Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
     Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
     Route::resource('contact', ContactController::class);
     Route::post('print', [PdfController::class, 'laporan'])->name('laporan.print');
     Route::get('print/{id}', [PdfController::class, 'singlePrint'])->name('laporan.singlePrint');
-    Route::get('laporan', function (){
-      return view('laporan.index');
-    })->name('laporan');
+    Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
+    Route::get('transaksis/records', [LaporanController::class, 'records'])->name('records');
 
 });
     Route::get('riwayat/{id}', [RiwayatController::class,'index'])->name('riwayat');
+    Route::get('profile/{id}', [ProfileController::class,'index'])->name('profile');
+    Route::post('profile/update/{id}', [ProfileController::class,'update'])->name('profile.update');
     Route::post('batal/{id}', [RiwayatController::class,'batal'])->name('batal');
     Route::get('generate-PDF/', [PdfController::class,'generatePdf'])->name('pdf.print');
 
