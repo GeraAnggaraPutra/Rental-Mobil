@@ -29,7 +29,7 @@ class TransaksiChart
         ];
         return $this->chart->pieChart()
             ->setTitle('Status Transaksi')
-            ->setSubtitle(date('Y'))
+            ->setSubtitle(date('D, M Y'))
             ->addData($data)
             // ->setWidth(800)
             ->setHeight(340)
