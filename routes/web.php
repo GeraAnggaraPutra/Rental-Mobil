@@ -45,7 +45,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::post('print', [PdfController::class, 'laporan'])->name('laporan.print');
     Route::get('print/{id}', [PdfController::class, 'singlePrint'])->name('laporan.singlePrint');
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
-    Route::get('transaksis/records', [LaporanController::class, 'records'])->name('records');
+    Route::get('transaksis/records', [LaporanController::class, 'records'])->name('transaksis/records');
 
 });
     Route::get('riwayat/{id}', [RiwayatController::class,'index'])->name('riwayat');

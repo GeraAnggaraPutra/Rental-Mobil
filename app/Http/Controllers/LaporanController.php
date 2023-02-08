@@ -22,7 +22,7 @@ class LaporanController extends Controller
                 $end_date = Carbon::parse($request->input('end_date'));
 
                 if ($end_date->greaterThan($start_date)) {
-                    $transaksis = Transaksi::whereBetween('created_at', [$start_date, $end_date])->get();
+                    $transaksis = Transaksi::whereBetween('tgl_sewa', [$start_date, $end_date])->get();
                 } else {
                     $transaksis = Transaksi::latest()->get();
                 }

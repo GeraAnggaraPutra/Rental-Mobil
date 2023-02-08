@@ -56,7 +56,7 @@
                             <div class="col-md-12 mt-3">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p>Menampilkan Data Berdasarkan Tanggal Pemesanan</p>
+                                        <p>Menampilkan Data Berdasarkan Tanggal Rental</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-group mb-3">
