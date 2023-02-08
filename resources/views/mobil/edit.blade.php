@@ -55,12 +55,12 @@
                                 <label class="form-label">Foto Mobil</label>
                                 @if(isset($mobil) && $mobil->foto)
                                     <p>
-                                        <img src="{{ asset('images/mobil/'). $mobil->foto }}" 
+                                        <img src="{{ $mobil->image() }}"
                                         class="img-rounded img-responsive" style="width: 75px; height: 75px">
                                     </p>
                                 @endif
                                 <input type="file" name="foto" class="form-control @error('foto') is-invalid @enderror"
-                                value="{{ $mobil->foto }}">
+                                value="{{ asset('images/mobil/').$mobil->foto }}">
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

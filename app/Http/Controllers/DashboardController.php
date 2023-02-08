@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Mobil;
 use App\Models\Contact;
+use App\Models\Mobil;
 use App\Models\Transaksi;
 use App\Models\User;
+use App\Charts\TransaksiChart;
+
 class DashboardController extends Controller
 {
     public function __construct()
@@ -14,11 +15,15 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-      $mobil = new Mobil();
-      $contact = new Contact();
-      $transaksi = new Transaksi();
-      $user = new User();
-      return view('dashboard.index', compact('mobil', 'contact', 'transaksi', 'user'));
+    public function index(TransaksiChart $transaksiChart)
+    {
+        $mobil = new Mobil();
+        $contact = new Contact();
+        $transaksi = new Transaksi();
+        $user = new User();
+
+        return view('dashboard.index',
+        ['transaksiChart' => $transaksiChart->build()],
+        compact('mobil', 'contact', 'transaksi', 'user','transaksiChart'));
     }
 }

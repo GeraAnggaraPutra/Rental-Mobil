@@ -84,9 +84,15 @@
           </div>
           <!-- ./col -->
         </div>
+        {!! $transaksiChart->container() !!}
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
+
+
+  <script src="{{ $transaksiChart->cdn() }}"></script>
+
+{{ $transaksiChart->script() }}
 @endsection
