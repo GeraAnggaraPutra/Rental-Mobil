@@ -158,6 +158,8 @@ class MobilController extends Controller
     * @return \Illuminate\Support\Collection
     */
     public function export(){
+        ob_end_clean();
+        ob_start();
         return Excel::download(new MobilExport, 'mobil.xlsx');
     }
 }

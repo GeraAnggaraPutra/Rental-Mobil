@@ -10,6 +10,8 @@ use Auth;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Validator;
+use Excel;
+use App\Exports\TransaksiExport;
 
 class TransaksiController extends Controller
 {
@@ -230,5 +232,11 @@ class TransaksiController extends Controller
         $transaksi->save();
         toast('Transaksi diprocess', 'success');
         return redirect()->route('transaksi.index');
+    }
+
+    public function export(){
+        ob_end_clean();
+        ob_start();
+        return Excel::download(new TransaksiExport, 'transaksi.xlsx');
     }
 }

@@ -36,7 +36,6 @@
                 Dashboard
               </p>
             </a>
-
           </li>
           <li class="nav-item">
             <a href="{{ route('mobil.index') }}" class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">

@@ -38,6 +38,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::resource('supir', SupirController::class);
     Route::resource('mobil', MobilController::class);
     Route::get('mobil-export', [MobilController::class, 'export'])->name('mobil.export');
+    Route::get('transaksi-export', [TransaksiController::class, 'export'])->name('transaksi.export');
     Route::resource('transaksi', TransaksiController::class);
     Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
     Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
@@ -64,6 +65,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     })->name('contact');
 
 
+    Route::get('car/detail/{id}', [CarController::class,'detail'])->name('car.detail');
     Route::get('contact/store', [ContactController::class,'store'])->name('contact.store');
     Route::get('cars', [CarController::class,'index'])->name('cars');
     Route::group(['middleware'=>['auth']], function(){

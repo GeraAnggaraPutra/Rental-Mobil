@@ -36,6 +36,13 @@ class CarController extends Controller
           ]);
     }
 
+    public function detail($id){
+        $mobil = Mobil::findOrFail($id);
+        return view('frontend.car.detail', compact('mobil'),[
+            'title' => 'Car-Detail'
+          ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

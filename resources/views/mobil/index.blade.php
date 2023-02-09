@@ -31,7 +31,7 @@
                         </a>
 
                         <a href="{{ route('mobil.export') }}" class="btn btn-success" style="float: right; margin-right:5px">
-                        Excel
+                        Export Excel
                         </a>
                     </div>
 
