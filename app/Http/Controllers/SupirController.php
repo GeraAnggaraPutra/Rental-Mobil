@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Supir;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Excel;
+use App\Imports\SupirImport;
+
 class SupirController extends Controller
 {
     public function __construct()
@@ -120,5 +123,11 @@ class SupirController extends Controller
         $supir->delete();
         toast('Data berhasil dihapus','success');
         return redirect()->route('supir.index');
+    }
+
+    public function import(){
+        Excel::import(new SupirImport, request()->file('file'));
+        toast('Data berhasil diimport','success');
+        return back();
     }
 }

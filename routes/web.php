@@ -36,6 +36,7 @@ Auth::routes();
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);
+    Route::post('supir/import', [SupirController::class, 'import'])->name('supir.import');
     Route::resource('mobil', MobilController::class);
     Route::get('mobil-export', [MobilController::class, 'export'])->name('mobil.export');
     Route::get('transaksi-export', [TransaksiController::class, 'export'])->name('transaksi.export');
