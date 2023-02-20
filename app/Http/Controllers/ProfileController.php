@@ -14,12 +14,11 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
 
-        $user = auth()->id();
-        $detail = DetailUser::where('id_user', $user)->get();
-        return view('frontend.profile.index', compact('detail'),[
+
+        return view('frontend.profile.index',[
             'title' => 'Profile'
           ]);
     }
@@ -29,9 +28,30 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, $id)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'nama' => 'required',
+            'nik' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = auth()->id();
+        $detail = new DetailUser;
+        $detail->nama = $request->nama;
+        $detail->nik = $request->nik;
+        $detail->jenis_kelamin = $request->jenis_kelamin;
+        $detail->alamat = $request->alamat;
+        $detail->no_telp = $request->no_telp;
+        $detail->email = $request->email;
+        $detail->id_user = $user;
+        $detail->save();
+        toast('Data berhasil dibuat','success');
+        return back();
     }
 
     /**

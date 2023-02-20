@@ -4,16 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Mobil extends Model
 {
     use HasFactory;
+    use Sluggable;
 
-    public $fillable = ['merk', 'nama_mobil', 'foto','stock', 'harga','tahun','no_polisi','warna'];
+    public $fillable = ['merk', 'nama_mobil', 'foto','stock', 'harga','tahun','no_polisi','warna', 'slug'];
     public $timestamps = true;
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'nama_mobil'
+            ]
+        ];
+    }
+
     public function transaksi(){
-        
+
         return $this->hasMany(Transaksi::class, 'id_mobil');
     }
 

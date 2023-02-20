@@ -40,7 +40,7 @@
                                     @php
                                        $no = 1;
                                     @endphp
-                                    @foreach($transaksi as $data)
+                                    @foreach(Auth::user()->transaksi as $data)
                                         <tr class="text-center">
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->mobil->nama_mobil }}</td>

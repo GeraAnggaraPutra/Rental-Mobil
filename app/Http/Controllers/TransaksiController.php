@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TransaksiAllExport;
 use App\Models\DetailUser;
 use App\Models\Mobil;
 use App\Models\Transaksi;
 use App\Models\User;
 use Auth;
+use Excel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Validator;
-use Excel;
-use App\Exports\TransaksiExport;
+use DateTime;
 
 class TransaksiController extends Controller
 {
@@ -60,7 +61,6 @@ class TransaksiController extends Controller
                 'email' => 'required',
                 'tgl_sewa' => 'required',
                 'tgl_kembali' => 'required',
-                'lama_sewa' => 'required',
                 'supir' => 'required',
                 'id_mobil' => 'required',
             ];
@@ -74,7 +74,6 @@ class TransaksiController extends Controller
                 'email.required' => 'Email harus di isi!',
                 'tgl_sewa.required' => 'Tgl sewa harus di isi!',
                 'tgl_kembali.required' => 'Tgl kembali harus di isi!',
-                'lama_sewa.required' => 'Lama sewa harus di isi!',
                 'supir.required' => 'Supir harus di isi!',
                 'id_mobil.required' => 'id_mobil harus di isi!',
             ];
@@ -100,7 +99,6 @@ class TransaksiController extends Controller
             $rules = [
                 'tgl_sewa' => 'required',
                 'tgl_kembali' => 'required',
-                'lama_sewa' => 'required',
                 'supir' => 'required',
                 'id_mobil' => 'required',
             ];
@@ -108,7 +106,6 @@ class TransaksiController extends Controller
             $messages = [
                 'tgl_sewa.required' => 'Tgl sewa harus di isi!',
                 'tgl_kembali.required' => 'Tgl kembali harus di isi!',
-                'lama_sewa.required' => 'Lama sewa harus di isi!',
                 'supir.required' => 'Supir harus di isi!',
                 'id_mobil.required' => 'id_mobil harus di isi!',
             ];
@@ -124,30 +121,37 @@ class TransaksiController extends Controller
         $transaksi = new Transaksi();
         $mobil = Mobil::findOrFail($request->id_mobil);
 
-        $record = Transaksi::latest()->first();
+        // $record = Transaksi::latest()->first();
 
+        // if ($record == null or $record == "") {
+        //     if (date('l', strtotime(date('Y-01-01')))) {
+        //         $invoice_no = date('Y m d') . '-0001';
+        //     }
+        // } else {
+        //     $expNum = explode('-', $record->invoice_no);
+        //     $innoumber = ($expNum[1] + 1);
+        //     $invoice_no = $expNum[0] . '-' . sprintf('%04d', $innoumber);
+        // }
 
-        if ($record == null or $record == "") {
-            if (date('l', strtotime(date('Y-01-01')))) {
-                $invoice_no = date('Y m d') . '-0001';
-            }
-        } else {
-            $expNum = explode('-', $record->invoice_no);
-            $innoumber = ($expNum[1] + 1);
-            $invoice_no = $expNum[0] . '-' . sprintf('%04d', $innoumber);
-        }
+        // $transaksi->invoice_no = $invoice_no;
 
-        $transaksi->invoice_no = $invoice_no;
+        $data1 = $request->tgl_sewa;
+        $data2 = $request->tgl_kembali;
+        $datetime1 = new DateTime($data1);
+        $datetime2 = new DateTime($data2);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a') + 1;
+        $transaksi->lama_sewa = $days;
+
         $transaksi->tgl_sewa = $request->tgl_sewa;
         $transaksi->tgl_kembali = $request->tgl_kembali;
-        $transaksi->lama_sewa = $request->lama_sewa;
         $transaksi->supir = $request->supir;
         if ($request->supir == "Yes") {
             $biayaSupir = 80000;
         } elseif ($request->supir == "No") {
             $biayaSupir = 0;
         }
-        $total_bayar = ($request->lama_sewa * $mobil->harga) + $biayaSupir;
+        $total_bayar = ($days * $mobil->harga) + $biayaSupir;
         $transaksi->total_bayar = $total_bayar;
         $transaksi->id_mobil = $request->id_mobil;
         $transaksi->status = "Process";
@@ -234,9 +238,10 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index');
     }
 
-    public function export(){
+    public function export()
+    {
         ob_end_clean();
         ob_start();
-        return Excel::download(new TransaksiExport, 'transaksi.xlsx');
+        return Excel::download(new TransaksiAllExport, 'All-transaksi.xlsx');
     }
 }

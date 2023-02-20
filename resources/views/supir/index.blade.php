@@ -30,8 +30,11 @@
                                     Data Supir
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('supir.create') }}" class="btn btn-primary" style="float: right">
+                                    <a href="{{ route('supir.create') }}" class="btn btn-primary" style="float: right;">
                                         Tambah Data
+                                    </a>
+                                    <a href="{{ route('supir.export') }}" class="btn btn-success" style="float: right; margin-right: 4px">
+                                        Export
                                     </a>
                                 </div>
                             </div>

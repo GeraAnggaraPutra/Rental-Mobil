@@ -143,6 +143,25 @@
                 });
         });
     </script>
+    <script type="text/javascript">
+        $('.show_confirm_mobil').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Are you sure you want to delete this record?`,
+                    text: "Jika dihapus data transaksi yang berhubungan dengan data ini akan ikut terhapus.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+    </script>
 
 
 <script type="text/javascript"

@@ -166,40 +166,6 @@
                                         </div>
                                     @endif
 
-                                    <div class="row">
-                                        <div class="col-sm-6 col-md-6 mt-3">
-                                            <p class="text-muted">Lama Sewa(hari)</p>
-                                            <input type="number" name="lama_sewa" placeholder="lama sewa"
-                                                class="form-control @error('lama_sewa') is-invalid @enderror">
-                                            @error('lama_sewa')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                        <div class="col-sm-6 col-md-6 mt-3">
-                                            <p class="text-muted">Supir?</p>
-                                            <div class="form-check">
-                                                <input class="form-check-input @error('supir') is-invalid @enderror"
-                                                    type="radio" name="supir" value="Yes">
-                                                <label class="form-check-label">
-                                                    Dengan Supir
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input @error('supir') is-invalid @enderror"
-                                                    type="radio" name="supir" value="No">
-                                                <label class="form-check-label">
-                                                    Tanpa Supir
-                                                </label>
-                                            </div>
-                                            @error('supir')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 mt-3">
@@ -225,6 +191,31 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6 mt-3">
+                                            <p class="text-muted">Supir?</p>
+                                            <div class="form-check">
+                                                <input class="form-check-input @error('supir') is-invalid @enderror"
+                                                    type="radio" name="supir" value="Yes">
+                                                <label class="form-check-label">
+                                                    Dengan Supir
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input @error('supir') is-invalid @enderror"
+                                                    type="radio" name="supir" value="No">
+                                                <label class="form-check-label">
+                                                    Tanpa Supir
+                                                </label>
+                                            </div>
+                                            @error('supir')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <input class="form-control" type="hidden" name="id_mobil" readonly
                                     value="{{ $mobil->id }}">

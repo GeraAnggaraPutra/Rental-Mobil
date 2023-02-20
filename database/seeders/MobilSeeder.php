@@ -16,6 +16,7 @@ class MobilSeeder extends Seeder
         $mobil = new \App\Models\Mobil();
         $mobil->merk = "Cheverolet";
         $mobil->nama_mobil = "Mercedes Grand Sedan";
+        $mobil->slug = "mercedes-grand-sedan";
         $mobil->foto = '8630mercedes-grand-sedan.jpg';
         $mobil->stock = 3;
         $mobil->harga = 600000;
@@ -27,6 +28,7 @@ class MobilSeeder extends Seeder
         $mobil = new \App\Models\Mobil();
         $mobil->merk = "Subaru";
         $mobil->nama_mobil = "Range Rover";
+        $mobil->slug = "range-rover";
         $mobil->foto = '8343range-rover.jpg';
         $mobil->stock = 4;
         $mobil->harga = 610000;
@@ -38,6 +40,7 @@ class MobilSeeder extends Seeder
         $mobil = new \App\Models\Mobil();
         $mobil->merk = "Toyota";
         $mobil->nama_mobil = "Supra";
+        $mobil->slug = "supra";
         $mobil->foto = '3662toyota-supra.png';
         $mobil->stock = 2;
         $mobil->harga = 620000;

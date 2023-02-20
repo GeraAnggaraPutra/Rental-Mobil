@@ -33,12 +33,6 @@
                     </button>
                   </a>
 
-                  <a href="{{ url('auth/github') }}">
-                    <button type="button" class="btn btn-primary btn-floating mx-1">
-                      <i class="fab fa-github"></i>
-                    </button>
-                  </a>
-
                   <a href="{{ url('auth/google')}}">
                     <button type="button" class="btn btn-primary btn-floating mx-1">
                       <i class="fab fa-google"></i>

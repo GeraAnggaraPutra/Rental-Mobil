@@ -16,11 +16,10 @@ class RiwayatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        $user = auth()->id();
-        $transaksi = Transaksi::where('id_user', $user)->get();
-        return view('frontend.riwayat.index', compact('transaksi'),[
+
+        return view('frontend.riwayat.index',[
             'title' => 'Riwayat'
           ]);
     }

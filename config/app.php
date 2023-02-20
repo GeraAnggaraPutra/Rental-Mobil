@@ -168,6 +168,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Alfa6661\AutoNumber\AutoNumberServiceProvider::class,
         /*
          * Application Service Providers...
          */

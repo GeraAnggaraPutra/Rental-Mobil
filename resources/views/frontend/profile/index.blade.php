@@ -15,6 +15,105 @@
 
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
+            @if (Auth::user()->detailUser == null)
+            <form action="{{ route('profile.create', Auth::user()->id ) }}" method="post">
+                @csrf
+            <div class="col-md-12">
+                @include('layouts/_flash')
+                <div class="row">
+                    <div class="col-sm-6 mb-3">
+                        <p class="text-muted">Nama</p>
+                        <input type="text" name="nama" placeholder="nama"
+                            class="form-control @error('name') is-invalid @enderror">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <p class="text-muted">Nik</p>
+                        <input type="number" name="nik" placeholder="nik"
+                            class="form-control @error('nik') is-invalid @enderror">
+                        @error('nik')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 mt-3">
+                        <p class="text-muted">No Telepon</p>
+                        <input type="number" name="no_telp" placeholder="No Telepon"
+                            class="form-control @error('no_telp') is-invalid @enderror">
+                        @error('no_telp')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6 col-md-6 mt-3">
+                        <p class="text-muted">Email</p>
+                        <input type="email" name="email" placeholder="email"
+                            class="form-control @error('email') is-invalid @enderror">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 mt-3">
+                        <p class="text-muted">Jenis Kelamin</p>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                type="radio" name="jenis_kelamin" value="Laki-laki">
+                            <label class="form-check-label">
+                                Laki - laki
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                type="radio" name="jenis_kelamin" value="Perempuan">
+                            <label class="form-check-label">
+                                Perempuan
+                            </label>
+                        </div>
+                        @error('jenis_kelamin')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col-sm-6 col-md-6 mt-3">
+                        <p class="text-muted">Alamat</p>
+                        <input type="text" name="alamat" placeholder="alamat"
+                        class="form-control @error('alamat') is-invalid @enderror">
+                        @error('alamat')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-12 mt-4 mb-4 p-0">
+                        <div>
+                            <input type="submit" class="proces btn btn-primary" value="Save">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+            @else
+
             <form action="{{ route('profile.update', Auth::user()->id ) }}" method="post">
                 @csrf
             <div class="col-md-12">
@@ -111,6 +210,7 @@
                 </div>
             </div>
             </form>
+            @endif
         </div>
     </div>
 @endsection

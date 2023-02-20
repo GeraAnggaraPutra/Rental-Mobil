@@ -17,13 +17,13 @@ class CreateTransaksisTable extends Migration
             $table->id();
             $table->date('tgl_sewa');
             $table->date('tgl_kembali');
-            $table->integer('total_bayar');
             $table->integer('lama_sewa');
             $table->enum('supir',['Yes', 'No']);
+            $table->integer('total_bayar');
             $table->string('status');
             $table->string('invoice_no');
             $table->unsignedbigInteger('id_mobil');
-            $table->foreign('id_mobil')->references('id')->on('mobils');
+            $table->foreign('id_mobil')->references('id')->on('mobils')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedbigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();

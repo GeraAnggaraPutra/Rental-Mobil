@@ -7,6 +7,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Mobil;
 use App\Models\User;
 use App\Models\Transaksi;
+use DB;
+
 class CarController extends Controller
 {
     /**
@@ -27,11 +29,13 @@ class CarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($slug)
     {
-        $mobil = Mobil::findOrFail($id);
-        $user = User::findOrFail($id);
-        return view('frontend.car.transaksi', compact('mobil','user'),[
+        $mobil = Mobil::where('slug', $slug)->first();
+
+
+        return view('frontend.car.transaksi', [
+            'mobil' => $mobil,
             'title' => 'Cars-Transaksi'
           ]);
     }

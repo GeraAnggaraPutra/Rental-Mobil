@@ -41,7 +41,7 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>No</th>
-                                            <th>Kode Transaksi</th>
+                                            <th>No Invoice</th>
                                             <th>Tanggal Rental</th>
                                             <th>Tanggal Kembali</th>
                                             <th>Mobil</th>

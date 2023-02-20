@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Excel;
 use App\Imports\SupirImport;
+use App\Exports\SupirExport;
 
 class SupirController extends Controller
 {
@@ -129,5 +130,11 @@ class SupirController extends Controller
         Excel::import(new SupirImport, request()->file('file'));
         toast('Data berhasil diimport','success');
         return back();
+    }
+
+    public function export(){
+        ob_end_clean();
+        ob_start();
+        return Excel::download(new SupirExport, 'supir.xlsx');
     }
 }

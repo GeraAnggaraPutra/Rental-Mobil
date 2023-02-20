@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddGithubIdColumn extends Migration
+class CreateAutoNumbers extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddGithubIdColumn extends Migration
      */
     public function up()
     {
-        Schema::table('users', function($table){
-            $table->string('id_github')->nullable();
+        Schema::create('auto_numbers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 32);
+            $table->integer('number');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ class AddGithubIdColumn extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('auto_numbers');
     }
 }

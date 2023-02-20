@@ -75,7 +75,7 @@
                                                         <i class="nav-icon fas fa-eye"></i>
 
                                                     </a> |
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger show_confirm_mobil" data-toggle="tooltip" title='Delete'>
                                                         <i class="nav-icon fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>

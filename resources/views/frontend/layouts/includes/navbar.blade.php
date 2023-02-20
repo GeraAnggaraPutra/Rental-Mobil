@@ -20,9 +20,9 @@
                     </a>
 					<div class="dropdown-menu dropdown-menu dropdown-menu-right">
 					  <a href="#" class="dropdown-item">
-                        <a href="{{ route('riwayat', Auth::user()->id ) }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Riwayat</a>
+                        <a href="{{ route('riwayat') }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Riwayat</a>
                         <hr>
-                        <a href="{{ route('profile', Auth::user()->id ) }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Profile</a>
+                        <a href="{{ route('profile') }}" class="btn text-success text-center" style="font-weight: bold; width: 100%">Profile</a>
                         <hr>
 						<a class="nav-link text-dark text-center" style="font-weight:bold;" href="{{ route('logout') }}" onclick="event.preventDefault();
 						document.getElementById('logout-form').submit();" role="button">
