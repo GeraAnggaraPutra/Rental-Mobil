@@ -40,8 +40,8 @@ class CarController extends Controller
           ]);
     }
 
-    public function detail($id){
-        $mobil = Mobil::findOrFail($id);
+    public function detail($slug){
+        $mobil = Mobil::where('slug', $slug)->first();
         return view('frontend.car.detail', compact('mobil'),[
             'title' => 'Car-Detail'
           ]);

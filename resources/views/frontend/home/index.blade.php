@@ -44,7 +44,7 @@
                                      <p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Tidak Tersedia</a> <a href="#" class="btn btn-secondary py-2 ml-1">Empty</a></p>
                                     @else
     						         <p class="d-flex mb-0 d-block"><a href="{{ route('cars-transaksi',$data->slug) }}" class="btn btn-primary py-2 mr-1">Rent Now</a>
-                                     <a href="{{ route('car.detail',$data->id) }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
+                                     <a href="{{ route('car.detail',$data->slug) }}" class="btn btn-secondary py-2 ml-1">Details</a></p>
     					            @endif
 		    					</div>
 		    				</div>

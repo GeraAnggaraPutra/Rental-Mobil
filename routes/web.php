@@ -67,7 +67,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     })->name('contact');
 
 
-    Route::get('car/detail/{id}', [CarController::class,'detail'])->name('car.detail');
+    Route::get('car/detail/{slug}', [CarController::class,'detail'])->name('car.detail');
     Route::get('contact/store', [ContactController::class,'store'])->name('contact.store');
     Route::get('cars', [CarController::class,'index'])->name('cars');
     Route::group(['middleware'=>['auth']], function(){

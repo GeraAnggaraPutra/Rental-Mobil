@@ -78,7 +78,7 @@
                         <div class="col-12 px-0">
                             <div class="col-12 mt-4 mb-4 p-0">
                                 <div>
-                                    <a href="{{ route('cars-transaksi',$mobil->id) }}">
+                                    <a href="{{ route('cars-transaksi',$mobil->slug) }}">
                                         <input type="submit" class="proces btn btn-primary" value="Rental">
                                     </a>
 
