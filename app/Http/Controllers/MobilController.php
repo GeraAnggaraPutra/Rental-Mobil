@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Mobil;
-use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
-use Excel;
+
 use App\Exports\MobilExport;
+use App\Models\Mobil;
+use Excel;
+use Illuminate\Http\Request;
 
 class MobilController extends Controller
 {
@@ -57,9 +57,9 @@ class MobilController extends Controller
         $mobil = new Mobil();
         $mobil->merk = $request->merk;
         $mobil->nama_mobil = $request->nama_mobil;
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
             $image = $request->file('foto');
-            $name = rand(1000,9999).$image->getClientOriginalName();
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
             $image->move('images/mobil/', $name);
             $mobil->foto = $name;
         }
@@ -69,7 +69,7 @@ class MobilController extends Controller
         $mobil->warna = $request->warna;
         $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        toast('Data berhasil dibuat','success');
+        toast('Data berhasil dibuat', 'success');
         return redirect()->route('mobil.index');
     }
 
@@ -110,7 +110,7 @@ class MobilController extends Controller
         $validated = $request->validate([
             'merk' => 'required',
             'nama_mobil' => 'required',
-            'foto' => 'required|image|max:2048',
+            // 'foto' => 'required|image|max:2048',
             'stock' => 'required',
             'harga' => 'required',
             'tahun' => 'required',
@@ -118,23 +118,28 @@ class MobilController extends Controller
             'no_polisi' => 'required',
         ]);
 
+        if ($request->hasFile('foto')) {
+            $validated = $request->validate([
+                'foto' => 'required|image|max:2048',
+            ]);
+        }
         $mobil = Mobil::findOrFail($id);
         $mobil->merk = $request->merk;
         $mobil->nama_mobil = $request->nama_mobil;
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
             $mobil->deleteImage(); // menghapus foto sebelum di update
             $image = $request->file('foto');
-            $name = rand(1000,9999).$image->getClientOriginalName();
+            $name = rand(1000, 9999) . $image->getClientOriginalName();
             $image->move('images/mobil/', $name);
-            $mobil->foto = $name;
         }
+        $mobil->foto = $request->hasFile('foto') ? $name : $mobil->foto;
         $mobil->stock = $request->stock;
         $mobil->harga = $request->harga;
         $mobil->tahun = $request->tahun;
         $mobil->warna = $request->warna;
         $mobil->no_polisi = $request->no_polisi;
         $mobil->save();
-        toast('Data berhasil diedit','success');
+        toast('Data berhasil diedit', 'success');
         return redirect()->route('mobil.index');
     }
 
@@ -149,15 +154,16 @@ class MobilController extends Controller
         $mobil = Mobil::findOrFail($id);
         $mobil->deleteImage();
         $mobil->delete();
-        toast('Data berhasil dihapus','success');
+        toast('Data berhasil dihapus', 'success');
         return redirect()->route('mobil.index');
     }
 
     // export
     /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function export(){
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
         ob_end_clean();
         ob_start();
         return Excel::download(new MobilExport, 'mobil.xlsx');
