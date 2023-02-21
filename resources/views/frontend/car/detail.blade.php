@@ -78,10 +78,16 @@
                         <div class="col-12 px-0">
                             <div class="col-12 mt-4 mb-4 p-0">
                                 <div>
-                                    <a href="{{ route('cars-transaksi',$mobil->slug) }}">
-                                        <input type="submit" class="proces btn btn-primary" value="Rental">
-                                    </a>
-
+                                    @if ($mobil->stock <= 0)
+                                        <p class="d-flex mb-0 d-block"><a href="#"
+                                                class="btn btn-primary py-2 mr-1">Tidak
+                                                Tersedia</a>
+                                        </p>
+                                    @else
+                                        <p class="d-flex mb-0 d-block"><a href="{{ route('cars-transaksi', $data->slug) }}"
+                                                class="btn btn-primary py-2 mr-1">Rent Now</a>
+                                        </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
