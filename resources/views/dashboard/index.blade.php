@@ -84,6 +84,8 @@
           </div>
           <!-- ./col -->
         </div>
+        <canvas id="myChart" height="100px"></canvas>
+        <br>
         {!! $transaksiChart->container() !!}
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -93,6 +95,35 @@
 
 
   <script src="{{ $transaksiChart->cdn() }}"></script>
-
 {{ $transaksiChart->script() }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script type="text/javascript">
+
+    var labels =  {{ Js::from($labels) }};
+    var users =  {{ Js::from($data) }};
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Jumlah Perentalan',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: users,
+        }]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {}
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+</script>
 @endsection
