@@ -47,7 +47,7 @@
                                             <div class="col-md-6">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-tdatebg-info text-white"
+                                                        <span class="input-group-text bg-info text-white"
                                                             id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                                                     </div>
                                                     <input type="date" class="form-control" name="to"

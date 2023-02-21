@@ -98,7 +98,7 @@ class ContactController extends Controller
     {
         $contact = Contact::findOrFail($id);
         $contact->delete();
-        Alert::success('Done', 'Data berhasil dihapus')->autoClose(2000);
+        toast('Data berhasil dihapus','success');
         return redirect()->route('contact.index');
     }
 }

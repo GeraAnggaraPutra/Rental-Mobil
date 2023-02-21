@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RentCar</title>
+    <title>Dashboard || RentCar</title>
     <!-- Bootstrap 5-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -84,6 +84,7 @@
     </div>
     <!-- ./wrapper -->
 
+    @yield('script')
     <!-- jQuery -->
     <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -163,110 +164,12 @@
         });
     </script>
 
-
-<script type="text/javascript"
-src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js">
-</script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- Datepicker -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $("#start_date").datepicker({
-                "dateFormat": "yy-mm-dd"
-            });
-            $("#end_date").datepicker({
-                "dateFormat": "yy-mm-dd"
-            });
-        });
-        // Fetch records
-        function fetch(start_date, end_date) {
-            $.ajax({
-                url: "{{ route('transaksis/records') }}",
-                type: "GET",
-                data: {
-                    start_date: start_date,
-                    end_date: end_date
-                },
-                dataType: "json",
-                success: function(data) {
-                    // Datatables
-                    var i = 1;
-                    $('#records').DataTable({
-                        "data": data.transaksis,
-                        // buttons
-                        "dom": "<'row'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'f>>" +
-                            "<'row'<'col-sm-12'tr>>" +
-                            "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
-                        "buttons": [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
-                        ],
-                        // responsive
-                        "responsive": true,
-                        "columns": [{
-                                "data": "id",
-                                "render": function(data, type, row, meta) {
-                                    return i++;
-                                }
-                            },
-                            {
-                                "data": "invoice_no"
-                            },
-                            {
-                                "data": "lama_sewa"
-                            },
-
-                            {
-                                "data": "tgl_sewa",
-                                "render": function(data, type, row, meta) {
-                                    return moment(row.tgl_sewa).format('DD-MM-YYYY');
-                                }
-                            },
-                            {
-                                "data": "tgl_kembali",
-                                "render": function(data, type, row, meta) {
-                                    return moment(row.tgl_kembali).format('DD-MM-YYYY');
-                                }
-                            },
-                            {
-                                "data": "id_mobil"
-                            },
-                            {
-                                "data": "id_user"
-                            },
-                            {
-                                "data": "created_at",
-                                "render": function(data, type, row, meta) {
-                                    return moment(row.created_at).format('DD-MM-YYYY');
-                                }
-                            }
-                        ]
-                    });
-                }
-            });
-        }
-        fetch();
-        // Filter
-        $(document).on("click", "#filter", function(e) {
-            e.preventDefault();
-            var start_date = $("#start_date").val();
-            var end_date = $("#end_date").val();
-            if (start_date == "" || end_date == "") {
-                alert("Both date required");
-            } else {
-                $('#records').DataTable().destroy();
-                fetch(start_date, end_date);
-            }
-        });
-        // Reset
-        $(document).on("click", "#reset", function(e) {
-            e.preventDefault();
-            $("#start_date").val(''); // empty value
-            $("#end_date").val('');
-            $('#records').DataTable().destroy();
-            fetch();
-        });
-    </script>
 </body>
 
 </html>

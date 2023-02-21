@@ -41,7 +41,7 @@
             <a href="{{ route('mobil.index') }}" class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-car"></i>
               <p style="color: white">
-                Data Mobil
+                Mobil
               </p>
             </a>
           </li>
@@ -49,7 +49,7 @@
             <a href="{{ route('supir.index') }}" class="nav-link  {{ Request::is('admin/supir*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-address-card"></i>
               <p style="color: white">
-                Data Supir
+                Supir
               </p>
             </a>
           </li>
