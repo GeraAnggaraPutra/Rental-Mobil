@@ -38,6 +38,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{route('users.index') }}" class="nav-link {{ Request::is('admin/users*') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p style="color: white">
+                Users
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('mobil.index') }}" class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-car"></i>
               <p style="color: white">

@@ -102,7 +102,7 @@
 <script type="text/javascript">
 
     var labels =  {{ Js::from($labels) }};
-    var users =  {{ Js::from($data) }};
+    var transaksis =  {{ Js::from($data) }};
 
     const data = {
         labels: labels,
@@ -110,7 +110,7 @@
             label: 'Jumlah Perentalan',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: users,
+            data: transaksis,
         }]
     };
 

@@ -14,6 +14,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Auth::routes();
 
 // Admin/Dashboard Route
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
+    Route::resource('users', UsersController::class);
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);
     Route::post('supir/import', [SupirController::class, 'import'])->name('supir.import');
