@@ -35,6 +35,8 @@
                             <label class="form-label">Email</label>
                             <input type="text" class="form-control " name="status" value="{{ $user->email }}" readonly>
                         </div>
+                        @if ($user->detailUser == null)
+                        @else
                         <div class="mb-3">
                             <label class="form-label">Nama</label>
                             <input type="text" class="form-control " name="nama" value="{{ $user->detailUser->nama }}" readonly>
@@ -56,6 +58,7 @@
                             <input type="text" class="form-control " name="alamat" value="{{ $user->detailUser->alamat }}"
                                 readonly>
                         </div>
+                        @endif
                         <div class="mb-3">
                             <div class="d-grid gap-2">
                                 <a href="{{ route('users.index') }}" class="btn btn-primary" type="submit">Kembali</a>

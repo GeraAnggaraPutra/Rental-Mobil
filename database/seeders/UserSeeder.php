@@ -21,6 +21,13 @@ class UserSeeder extends Seeder
         $admin->role = "admin";
         $admin->save();
 
+        $admin = new \App\Models\User();
+        $admin->name = "Super Admin";
+        $admin->email = "superadmin@gmail.com";
+        $admin->password = bcrypt("rahasia");
+        $admin->role = "super admin";
+        $admin->save();
+
         // user
         $user = new \App\Models\User();
         $user->name = "user Project";

@@ -107,15 +107,16 @@ class UsersController extends Controller
                     'password' => 'min:8',
                 ]);
             }
-        }
 
-        $detail = DetailUser::where('id_user', $id)->first();
-        $detail->nama = $request->nama;
-        $detail->nik = $request->nik;
-        $detail->jenis_kelamin = $request->jenis_kelamin;
-        $detail->alamat = $request->alamat;
-        $detail->no_telp = $request->no_telp;
-        $detail->email = $request->email;
+            $detail = DetailUser::where('id_user', $id)->first();
+            $detail->nama = $request->nama;
+            $detail->nik = $request->nik;
+            $detail->jenis_kelamin = $request->jenis_kelamin;
+            $detail->alamat = $request->alamat;
+            $detail->no_telp = $request->no_telp;
+            $detail->email = $request->email;
+            $detail->save();
+        }
 
         $user->name = $request->name;
         $user->email = $request->email;
@@ -124,7 +125,7 @@ class UsersController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
-        $detail->save();
+
         toast('Data berhasil diedit','success');
         return redirect()->route('users.index');
     }
