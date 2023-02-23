@@ -22,7 +22,7 @@ class CreateDetailUsersTable extends Migration
             $table->string('no_telp');
             $table->string('email');
             $table->unsignedbigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
