@@ -61,6 +61,8 @@
                                     </span>
                                 @enderror
                             </div>
+                            @if (Auth::user()->role == 'super admin')
+                            @else
                             <div class="mb-3">
                                 <label class="form-label">Role</label>
                                 <div class="form-check">
@@ -85,6 +87,7 @@
                                     </span>
                                 @enderror
                             </div>
+                            @endif
                             @if ($user->detailUser == null)
                             @else
                             <div class="mb-3">

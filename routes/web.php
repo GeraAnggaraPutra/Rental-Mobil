@@ -34,6 +34,7 @@ Auth::routes();
 // Admin/Dashboard Route
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::resource('users', UsersController::class);
+    Route::get('users-export', [UsersController::class, 'export'])->name('users.export');
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);
     Route::post('supir/import', [SupirController::class, 'import'])->name('supir.import');

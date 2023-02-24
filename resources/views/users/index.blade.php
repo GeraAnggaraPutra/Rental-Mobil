@@ -33,7 +33,7 @@
                                     <a href="{{ route('users.create') }}" class="btn btn-primary" style="float: right;">
                                         Tambah Data
                                     </a>
-                                    <a href="#" class="btn btn-success" style="float: right; margin-right: 4px">
+                                    <a href="{{ route('users.export')}}" class="btn btn-success" style="float: right; margin-right: 4px">
                                         Export
                                     </a>
                                 </div>
@@ -55,25 +55,35 @@
                                     <tbody>
                                         @php $no = 1; @endphp
                                         @foreach ($users as $data)
-                                            @if ($data->role == 'super admin')
-                                            @else
-                                                <tr>
-                                                    <td>{{ $no++ }}</td>
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                @if (Auth::user()->role == 'admin' && $data->name == Auth::user()->name)
+                                                @elseif (Auth::user()->role == 'super admin' && $data->name == Auth::user()->name)
+                                                    <td class="text-warning fw-bold">{{ $data->name }}</td>
+                                                @else
                                                     <td>{{ $data->name }}</td>
-                                                    <td>{{ $data->email }}</td>
-                                                    <td>
-                                                        @php
-                                                            if ($data->role == 'admin') {
-                                                                $color = 'success';
-                                                            } else {
-                                                                $color = 'primary';
-                                                            }
-                                                        @endphp
-                                                        <span class="bg-{{ $color }} p-1"
-                                                            style="border-radius: 4px">{{ $data->role }}</span>
-                                                    </td>
-                                                    <td>
-                                                        @if (Auth::user()->role == 'super admin')
+                                                @endif
+                                                <td>{{ $data->email }}</td>
+                                                @if ($data->role == 'admin')
+                                                    <td class="fw-bold text-primary">{{ $data->role }}</td>
+                                                @elseif ($data->role == 'super admin')
+                                                    <td class="fw-bold text-warning">{{ $data->role }}</td>
+                                                @else
+                                                    <td class="fw-bold text-success">{{ $data->role }}</td>
+                                                @endif
+                                                <td>
+                                                    @if (Auth::user()->role == 'super admin')
+                                                        @if ($data->role == 'super admin')
+                                                            <a href="{{ route('users.edit', $data->id) }}"
+                                                                class="btn btn-sm btn-outline-success">
+                                                                <i class="nav-icon fas fa-edit"></i>
+                                                            </a> |
+                                                            <a href="{{ route('users.show', $data->id) }}"
+                                                                class="btn btn-sm btn-outline-warning">
+                                                                <i class="nav-icon fas fa-eye"></i>
+
+                                                            </a>
+                                                        @else
                                                             <form action="{{ route('users.destroy', $data->id) }}"
                                                                 method="post">
                                                                 @csrf
@@ -93,8 +103,23 @@
                                                                     <i class="nav-icon fas fa-trash-alt"></i>
                                                                 </button>
                                                             </form>
-                                                        @elseif (Auth::user()->role == 'admin')
-                                                            @if ($data->role == 'admin')
+                                                        @endif
+                                                    @elseif (Auth::user()->role == 'admin')
+                                                        @if ($data->role == 'admin')
+                                                            <a href="{{ route('users.edit', $data->id) }}"
+                                                                class="btn btn-sm btn-outline-success">
+                                                                <i class="nav-icon fas fa-edit"></i>
+                                                            </a> |
+                                                            <a href="{{ route('users.show', $data->id) }}"
+                                                                class="btn btn-sm btn-outline-warning">
+                                                                <i class="nav-icon fas fa-eye"></i>
+
+                                                            </a>
+                                                        @else
+                                                            <form action="{{ route('users.destroy', $data->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('delete')
                                                                 <a href="{{ route('users.edit', $data->id) }}"
                                                                     class="btn btn-sm btn-outline-success">
                                                                     <i class="nav-icon fas fa-edit"></i>
@@ -103,32 +128,17 @@
                                                                     class="btn btn-sm btn-outline-warning">
                                                                     <i class="nav-icon fas fa-eye"></i>
 
-                                                                </a>
-                                                            @else
-                                                                <form action="{{ route('users.destroy', $data->id) }}"
-                                                                    method="post">
-                                                                    @csrf
-                                                                    @method('delete')
-                                                                    <a href="{{ route('users.edit', $data->id) }}"
-                                                                        class="btn btn-sm btn-outline-success">
-                                                                        <i class="nav-icon fas fa-edit"></i>
-                                                                    </a> |
-                                                                    <a href="{{ route('users.show', $data->id) }}"
-                                                                        class="btn btn-sm btn-outline-warning">
-                                                                        <i class="nav-icon fas fa-eye"></i>
-
-                                                                    </a> |
-                                                                    <button type="submit"
-                                                                        class="btn btn-sm btn-outline-danger show_confirm"
-                                                                        data-toggle="tooltip" title='Delete'>
-                                                                        <i class="nav-icon fas fa-trash-alt"></i>
-                                                                    </button>
-                                                                </form>
-                                                            @endif
+                                                                </a> |
+                                                                <button type="submit"
+                                                                    class="btn btn-sm btn-outline-danger show_confirm"
+                                                                    data-toggle="tooltip" title='Delete'>
+                                                                    <i class="nav-icon fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </form>
                                                         @endif
-                                                    </td>
-                                                </tr>
-                                            @endif
+                                                    @endif
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>

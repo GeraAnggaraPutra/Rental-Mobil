@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\DetailUser;
-use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\User;
+use App\Exports\UsersExport;
+use Auth;
+use Excel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -29,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-
+        return view('users.create');
     }
 
     /**
@@ -40,7 +41,22 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8',
+            'role' => 'required',
+        ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->save();
+        toast('Data berhasil dibuat', 'success');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -79,18 +95,44 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        if($user->detailUser == null){
-            $validated = $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'role' => 'required',
-            ]);
-            if($request->password){
+        if ($user->detailUser == null) {
+            if (Auth::user()->role == 'super admin') {
                 $validated = $request->validate([
-                    'password' => 'min:8',
+                    'name' => 'required',
+                    'email' => 'required',
                 ]);
+                if ($request->password) {
+                    $validated = $request->validate([
+                        'password' => 'min:8',
+                    ]);
+                }
+
+                $user->name = $request->name;
+                $user->email = $request->email;
+                if ($request->password) {
+                    $user->password = Hash::make($request->password);
+                }
+                $user->save();
+            } else {
+                $validated = $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'role' => 'required',
+                ]);
+                if ($request->password) {
+                    $validated = $request->validate([
+                        'password' => 'min:8',
+                    ]);
+                }
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->role = $request->role;
+                if ($request->password) {
+                    $user->password = Hash::make($request->password);
+                }
+                $user->save();
             }
-        }else{
+        } else {
             $validated = $request->validate([
                 'name' => 'required',
                 'email' => 'required',
@@ -102,7 +144,7 @@ class UsersController extends Controller
                 'no_telp' => 'required',
                 'email' => 'required',
             ]);
-            if($request->password){
+            if ($request->password) {
                 $validated = $request->validate([
                     'password' => 'min:8',
                 ]);
@@ -118,15 +160,7 @@ class UsersController extends Controller
             $detail->save();
         }
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        if ($request->password){
-            $user->password = Hash::make($request->password);
-        }
-        $user->save();
-
-        toast('Data berhasil diedit','success');
+        toast('Data berhasil diedit', 'success');
         return redirect()->route('users.index');
     }
 
@@ -140,7 +174,13 @@ class UsersController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        toast('Data berhasil dihapus','success');
+        toast('Data berhasil dihapus', 'success');
         return back();
+    }
+
+    public function export(){
+        ob_end_clean();
+        ob_start();
+        return Excel::download(new UsersExport, 'users-report.xlsx');
     }
 }
