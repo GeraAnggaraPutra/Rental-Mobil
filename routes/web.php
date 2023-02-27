@@ -14,6 +14,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\UsersController;
 
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::post('laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::get('transaksis/records', [LaporanController::class, 'records'])->name('transaksis/records');
+    Route::get('profile', [ProfileAdminController::class,'index'])->name('profile.admin');
+    Route::post('profile/update/{id}', [ProfileAdminController::class,'update'])->name('profile.update');
+    Route::post('profile/create/{id}', [ProfileAdminController::class,'create'])->name('profile.create');
 
 });
     Route::get('riwayat', [RiwayatController::class,'index'])->name('riwayat');

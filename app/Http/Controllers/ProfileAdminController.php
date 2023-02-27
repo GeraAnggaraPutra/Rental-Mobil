@@ -7,7 +7,7 @@ use Auth;
 use App\Models\DetailUser;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProfileController extends Controller
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('frontend.profile.index',[
-            'title' => 'Profile'
-          ]);
+        return view('profile_admin.index');
     }
 
     /**
@@ -26,7 +24,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id)
+    public function create()
     {
         //validasi
         $validated = $request->validate([
