@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "alfa6661/laravel-autonumber": "^1.2",
+        "anhskohbo/no-captcha": "^3.5",
         "arielmejiadev/larapex-charts": "^5.2",
         "barryvdh/laravel-dompdf": "^2.0",
         "cviebrock/eloquent-sluggable": "^8.0",
