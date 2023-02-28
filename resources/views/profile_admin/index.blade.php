@@ -28,9 +28,8 @@
                             Profile
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('users.update', Auth::user()->id) }}" method="post">
+                            <form action="{{ route('profileadmin.update') }}" method="post">
                                 @csrf
-                                @method('put')
                                 <div class="mb-3">
                                     <label class="form-label">Username</label>
                                     <input type="text" class="form-control  @error('name') is-invalid @enderror"
@@ -61,6 +60,8 @@
                                         </span>
                                     @enderror
                                 </div>
+                                <input class="form-control" type="hidden" name="role" readonly
+                                    value="{{ Auth::user()->role }}">
                                 <div class="mb-3">
                                     <div class="d-grid gap-2">
                                         <button class="btn btn-primary" type="submit">Save</button>
@@ -71,13 +72,13 @@
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 @if (Auth::user()->detailUser == null)
-                                    <form action="{{ route('profile.create', Auth::user()->id) }}" method="post">
-                                    @else
-                                        <form action="{{ route('profile.update', Auth::user()->id) }}" method="post">
+                                <form action="{{ route('profileadmin.store') }}" method="post">
+                                @else
+                                <form action="{{ route('profileadmin.updatedetail') }}" method="post">
                                 @endif
                                 @csrf
+                                @include('layouts/_flash')
                                 <div class="col-md-12">
-                                    @include('layouts/_flash')
                                     <div class="row">
                                         <div class="col-sm-6 mb-3">
                                             <p class="text-muted">Nama</p>

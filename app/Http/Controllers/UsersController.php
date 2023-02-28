@@ -96,24 +96,6 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
 
         if ($user->detailUser == null) {
-            if (Auth::user()->role == 'super admin') {
-                $validated = $request->validate([
-                    'name' => 'required',
-                    'email' => 'required',
-                ]);
-                if ($request->password) {
-                    $validated = $request->validate([
-                        'password' => 'min:8',
-                    ]);
-                }
-
-                $user->name = $request->name;
-                $user->email = $request->email;
-                if ($request->password) {
-                    $user->password = Hash::make($request->password);
-                }
-                $user->save();
-            } else {
                 $validated = $request->validate([
                     'name' => 'required',
                     'email' => 'required',
@@ -131,7 +113,6 @@ class UsersController extends Controller
                     $user->password = Hash::make($request->password);
                 }
                 $user->save();
-            }
         } else {
             $validated = $request->validate([
                 'name' => 'required',

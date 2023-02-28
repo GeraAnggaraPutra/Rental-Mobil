@@ -52,10 +52,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::post('laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::get('transaksis/records', [LaporanController::class, 'records'])->name('transaksis/records');
-    Route::get('profile', [ProfileAdminController::class,'index'])->name('profile.admin');
-    Route::post('profile/update/{id}', [ProfileAdminController::class,'update'])->name('profile.update');
-    Route::post('profile/create/{id}', [ProfileAdminController::class,'create'])->name('profile.create');
-
+    Route::get('profileadmin', [ProfileAdminController::class,'index'])->name('profileadmin.index');
+    Route::post('profileadmin/create', [ProfileAdminController::class,'store'])->name('profileadmin.create');
+    Route::post('profileadmin/update', [ProfileAdminController::class,'update'])->name('profileadmin.update');
+    Route::post('profileadmin/updatedetail', [ProfileAdminController::class,'updateDetail'])->name('profileadmin.updatedetail');
 });
     Route::get('riwayat', [RiwayatController::class,'index'])->name('riwayat');
     Route::get('profile', [ProfileController::class,'index'])->name('profile');

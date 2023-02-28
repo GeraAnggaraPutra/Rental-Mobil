@@ -33,7 +33,8 @@
                                     <a href="{{ route('users.create') }}" class="btn btn-primary" style="float: right;">
                                         Tambah Data
                                     </a>
-                                    <a href="{{ route('users.export')}}" class="btn btn-success" style="float: right; margin-right: 4px">
+                                    <a href="{{ route('users.export') }}" class="btn btn-success"
+                                        style="float: right; margin-right: 4px">
                                         Export
                                     </a>
                                 </div>
@@ -57,72 +58,93 @@
                                         @foreach ($users as $data)
                                             <tr>
                                                 @if (Auth::user() && $data->name == Auth::user()->name)
-
-                                                @elseif($data->role == "super admin")
                                                 @else
-                                                <td>{{ $no++ }}</td>
-                                                <td>{{ $data->name }}</td>
-                                                <td>{{ $data->email }}</td>
-                                                @if ($data->role == 'admin')
-                                                    <td class="fw-bold text-primary">{{ $data->role }}</td>
-                                                @else
-                                                    <td class="fw-bold text-success">{{ $data->role }}</td>
-                                                @endif
-                                                <td>
                                                     @if (Auth::user()->role == 'super admin')
-                                                            <form action="{{ route('users.destroy', $data->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <a href="{{ route('users.edit', $data->id) }}"
-                                                                    class="btn btn-sm btn-outline-success">
-                                                                    <i class="nav-icon fas fa-edit"></i>
-                                                                </a> |
-                                                                <a href="{{ route('users.show', $data->id) }}"
-                                                                    class="btn btn-sm btn-outline-warning">
-                                                                    <i class="nav-icon fas fa-eye"></i>
-
-                                                                </a> |
-                                                                <button type="submit"
-                                                                    class="btn btn-sm btn-outline-danger show_confirm"
-                                                                    data-toggle="tooltip" title='Delete'>
-                                                                    <i class="nav-icon fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </form>
-                                                    @elseif (Auth::user()->role == 'admin')
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $data->name }}</td>
+                                                        <td>{{ $data->email }}</td>
                                                         @if ($data->role == 'admin')
-                                                            <a href="{{ route('users.edit', $data->id) }}"
-                                                                class="btn btn-sm btn-outline-success">
-                                                                <i class="nav-icon fas fa-edit"></i>
-                                                            </a> |
-                                                            <a href="{{ route('users.show', $data->id) }}"
-                                                                class="btn btn-sm btn-outline-warning">
-                                                                <i class="nav-icon fas fa-eye"></i>
-
-                                                            </a>
+                                                            <td class="fw-bold text-primary">{{ $data->role }}</td>
                                                         @else
-                                                            <form action="{{ route('users.destroy', $data->id) }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('delete')
-                                                                <a href="{{ route('users.edit', $data->id) }}"
-                                                                    class="btn btn-sm btn-outline-success">
-                                                                    <i class="nav-icon fas fa-edit"></i>
-                                                                </a> |
-                                                                <a href="{{ route('users.show', $data->id) }}"
-                                                                    class="btn btn-sm btn-outline-warning">
-                                                                    <i class="nav-icon fas fa-eye"></i>
+                                                            <td class="fw-bold text-success">{{ $data->role }}</td>
+                                                        @endif
+                                                        <td>
+                                                            @if (Auth::user()->role == 'super admin')
+                                                                <form action="{{ route('users.destroy', $data->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <a href="{{ route('users.edit', $data->id) }}"
+                                                                        class="btn btn-sm btn-outline-success">
+                                                                        <i class="nav-icon fas fa-edit"></i>
+                                                                    </a> |
+                                                                    <a href="{{ route('users.show', $data->id) }}"
+                                                                        class="btn btn-sm btn-outline-warning">
+                                                                        <i class="nav-icon fas fa-eye"></i>
 
-                                                                </a> |
-                                                                <button type="submit"
-                                                                    class="btn btn-sm btn-outline-danger show_confirm"
-                                                                    data-toggle="tooltip" title='Delete'>
-                                                                    <i class="nav-icon fas fa-trash-alt"></i>
-                                                                </button>
-                                                            </form>
+                                                                    </a> |
+                                                                    <button type="submit"
+                                                                        class="btn btn-sm btn-outline-danger show_confirm"
+                                                                        data-toggle="tooltip" title='Delete'>
+                                                                        <i class="nav-icon fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                            @elseif (Auth::user()->role == 'admin')
+                                                                @if ($data->role == 'admin')
+                                                                @else
+                                                                    <form action="{{ route('users.destroy', $data->id) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <a href="{{ route('users.edit', $data->id) }}"
+                                                                            class="btn btn-sm btn-outline-success">
+                                                                            <i class="nav-icon fas fa-edit"></i>
+                                                                        </a> |
+                                                                        <a href="{{ route('users.show', $data->id) }}"
+                                                                            class="btn btn-sm btn-outline-warning">
+                                                                            <i class="nav-icon fas fa-eye"></i>
+
+                                                                        </a> |
+                                                                        <button type="submit"
+                                                                            class="btn btn-sm btn-outline-danger show_confirm"
+                                                                            data-toggle="tooltip" title='Delete'>
+                                                                            <i class="nav-icon fas fa-trash-alt"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                @endif
+                                                            @endif
+                                                        </td>
+                                                    @else
+                                                        @if ($data->role == 'admin')
+                                                        @elseif ($data->role == 'super admin')
+                                                        @else
+                                                            <td>{{ $no++ }}</td>
+                                                            <td>{{ $data->name }}</td>
+                                                            <td>{{ $data->email }}</td>
+                                                            <td class="fw-bold text-success">{{ $data->role }}</td>
+                                                            <td>
+                                                                <form action="{{ route('users.destroy', $data->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @method('delete')
+                                                                    <a href="{{ route('users.edit', $data->id) }}"
+                                                                        class="btn btn-sm btn-outline-success">
+                                                                        <i class="nav-icon fas fa-edit"></i>
+                                                                    </a> |
+                                                                    <a href="{{ route('users.show', $data->id) }}"
+                                                                        class="btn btn-sm btn-outline-warning">
+                                                                        <i class="nav-icon fas fa-eye"></i>
+
+                                                                    </a> |
+                                                                    <button type="submit"
+                                                                        class="btn btn-sm btn-outline-danger show_confirm"
+                                                                        data-toggle="tooltip" title='Delete'>
+                                                                        <i class="nav-icon fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </td>
                                                         @endif
                                                     @endif
-                                                </td>
                                                 @endif
                                             </tr>
                                         @endforeach

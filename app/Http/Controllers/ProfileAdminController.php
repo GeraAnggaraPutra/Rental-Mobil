@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Auth;
 use App\Models\DetailUser;
-use RealRashid\SweetAlert\Facades\Alert;
+use Auth;
+use Illuminate\Http\Request;
 
 class ProfileAdminController extends Controller
 {
@@ -25,6 +24,17 @@ class ProfileAdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         //validasi
         $validated = $request->validate([
@@ -46,19 +56,8 @@ class ProfileAdminController extends Controller
         $detail->email = $request->email;
         $detail->id_user = $user;
         $detail->save();
-        toast('Data berhasil dibuat','success');
+        toast('Data berhasil dibuat', 'success');
         return back();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -90,8 +89,34 @@ class ProfileAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+        ]);
+        if ($request->password) {
+            $validated = $request->validate([
+                'password' => 'min:8',
+            ]);
+        }
+        Auth::user()->name = $request->name;
+        Auth::user()->email = $request->email;
+        Auth::user()->role = $request->role;
+        if ($request->password) {
+            Auth::user()->password = Hash::make($request->password);
+        }
+        Auth::user()->save();
+
+        toast('Data berhasil diedit', 'success');
+        return back();
+    }
+
+    public function updateDetail(Request $request)
+    {
+
         //validasi
         $validated = $request->validate([
             'nama' => 'required',
@@ -102,16 +127,16 @@ class ProfileAdminController extends Controller
             'email' => 'required',
         ]);
 
-        $user = auth()->id();
-        $detail = DetailUser::where('id_user', $user)->first();
+        $detail = DetailUser::where('id_user', Auth::user()->id)->first();
         $detail->nama = $request->nama;
         $detail->nik = $request->nik;
         $detail->jenis_kelamin = $request->jenis_kelamin;
         $detail->alamat = $request->alamat;
         $detail->no_telp = $request->no_telp;
         $detail->email = $request->email;
-        $detail->save();
-        toast('Data berhasil diedit','success');
+        $detail->save();;
+
+        toast('Data berhasil diedit', 'success');
         return back();
     }
 

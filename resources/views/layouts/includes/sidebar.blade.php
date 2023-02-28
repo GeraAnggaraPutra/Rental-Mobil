@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{route('profile.admin') }}" class="nav-link {{ Request::is('admin/profile*') ? 'active' : '' }}">
+            <a href="{{route('profileadmin.index') }}" class="nav-link {{ Request::is('admin/profileadmin*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white">
                 Profile Admin
