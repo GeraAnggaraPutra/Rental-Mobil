@@ -47,7 +47,7 @@ class MobilController extends Controller
             'merk' => 'required',
             'nama_mobil' => 'required',
             'foto' => 'required|image|max:2048',
-            'stock' => 'required',
+            'status' => 'required',
             'harga' => 'required',
             'tahun' => 'required',
             'warna' => 'required',
@@ -63,7 +63,7 @@ class MobilController extends Controller
             $image->move('images/mobil/', $name);
             $mobil->foto = $name;
         }
-        $mobil->stock = $request->stock;
+        $mobil->status = $request->status;
         $mobil->harga = $request->harga;
         $mobil->tahun = $request->tahun;
         $mobil->warna = $request->warna;
@@ -111,7 +111,7 @@ class MobilController extends Controller
             'merk' => 'required',
             'nama_mobil' => 'required',
             // 'foto' => 'required|image|max:2048',
-            'stock' => 'required',
+            'status' => 'required',
             'harga' => 'required',
             'tahun' => 'required',
             'warna' => 'required',
@@ -133,7 +133,7 @@ class MobilController extends Controller
             $image->move('images/mobil/', $name);
         }
         $mobil->foto = $request->hasFile('foto') ? $name : $mobil->foto;
-        $mobil->stock = $request->stock;
+        $mobil->status = $request->status;
         $mobil->harga = $request->harga;
         $mobil->tahun = $request->tahun;
         $mobil->warna = $request->warna;

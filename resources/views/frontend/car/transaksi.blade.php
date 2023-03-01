@@ -63,8 +63,8 @@
                                 <p class="fs-14 fw-bold">{{ $mobil->merk }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="textmuted">Stock</p>
-                                <p class="fs-14 fw-bold">{{ $mobil->stock }}</p>
+                                <p class="textmuted">Status</p>
+                                <p class="fs-14 fw-bold">{{ $mobil->status }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <p class="textmuted">Harga</p>

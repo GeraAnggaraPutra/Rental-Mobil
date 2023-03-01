@@ -19,7 +19,7 @@ class CreateMobilsTable extends Migration
             $table->string('nama_mobil');
             $table->string('slug')->unique();
             $table->string('foto');
-            $table->integer('stock');
+            $table->string('status');
             $table->integer('harga');
             $table->integer('tahun');
             $table->string('no_polisi');

@@ -44,7 +44,7 @@
                                         <th>Merk</th>
                                         <th>Nama Mobil</th>
                                         <th>Foto</th>
-                                        <th>Stock</th>
+                                        <th>Status</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -59,7 +59,11 @@
                                             <td>
                                             <img src="{{ $data->image() }}" style="width: 140px; height: 140px; border-radius: 12px;">
                                             </td>
-                                            <td>{{ $data->stock }}</td>
+                                            @if ($data->status == "Tersedia")
+                                            <td><span class="bg-success" style="border-radius:5px; padding: 5px">{{ $data->status }}</span></td>
+                                            @else
+                                            <td><span class="bg-secondary" style="border-radius:5px; padding: 5px">{{ $data->status }}</span></td>
+                                            @endif
                                             <td>Rp. {{ number_format($data->harga,0,',','.') }}/hari</td>
                                             <td>
                                                 <form action="{{ route('mobil.destroy', $data->id) }}" method="post">

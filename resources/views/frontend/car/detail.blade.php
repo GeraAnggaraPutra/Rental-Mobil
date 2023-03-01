@@ -63,8 +63,8 @@
                                 <p class="fs-14 fw-bold">{{ $mobil->merk }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
-                                <p class="textmuted">Stock</p>
-                                <p class="fs-14 fw-bold">{{ $mobil->stock }}</p>
+                                <p class="textmuted">Status</p>
+                                <p class="fs-14 fw-bold">{{ $mobil->status }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <p class="textmuted">Harga</p>
@@ -78,7 +78,7 @@
                         <div class="col-12 px-0">
                             <div class="col-12 mt-4 mb-4 p-0">
                                 <div>
-                                    @if ($mobil->stock <= 0)
+                                    @if ($mobil->status == "Tidak Tersedia")
                                         <p class="d-flex mb-0 d-block"><a href="#"
                                                 class="btn btn-primary py-2 mr-1">Tidak
                                                 Tersedia</a>

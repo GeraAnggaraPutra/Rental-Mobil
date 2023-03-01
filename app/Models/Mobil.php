@@ -11,7 +11,7 @@ class Mobil extends Model
     use HasFactory;
     use Sluggable;
 
-    public $fillable = ['merk', 'nama_mobil', 'foto','stock', 'harga','tahun','no_polisi','warna', 'slug'];
+    public $fillable = ['merk', 'nama_mobil', 'foto','status', 'harga','tahun','no_polisi','warna', 'slug'];
     public $timestamps = true;
 
     public function sluggable(): array

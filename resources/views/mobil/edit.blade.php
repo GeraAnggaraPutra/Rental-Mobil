@@ -68,10 +68,24 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Stock</label>
-                                <input type="number" class="form-control  @error('stock') is-invalid @enderror"
-                                    name="stock" value="{{ $mobil->stock }}">
-                                @error('stock')
+                                <label class="form-label">Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('status') is-invalid @enderror"
+                                        type="radio" name="status" value="Tersedia"
+                                        @if ($mobil->status == 'Tersedia') checked @endif>
+                                    <label class="form-check-label">
+                                        Tersedia
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('status') is-invalid @enderror"
+                                        type="radio" name="status" value="Tidak Tersedia"
+                                        @if ($mobil->status == 'Tidak Tersedia') checked @endif>
+                                    <label class="form-check-label">
+                                        Tidak Tersedia
+                                    </label>
+                                </div>
+                                @error('status')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

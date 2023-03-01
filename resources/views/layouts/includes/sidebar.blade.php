@@ -41,7 +41,7 @@
             <a href="{{route('profileadmin.index') }}" class="nav-link {{ Request::is('admin/profileadmin*') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p style="color: white">
-                Profile Admin
+                Admin
               </p>
             </a>
           </li>

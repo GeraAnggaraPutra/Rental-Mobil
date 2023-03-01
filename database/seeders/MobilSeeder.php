@@ -18,7 +18,7 @@ class MobilSeeder extends Seeder
         $mobil->nama_mobil = "Mercedes Grand Sedan";
         $mobil->slug = "mercedes-grand-sedan";
         $mobil->foto = '8630mercedes-grand-sedan.jpg';
-        $mobil->stock = 3;
+        $mobil->status = "Tersedia";
         $mobil->harga = 600000;
         $mobil->tahun = "2022";
         $mobil->no_polisi = "D 13 ZC";
@@ -30,7 +30,7 @@ class MobilSeeder extends Seeder
         $mobil->nama_mobil = "Range Rover";
         $mobil->slug = "range-rover";
         $mobil->foto = '8343range-rover.jpg';
-        $mobil->stock = 4;
+        $mobil->status = "Tersedia";
         $mobil->harga = 610000;
         $mobil->tahun = "2022";
         $mobil->no_polisi = "D 11 ZC";
@@ -42,7 +42,7 @@ class MobilSeeder extends Seeder
         $mobil->nama_mobil = "Supra";
         $mobil->slug = "supra";
         $mobil->foto = '3662toyota-supra.png';
-        $mobil->stock = 2;
+        $mobil->status = "Tersedia";
         $mobil->harga = 620000;
         $mobil->tahun = "2022";
         $mobil->no_polisi = "D 14 ZC";

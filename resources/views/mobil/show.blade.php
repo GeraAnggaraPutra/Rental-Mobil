@@ -45,8 +45,8 @@
                             @endif
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Stock</label>
-                            <input type="text" class="form-control " name="stock" value="{{ $mobil->stock }}"
+                            <label class="form-label">Status</label>
+                            <input type="text" class="form-control " name="status" value="{{ $mobil->status }}"
                                 readonly>
                         </div>
                         <div class="mb-3">

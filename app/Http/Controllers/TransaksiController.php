@@ -157,7 +157,7 @@ class TransaksiController extends Controller
         $transaksi->status = "Process";
         $transaksi->id_user = Auth::user()->id;
 
-        $mobil->stock = $mobil->stock - 1;
+        $mobil->status = "Tidak Tersedia";
 
         $mobil->save();
         $transaksi->save();
@@ -219,7 +219,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "Selesai";
-        $mobil->stock = $mobil->stock + 1;
+        $mobil->status = "Tersedia";
         $mobil->save();
         $transaksi->save();
         toast('Rental mobil selesai', 'success');
@@ -231,7 +231,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "Process";
-        $mobil->stock = $mobil->stock - 1;
+        $mobil->status = "Tidak Tersedia";
         $mobil->save();
         $transaksi->save();
         toast('Transaksi diprocess', 'success');
