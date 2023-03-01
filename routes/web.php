@@ -16,6 +16,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileAdminController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\MerkController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,7 @@ Auth::routes();
 // Admin/Dashboard Route
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::resource('users', UsersController::class);
+    Route::resource('merk', MerkController::class);
     Route::get('users-export', [UsersController::class, 'export'])->name('users.export');
     Route::get('/', [DashboardController::class, 'index'])->name('admin');
     Route::resource('supir', SupirController::class);

@@ -59,13 +59,29 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('mobil.index') }}"
-                        class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link  {{ Request::is('admin/mobil*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-car"></i>
                         <p style="color: white">
-                            Mobil
+                            Data Mobil
+                            <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('mobil.index') }}"
+                                class="nav-link  {{ Request::is('admin/mobil') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Mobil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('merk.index') }}"
+                                class="nav-link  {{ Request::is('admin/merk*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Merk</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('supir.index') }}"

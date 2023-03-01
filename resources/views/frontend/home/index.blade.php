@@ -40,7 +40,7 @@
                                     <div class="text">
                                         <h2 class="mb-0"><a href="#">{{ $data->nama_mobil }}</a></h2>
                                         <div class="d-flex mb-3">
-                                            <span class="cat">{{ $data->merk }}</span>
+                                            <span class="cat">{{ $data->merk->merk }}</span>
                                             <p class="price ml-auto">Rp. {{ number_format($data->harga, 0, ',', '.') }}
                                                 <span>/hari</span></p>
                                         </div>

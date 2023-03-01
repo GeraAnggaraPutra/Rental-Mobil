@@ -15,7 +15,6 @@ class CreateMobilsTable extends Migration
     {
         Schema::create('mobils', function (Blueprint $table) {
             $table->id();
-            $table->string('merk');
             $table->string('nama_mobil');
             $table->string('slug')->unique();
             $table->string('foto');
@@ -24,6 +23,8 @@ class CreateMobilsTable extends Migration
             $table->integer('tahun');
             $table->string('no_polisi');
             $table->string('warna');
+            $table->unsignedbigInteger('id_merk');
+            $table->foreign('id_merk')->references('id')->on('merks')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

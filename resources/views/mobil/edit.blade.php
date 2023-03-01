@@ -33,8 +33,11 @@
                             @method('put')
                             <div class="mb-3">
                                 <label class="form-label">Merk</label>
-                                <input type="text" class="form-control  @error('merk') is-invalid @enderror"
-                                    name="merk" value="{{ $mobil->merk }}">
+                                <select class="form-control" name="id_merk">
+                                    @foreach($merks as $merk)
+                                        <option value="{{ $merk->id }}" {{$merk->merk_id == $mobil->id_merk  ? 'selected' : ''}}>{{ $merk->merk}}</option>
+                                    @endforeach
+                                </select>
                                 @error('merk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

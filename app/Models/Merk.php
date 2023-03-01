@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Merk extends Model
 {
     use HasFactory;
+
+    public $fillable = ['merk'];
+    public $timestamps = true;
+
+    public function mobil(){
+        return $this->hasMany(Mobil::class, 'id_merk');
+    }
 }

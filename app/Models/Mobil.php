@@ -11,7 +11,7 @@ class Mobil extends Model
     use HasFactory;
     use Sluggable;
 
-    public $fillable = ['merk', 'nama_mobil', 'foto','status', 'harga','tahun','no_polisi','warna', 'slug'];
+    public $fillable = ['id_merk', 'nama_mobil', 'foto','status', 'harga','tahun','no_polisi','warna', 'slug'];
     public $timestamps = true;
 
     public function sluggable(): array
@@ -21,6 +21,11 @@ class Mobil extends Model
                 'source' => 'nama_mobil'
             ]
         ];
+    }
+
+    public function merk()
+    {
+        return $this->belongsTo(Merk::class, 'id_merk');
     }
 
     public function transaksi(){

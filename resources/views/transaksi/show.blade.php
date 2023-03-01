@@ -56,7 +56,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Merk</label>
-                            <input type="text" class="form-control " name="merk" value="{{ $transaksi->mobil->merk }}" readonly>
+                            <input type="text" class="form-control " name="merk" value="{{ $transaksi->mobil->merk->merk }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nama Mobil</label>

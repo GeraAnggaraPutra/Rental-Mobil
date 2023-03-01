@@ -13,7 +13,7 @@ class MobilExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Mobil::select("id","merk", "nama_mobil", "status", "harga", "tahun", "no_polisi", "warna")->get();
+        return Mobil::select("id","id_merk", "nama_mobil", "status", "harga", "tahun", "no_polisi", "warna")->get();
     }
 
     /**
@@ -22,6 +22,6 @@ class MobilExport implements FromCollection, WithHeadings
      * @return response()
      */
     public function headings(): array{
-        return ["ID", "MERK", "NAMA MOBIL", "STATUS", "HARGA", "TAHUN", "NO POLISI", "WARNA"];
+        return ["ID", "ID MERK", "NAMA MOBIL", "STATUS", "HARGA", "TAHUN", "NO POLISI", "WARNA"];
     }
 }

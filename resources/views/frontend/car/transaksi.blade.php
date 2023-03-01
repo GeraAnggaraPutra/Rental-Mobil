@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-4 col-6  ps-30 my-4">
                                 <p class="text-muted">Merk</p>
-                                <p class="h5 m-0">{{ $mobil->merk }}</p>
+                                <p class="h5 m-0">{{ $mobil->merk->merk }}</p>
                             </div>
                             <div class="col-md-4 col-6 ps-30 my-4">
                                 <p class="text-muted">Harga</p>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <p class="textmuted">Merk</p>
-                                <p class="fs-14 fw-bold">{{ $mobil->merk }}</p>
+                                <p class="fs-14 fw-bold">{{ $mobil->merk->merk }}</p>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <p class="textmuted">Status</p>

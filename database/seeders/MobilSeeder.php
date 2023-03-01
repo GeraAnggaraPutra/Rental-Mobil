@@ -14,7 +14,7 @@ class MobilSeeder extends Seeder
     public function run()
     {
         $mobil = new \App\Models\Mobil();
-        $mobil->merk = "Cheverolet";
+        $mobil->id_merk = 1;
         $mobil->nama_mobil = "Mercedes Grand Sedan";
         $mobil->slug = "mercedes-grand-sedan";
         $mobil->foto = '8630mercedes-grand-sedan.jpg';
@@ -26,7 +26,7 @@ class MobilSeeder extends Seeder
         $mobil->save();
 
         $mobil = new \App\Models\Mobil();
-        $mobil->merk = "Subaru";
+        $mobil->id_merk = 2;
         $mobil->nama_mobil = "Range Rover";
         $mobil->slug = "range-rover";
         $mobil->foto = '8343range-rover.jpg';
@@ -38,7 +38,7 @@ class MobilSeeder extends Seeder
         $mobil->save();
 
         $mobil = new \App\Models\Mobil();
-        $mobil->merk = "Toyota";
+        $mobil->id_merk = 1;
         $mobil->nama_mobil = "Supra";
         $mobil->slug = "supra";
         $mobil->foto = '3662toyota-supra.png';

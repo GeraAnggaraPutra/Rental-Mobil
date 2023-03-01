@@ -32,8 +32,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Merk</label>
-                                <input type="text" class="form-control  @error('merk') is-invalid @enderror"
-                                    name="merk">
+                                <select name="id_merk" class="form-control">
+                                    @foreach ($merk as $data)
+                                    <option value="{{$data->id}}">{{ $data->merk }}</option>
+                                    @endforeach
+                                </select>
                                 @error('merk')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

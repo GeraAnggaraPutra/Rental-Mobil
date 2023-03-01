@@ -75,7 +75,7 @@
                                                 </td>
                                                 <td>
                                                     <form action="{{ route('transaksi.destroy', $data->id) }}"
-                                                        method="post">
+                                                        method="post" class="form-transaksi">
                                                         @csrf
                                                         @method('delete')
                                                         <a href="{{ route('transaksi.show', $data->id) }}"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\MobilExport;
 use App\Models\Mobil;
+use App\Models\Merk;
 use Excel;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class MobilController extends Controller
      */
     public function create()
     {
-        return view('mobil.create');
+        $merk = Merk::All();
+        return view('mobil.create', compact('merk'));
     }
 
     /**
@@ -44,7 +46,7 @@ class MobilController extends Controller
     {
         //validasi
         $validated = $request->validate([
-            'merk' => 'required',
+            'id_merk' => 'required',
             'nama_mobil' => 'required',
             'foto' => 'required|image|max:2048',
             'status' => 'required',
@@ -55,7 +57,7 @@ class MobilController extends Controller
         ]);
 
         $mobil = new Mobil();
-        $mobil->merk = $request->merk;
+        $mobil->id_merk = $request->id_merk;
         $mobil->nama_mobil = $request->nama_mobil;
         if ($request->hasFile('foto')) {
             $image = $request->file('foto');
@@ -94,7 +96,8 @@ class MobilController extends Controller
     public function edit($id)
     {
         $mobil = Mobil::findOrFail($id);
-        return view('mobil.edit', compact('mobil'));
+        $merks = Merk::All();
+        return view('mobil.edit', compact('mobil', 'merks'));
     }
 
     /**
@@ -108,7 +111,7 @@ class MobilController extends Controller
     {
         //validasi
         $validated = $request->validate([
-            'merk' => 'required',
+            'id_merk' => 'required',
             'nama_mobil' => 'required',
             // 'foto' => 'required|image|max:2048',
             'status' => 'required',
@@ -124,7 +127,7 @@ class MobilController extends Controller
             ]);
         }
         $mobil = Mobil::findOrFail($id);
-        $mobil->merk = $request->merk;
+        $mobil->id_merk = $request->id_merk;
         $mobil->nama_mobil = $request->nama_mobil;
         if ($request->hasFile('foto')) {
             $mobil->deleteImage(); // menghapus foto sebelum di update

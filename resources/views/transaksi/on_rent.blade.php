@@ -59,7 +59,7 @@
                                                 </td>
                                                 <td>
                                                     <form action="{{ route('transaksi.status2', $data->id) }}"
-                                                        method="get">
+                                                        method="get" class="form-transaksi">
                                                         @csrf
                                                         <a href="{{ route('transaksi.status2', $data->id) }}"
                                                             class="btn btn-sm btn-outline-success show_selesai"
@@ -68,7 +68,7 @@
                                                         </a> |
                                                     </form>
                                                     <form action="{{ route('transaksi.destroy', $data->id) }}"
-                                                        method="post">
+                                                        method="post" class="form-transaksi">
                                                         @csrf
                                                         @method('delete')
                                                         <a href="{{ route('transaksi.show', $data->id) }}"
