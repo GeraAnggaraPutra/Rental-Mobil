@@ -58,14 +58,19 @@
                                                         style="border-radius: 4px">{{ $data->status }}</span>
                                                 </td>
                                                 <td>
+                                                    <form action="{{ route('transaksi.status2', $data->id) }}"
+                                                        method="get">
+                                                        @csrf
+                                                        <a href="{{ route('transaksi.status2', $data->id) }}"
+                                                            class="btn btn-sm btn-outline-success show_selesai"
+                                                            data-toggle="tooltip" title='Selesai'>
+                                                            <i class="nav-icon fas fa-check"></i>
+                                                        </a> |
+                                                    </form>
                                                     <form action="{{ route('transaksi.destroy', $data->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ route('transaksi.status2', $data->id) }}"
-                                                            class="btn btn-sm btn-outline-success">
-                                                            <i class="nav-icon fas fa-check"></i>
-                                                        </a> |
                                                         <a href="{{ route('transaksi.show', $data->id) }}"
                                                             class="btn btn-sm btn-outline-warning">
                                                             <i class="nav-icon fas fa-eye"></i>

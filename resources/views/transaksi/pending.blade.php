@@ -58,6 +58,15 @@
                                                         style="border-radius: 4px">{{ $data->status }}</span>
                                                 </td>
                                                 <td>
+                                                    <form action="{{ route('transaksi.status1', $data->id) }}"
+                                                        method="get">
+                                                        @csrf
+                                                        <a href="{{ route('transaksi.status1', $data->id) }}"
+                                                            class="btn btn-sm btn-outline-success show_onrent"
+                                                            data-toggle="tooltip" title='On Rent'>
+                                                            <i class="nav-icon fas fa-check"></i>
+                                                        </a> |
+                                                    </form>
                                                     <form action="{{ route('transaksi.status3', $data->id) }}"
                                                         method="get">
                                                         @csrf
@@ -71,10 +80,6 @@
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
-                                                        <a href="{{ route('transaksi.status1', $data->id) }}"
-                                                            class="btn btn-sm btn-outline-success" title='On Rent'>
-                                                            <i class="nav-icon fas fa-check"></i>
-                                                        </a> |
                                                         <a href="{{ route('transaksi.show', $data->id) }}"
                                                             class="btn btn-sm btn-outline-warning">
                                                             <i class="nav-icon fas fa-eye"></i>
