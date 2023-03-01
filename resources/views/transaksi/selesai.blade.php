@@ -25,14 +25,7 @@
                     @include('layouts/_flash')
                     <div class="card">
                         <div class="card-header">
-                            Transaksi
-                            <a href="{{ route('pdf.print') }}" class="btn btn-success text-bold" style="float: right">
-                                 Print PDF</a>
-
-                            <a href="{{ route('transaksi.export') }}" class="btn btn-success text-bold"
-                                style="float: right; margin-right:5px">
-                                Export Excel
-                            </a>
+                            Transaksi Selesai
                         </div>
 
                         <div class="card-body">
@@ -61,16 +54,7 @@
                                                 <td>{{ $data->mobil->nama_mobil }}</td>
                                                 <td>{{ $data->user->detailUser->nama }}</td>
                                                 <td>
-                                                    @if ($data->status == 'Selesai')
-                                                        @php $color = "success";@endphp
-                                                    @elseif($data->status == 'Pending')
-                                                        @php $color = "secondary";@endphp
-                                                    @elseif($data->status == 'On Rent')
-                                                        @php $color = "primary";@endphp
-                                                    @elseif($data->status == 'Dibatalkan')
-                                                        @php $color = "danger";@endphp
-                                                    @endif
-                                                    <span class="bg-{{ $color }} p-1"
+                                                    <span class="bg-success p-1"
                                                         style="border-radius: 4px">{{ $data->status }}</span>
                                                 </td>
                                                 <td>

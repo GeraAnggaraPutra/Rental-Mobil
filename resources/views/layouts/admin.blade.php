@@ -37,6 +37,11 @@
     <link rel="stylesheet" href="{{ asset('DataTables/datatables.min.css') }}">
     <!-- Datepicker -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        form {
+            display: inline-block;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -161,6 +166,25 @@
                         form.submit();
                     }
                 });
+        });
+    </script>
+    <script type="text/javascript">
+        $('.show_batalkan').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Batalkan`,
+                    text: "Apakah Anda Yakin Ingin Membatalkan",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    }
+                })
         });
     </script>
 

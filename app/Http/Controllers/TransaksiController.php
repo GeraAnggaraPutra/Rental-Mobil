@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Validator;
 use DateTime;
+use DB;
 
 class TransaksiController extends Controller
 {
@@ -29,6 +30,26 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::all();
         return view('transaksi.index', compact('transaksi'));
+    }
+
+    public function pending(){
+        $transaksi = Transaksi::where('status', 'Pending')->get();
+        return view('transaksi.pending', compact('transaksi'));
+    }
+
+    public function onRent(){
+        $transaksi = Transaksi::where('status', 'On Rent')->get();
+        return view('transaksi.on_rent', compact('transaksi'));
+    }
+
+    public function selesai(){
+        $transaksi = Transaksi::where('status', 'Selesai')->get();
+        return view('transaksi.selesai', compact('transaksi'));
+    }
+
+    public function dibatalkan(){
+        $transaksi = Transaksi::where('status', 'Dibatalkan')->get();
+        return view('transaksi.dibatalkan', compact('transaksi'));
     }
 
     /**
@@ -154,10 +175,8 @@ class TransaksiController extends Controller
         $total_bayar = ($days * $mobil->harga) + $biayaSupir;
         $transaksi->total_bayar = $total_bayar;
         $transaksi->id_mobil = $request->id_mobil;
-        $transaksi->status = "Process";
+        $transaksi->status = "Pending";
         $transaksi->id_user = Auth::user()->id;
-
-        $mobil->status = "Tidak Tersedia";
 
         $mobil->save();
         $transaksi->save();
@@ -176,6 +195,7 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         return view('transaksi.show', compact('transaksi'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -211,10 +231,22 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
         toast('Data berhasil dihapus', 'success');
-        return redirect()->route('transaksi.index');
+        return back();
     }
 
     public function status1($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $mobil = Mobil::findOrFail($transaksi->id_mobil);
+        $transaksi->status = "On Rent";
+        $mobil->status = "Tidak Tersedia";
+        $mobil->save();
+        $transaksi->save();
+        toast('Rental mobil dilakukan', 'success');
+        return back();
+    }
+
+    public function status2($id)
     {
         $transaksi = Transaksi::findOrFail($id);
         $mobil = Mobil::findOrFail($transaksi->id_mobil);
@@ -223,19 +255,17 @@ class TransaksiController extends Controller
         $mobil->save();
         $transaksi->save();
         toast('Rental mobil selesai', 'success');
-        return redirect()->route('transaksi.index');
+        return back();
     }
 
-    public function status2($id)
+    public function status3($id)
     {
         $transaksi = Transaksi::findOrFail($id);
         $mobil = Mobil::findOrFail($transaksi->id_mobil);
-        $transaksi->status = "Process";
-        $mobil->status = "Tidak Tersedia";
-        $mobil->save();
+        $transaksi->status = "Dibatalkan";
         $transaksi->save();
-        toast('Transaksi diprocess', 'success');
-        return redirect()->route('transaksi.index');
+        toast('Rental mobil dibatalkan', 'success');
+        return back();
     }
 
     public function export()

@@ -83,8 +83,12 @@
                             <input type="text" class="form-control " name="supir" value="{{ $transaksi->supir }}" readonly>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <input type="text" class="form-control " name="status" value="{{ $transaksi->status }}" readonly>
+                        </div>
+                        <div class="mb-3">
                             <div class="d-grid gap-2">
-                                <a href="{{ route('transaksi.index') }}" class="btn btn-primary" type="submit">Kembali</a>
+                                <a href="{{ URL::previous() }}" class="btn btn-primary" type="submit">Kembali</a>
                             </div>
                         </div>
                     </div>

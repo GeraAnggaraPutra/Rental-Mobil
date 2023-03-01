@@ -49,15 +49,18 @@
                                             <td>{{ $data->tgl_sewa }}</td>
                                             <td>{{ $data->tgl_kembali }}</td>
                                             <td>Rp. {{ number_format($data->total_bayar,0,',','.') }}</td>
-                                            <td class="text-center"> @if($data->status == "Process")
+                                            <td class="text-center">
+                                                @if($data->status == "Selesai")
                                                    @php $color = "success";@endphp
-                                                @elseif($data->status == "Selesai")
+                                                @elseif($data->status == "Pending")
                                                    @php $color = "secondary";@endphp
+                                                @elseif($data->status == "On Rent")
+                                                   @php $color = "primary";@endphp
                                                 @elseif($data->status == "Dibatalkan")
                                                    @php $color = "danger";@endphp
                                                 @endif
                                            <span class="bg-{{ $color }} p-1" style="border-radius: 4px">{{ $data->status }}</span>
-                                                @if ($data->status == "Process")
+                                                @if ($data->status == "Pending")
                                                 <form action="{{ route('batal', $data->id) }}" method="post">
                                                     @csrf
                                                     <button type="submit" class="mt-1 btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Batalkan'>

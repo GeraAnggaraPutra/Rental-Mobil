@@ -25,14 +25,7 @@
                     @include('layouts/_flash')
                     <div class="card">
                         <div class="card-header">
-                            Transaksi
-                            <a href="{{ route('pdf.print') }}" class="btn btn-success text-bold" style="float: right">
-                                 Print PDF</a>
-
-                            <a href="{{ route('transaksi.export') }}" class="btn btn-success text-bold"
-                                style="float: right; margin-right:5px">
-                                Export Excel
-                            </a>
+                            Transaksi Pending
                         </div>
 
                         <div class="card-body">
@@ -61,30 +54,30 @@
                                                 <td>{{ $data->mobil->nama_mobil }}</td>
                                                 <td>{{ $data->user->detailUser->nama }}</td>
                                                 <td>
-                                                    @if ($data->status == 'Selesai')
-                                                        @php $color = "success";@endphp
-                                                    @elseif($data->status == 'Pending')
-                                                        @php $color = "secondary";@endphp
-                                                    @elseif($data->status == 'On Rent')
-                                                        @php $color = "primary";@endphp
-                                                    @elseif($data->status == 'Dibatalkan')
-                                                        @php $color = "danger";@endphp
-                                                    @endif
-                                                    <span class="bg-{{ $color }} p-1"
+                                                    <span class="bg-secondary p-1"
                                                         style="border-radius: 4px">{{ $data->status }}</span>
                                                 </td>
                                                 <td>
+                                                    <form action="{{ route('transaksi.status3', $data->id) }}"
+                                                        method="get">
+                                                        @csrf
+                                                        <a href="{{ route('transaksi.status3', $data->id) }}"
+                                                            class="btn btn-sm btn-outline-danger show_batalkan"
+                                                            data-toggle="tooltip" title='Batalkan' id="show_batalkan">
+                                                            <i class="nav-icon fas fa-times"></i>
+                                                        </a> |
+                                                    </form>
                                                     <form action="{{ route('transaksi.destroy', $data->id) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
+                                                        <a href="{{ route('transaksi.status1', $data->id) }}"
+                                                            class="btn btn-sm btn-outline-success" title='On Rent'>
+                                                            <i class="nav-icon fas fa-check"></i>
+                                                        </a> |
                                                         <a href="{{ route('transaksi.show', $data->id) }}"
                                                             class="btn btn-sm btn-outline-warning">
                                                             <i class="nav-icon fas fa-eye"></i>
-                                                        </a> |
-                                                        <a href="{{ route('laporan.singlePrint', $data->id) }}"
-                                                            class="btn btn-sm btn-outline-success">
-                                                            <i class="nav-icon fas fa-print"></i>
                                                         </a> |
                                                         <button type="submit"
                                                             class="btn btn-sm btn-outline-danger show_confirm"

@@ -28,7 +28,6 @@ class RiwayatController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "Dibatalkan";
-        $mobil->stock = $mobil->stock + 1;
         $mobil->save();
         $transaksi->save();
         toast('Pesanan dibatalkan','success');

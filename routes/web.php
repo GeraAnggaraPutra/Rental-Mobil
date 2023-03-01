@@ -44,8 +44,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::get('mobil-export', [MobilController::class, 'export'])->name('mobil.export');
     Route::get('transaksi-export', [TransaksiController::class, 'export'])->name('transaksi.export');
     Route::resource('transaksi', TransaksiController::class);
-    Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status.process');
-    Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status.dibayar');
+    Route::get('transaksi-pending', [TransaksiController::class, 'pending'])->name('transaksi.pending');
+    Route::get('transaksi-OnRent', [TransaksiController::class, 'onRent'])->name('transaksi.onRent');
+    Route::get('transaksi-selesai', [TransaksiController::class, 'selesai'])->name('transaksi.selesai');
+    Route::get('transaksi-dibatalkan', [TransaksiController::class, 'dibatalkan'])->name('transaksi.dibatalkan');
+    Route::get('transaksi/status1/{id}', [TransaksiController::class,'status1'])->name('transaksi.status1');
+    Route::get('transaksi/status2/{id}', [TransaksiController::class,'status2'])->name('transaksi.status2');
+    Route::get('transaksi/status3/{id}', [TransaksiController::class,'status3'])->name('transaksi.status3');
     Route::resource('contact', ContactController::class);
     Route::post('print', [PdfController::class, 'laporan'])->name('laporan.print');
     Route::get('print/{id}', [PdfController::class, 'singlePrint'])->name('laporan.singlePrint');

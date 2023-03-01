@@ -18,13 +18,15 @@ class TransaksiChart
     {
         $transaksi = Transaksi::get();
         $data = [
+            $transaksi->where('status', 'Pending')->count(),
+            $transaksi->where('status', 'On Rent')->count(),
             $transaksi->where('status', 'Selesai')->count(),
-            $transaksi->where('status', 'Process')->count(),
             $transaksi->where('status', 'Dibatalkan')->count(),
         ];
         $label = [
+            'Pending',
+            'On Rent',
             'Selesai',
-            'Process',
             'Dibatalkan',
         ];
         return $this->chart->pieChart()

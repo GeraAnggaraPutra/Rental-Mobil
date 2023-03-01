@@ -44,7 +44,7 @@
                                             <p class="price ml-auto">Rp. {{ number_format($data->harga, 0, ',', '.') }}
                                                 <span>/hari</span></p>
                                         </div>
-                                        @if ($data->stock <= 0)
+                                        @if ($data->status == 'Tidak Tersedia')
                                             <p class="d-flex mb-0 d-block"><a href="#"
                                                     class="btn btn-primary py-2 mr-1">Tidak
                                                     Tersedia</a>
