@@ -29,6 +29,12 @@
     <link rel="stylesheet" href="{{asset('frontend/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/dist/img/car.png') }}" type="image/x-icon">
+    <style>
+        .form-profile {
+            border: none;
+            border-bottom: 2px solid blue;
+        }
+    </style>
   </head>
   <body>
 

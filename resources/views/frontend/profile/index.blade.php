@@ -28,9 +28,9 @@
                 @include('layouts/_flash')
                 <div class="row">
                     <div class="col-sm-6 mb-3">
-                        <p class="text-muted">Nama</p>
+                        <p class="form-label fw-bold">Nama</p>
                         <input type="text" name="nama" placeholder="nama"
-                            class="form-control @error('name') is-invalid @enderror"
+                            class="form-control form-profile @error('name') is-invalid @enderror"
                             value="{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->nama }}">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -39,9 +39,9 @@
                         @enderror
                     </div>
                     <div class="col-sm-6 col-md-6">
-                        <p class="text-muted">Nik</p>
+                        <p class="form-label fw-bold">Nik</p>
                         <input type="number" name="nik" placeholder="nik"
-                            class="form-control @error('nik') is-invalid @enderror"
+                            class="form-control form-profile @error('nik') is-invalid @enderror"
                             value="{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->nik }}">
                         @error('nik')
                             <span class="invalid-feedback" role="alert">
@@ -53,9 +53,9 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-md-6 mt-3">
-                        <p class="text-muted">No Telepon</p>
+                        <p class="form-label fw-bold">No Telepon</p>
                         <input type="number" name="no_telp" placeholder="No Telepon"
-                            class="form-control @error('no_telp') is-invalid @enderror"
+                            class="form-control form-profile @error('no_telp') is-invalid @enderror"
                             value="{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->no_telp }}">
                         @error('no_telp')
                             <span class="invalid-feedback" role="alert">
@@ -65,9 +65,9 @@
                     </div>
 
                     <div class="col-sm-6 col-md-6 mt-3">
-                        <p class="text-muted">Email</p>
+                        <p class="form-label fw-bold">Email</p>
                         <input type="email" name="email" placeholder="email"
-                            class="form-control @error('email') is-invalid @enderror"
+                            class="form-control form-profile @error('email') is-invalid @enderror"
                             value="{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->email }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
 
                 <div class="row">
                     <div class="col-sm-6 col-md-6 mt-3">
-                        <p class="text-muted">Jenis Kelamin</p>
+                        <p class="form-label fw-bold">Jenis Kelamin</p>
                         <div class="form-check">
                             <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror" type="radio"
                                 name="jenis_kelamin" value="Laki-laki"
@@ -105,9 +105,9 @@
                         @enderror
                     </div>
                     <div class="col-sm-6 col-md-6 mt-3">
-                        <p class="text-muted">Alamat</p>
+                        <p class="form-label fw-bold">Alamat</p>
                         <textarea name="alamat" id="" cols="30" rows="2" placeholder="alamat"
-                            class="form-control @error('alamat') is-invalid @enderror" value="">{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->alamat }}</textarea>
+                            class="form-control form-profile @error('alamat') is-invalid @enderror" value="">{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->alamat }}</textarea>
                         @error('alamat')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -41,6 +41,10 @@
         .form-transaksi {
             display: inline-block;
         }
+        .form-profile {
+            border: none;
+            border-bottom: 2px solid blue;
+        }
     </style>
 </head>
 
