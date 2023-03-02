@@ -8,12 +8,11 @@ use App\Models\Mobil;
 use App\Models\Transaksi;
 use App\Models\User;
 use Auth;
+use DateTime;
 use Excel;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Validator;
-use DateTime;
-use DB;
 
 class TransaksiController extends Controller
 {
@@ -32,22 +31,26 @@ class TransaksiController extends Controller
         return view('transaksi.index', compact('transaksi'));
     }
 
-    public function pending(){
+    public function pending()
+    {
         $transaksi = Transaksi::where('status', 'Pending')->get();
         return view('transaksi.pending', compact('transaksi'));
     }
 
-    public function onRent(){
+    public function onRent()
+    {
         $transaksi = Transaksi::where('status', 'On Rent')->get();
         return view('transaksi.on_rent', compact('transaksi'));
     }
 
-    public function selesai(){
+    public function selesai()
+    {
         $transaksi = Transaksi::where('status', 'Selesai')->get();
         return view('transaksi.selesai', compact('transaksi'));
     }
 
-    public function dibatalkan(){
+    public function dibatalkan()
+    {
         $transaksi = Transaksi::where('status', 'Dibatalkan')->get();
         return view('transaksi.dibatalkan', compact('transaksi'));
     }
@@ -71,117 +74,116 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
 
-        if (Auth::user()->detailUser == null) {
-
-            $rules = [
-                'nama' => 'required',
-                'nik' => 'required',
-                'no_telp' => 'required',
-                'jenis_kelamin' => 'required',
-                'alamat' => 'required',
-                'email' => 'required',
-                'tgl_sewa' => 'required',
-                'tgl_kembali' => 'required',
-                'supir' => 'required',
-                'id_mobil' => 'required',
-            ];
-
-            $messages = [
-                'nama.required' => 'Nama harus di isi!',
-                'nik.required' => 'NIK harus di isi!',
-                'no_telp.required' => 'Nomor Telepon harus di isi!',
-                'jenis_kelamin.required' => 'Jenis Kelamin harus di isi!',
-                'alamat.required' => 'Alamat harus di isi!',
-                'email.required' => 'Email harus di isi!',
-                'tgl_sewa.required' => 'Tgl sewa harus di isi!',
-                'tgl_kembali.required' => 'Tgl kembali harus di isi!',
-                'supir.required' => 'Supir harus di isi!',
-                'id_mobil.required' => 'id_mobil harus di isi!',
-            ];
-
-            $validated = Validator::make($request->all(), $rules, $messages);
-            if ($validated->fails()) {
-                Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
-                return back()->withErrors($validated)->withInput();
-            }
-
-            $detailUser = new DetailUser();
-            $detailUser->id_user = Auth::user()->id;
-            $detailUser->nama = $request->nama;
-            $detailUser->nik = $request->nik;
-            $detailUser->no_telp = $request->no_telp;
-            $detailUser->jenis_kelamin = $request->jenis_kelamin;
-            $detailUser->email = $request->email;
-            $detailUser->alamat = $request->alamat;
-            $detailUser->save();
-
+        $search = Transaksi::where('tgl_sewa', '<=', $request->tgl_sewa)->where('tgl_kembali', '>=', $request->tgl_sewa)
+            ->where('id_mobil', $request->id_mobil)->exists();
+        
+        if ($search) {
+            Alert::error('Maaf mobil tidak tersedia pada tanggal tersebut', 'Oops!')->persistent("Ok");
+            return redirect()->back();
         } else {
 
-            $rules = [
-                'tgl_sewa' => 'required',
-                'tgl_kembali' => 'required',
-                'supir' => 'required',
-                'id_mobil' => 'required',
-            ];
+            if ($request->tgl_sewa >= $request->tgl_kembali) {
+                Alert::error('Tanggal yang anda masukkan tidak valid', 'Oops!')->persistent("Ok");
+                return redirect()->back();
+            } elseif ($request->tgl_sewa <= $request->tgl_kembali) {
+                if (Auth::user()->detailUser == null) {
+                    $rules = [
+                        'nama' => 'required',
+                        'nik' => 'required',
+                        'no_telp' => 'required',
+                        'jenis_kelamin' => 'required',
+                        'alamat' => 'required',
+                        'email' => 'required',
+                        'tgl_sewa' => 'required',
+                        'tgl_kembali' => 'required',
+                        'supir' => 'required',
+                        'id_mobil' => 'required',
+                    ];
 
-            $messages = [
-                'tgl_sewa.required' => 'Tgl sewa harus di isi!',
-                'tgl_kembali.required' => 'Tgl kembali harus di isi!',
-                'supir.required' => 'Supir harus di isi!',
-                'id_mobil.required' => 'id_mobil harus di isi!',
-            ];
+                    $messages = [
+                        'nama.required' => 'Nama harus di isi!',
+                        'nik.required' => 'NIK harus di isi!',
+                        'no_telp.required' => 'Nomor Telepon harus di isi!',
+                        'jenis_kelamin.required' => 'Jenis Kelamin harus di isi!',
+                        'alamat.required' => 'Alamat harus di isi!',
+                        'email.required' => 'Email harus di isi!',
+                        'tgl_sewa.required' => 'Tgl sewa harus di isi!',
+                        'tgl_kembali.required' => 'Tgl kembali harus di isi!',
+                        'supir.required' => 'Supir harus di isi!',
+                        'id_mobil.required' => 'id_mobil harus di isi!',
+                    ];
 
-            $validated = Validator::make($request->all(), $rules, $messages);
-            if ($validated->fails()) {
-                Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
-                return back()->withErrors($validated)->withInput();
+                    $validated = Validator::make($request->all(), $rules, $messages);
+                    if ($validated->fails()) {
+                        Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+                        return back()->withErrors($validated)->withInput();
+                    }
+
+                    $detailUser = new DetailUser();
+                    $detailUser->id_user = Auth::user()->id;
+                    $detailUser->nama = $request->nama;
+                    $detailUser->nik = $request->nik;
+                    $detailUser->no_telp = $request->no_telp;
+                    $detailUser->jenis_kelamin = $request->jenis_kelamin;
+                    $detailUser->email = $request->email;
+                    $detailUser->alamat = $request->alamat;
+                    $detailUser->save();
+
+                } else {
+
+                    $rules = [
+                        'tgl_sewa' => 'required',
+                        'tgl_kembali' => 'required',
+                        'supir' => 'required',
+                        'id_mobil' => 'required',
+                    ];
+
+                    $messages = [
+                        'tgl_sewa.required' => 'Tgl sewa harus di isi!',
+                        'tgl_kembali.required' => 'Tgl kembali harus di isi!',
+                        'supir.required' => 'Supir harus di isi!',
+                        'id_mobil.required' => 'id_mobil harus di isi!',
+                    ];
+
+                    $validated = Validator::make($request->all(), $rules, $messages);
+                    if ($validated->fails()) {
+                        Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+                        return back()->withErrors($validated)->withInput();
+                    }
+
+                }
+
+                $transaksi = new Transaksi();
+                $mobil = Mobil::findOrFail($request->id_mobil);
+
+                $data1 = $request->tgl_sewa;
+                $data2 = $request->tgl_kembali;
+                $datetime1 = new DateTime($data1);
+                $datetime2 = new DateTime($data2);
+                $interval = $datetime1->diff($datetime2);
+                $days = $interval->format('%a') + 1;
+                $transaksi->lama_sewa = $days;
+
+                $transaksi->tgl_sewa = $request->tgl_sewa;
+                $transaksi->tgl_kembali = $request->tgl_kembali;
+                $transaksi->supir = $request->supir;
+                if ($request->supir == "Yes") {
+                    $biayaSupir = 80000;
+                } elseif ($request->supir == "No") {
+                    $biayaSupir = 0;
+                }
+                $total_bayar = ($days * $mobil->harga) + $biayaSupir;
+                $transaksi->total_bayar = $total_bayar;
+                $transaksi->id_mobil = $request->id_mobil;
+                $transaksi->status = "Pending";
+                $transaksi->id_user = Auth::user()->id;
+
+                $mobil->save();
+                $transaksi->save();
+                toast('Pesanan Berhasil', 'success');
+                return redirect()->route('cars');
             }
-
         }
-
-        $transaksi = new Transaksi();
-        $mobil = Mobil::findOrFail($request->id_mobil);
-
-        // $record = Transaksi::latest()->first();
-
-        // if ($record == null or $record == "") {
-        //     if (date('l', strtotime(date('Y-01-01')))) {
-        //         $invoice_no = date('Y m d') . '-0001';
-        //     }
-        // } else {
-        //     $expNum = explode('-', $record->invoice_no);
-        //     $innoumber = ($expNum[1] + 1);
-        //     $invoice_no = $expNum[0] . '-' . sprintf('%04d', $innoumber);
-        // }
-
-        // $transaksi->invoice_no = $invoice_no;
-
-        $data1 = $request->tgl_sewa;
-        $data2 = $request->tgl_kembali;
-        $datetime1 = new DateTime($data1);
-        $datetime2 = new DateTime($data2);
-        $interval = $datetime1->diff($datetime2);
-        $days = $interval->format('%a') + 1;
-        $transaksi->lama_sewa = $days;
-
-        $transaksi->tgl_sewa = $request->tgl_sewa;
-        $transaksi->tgl_kembali = $request->tgl_kembali;
-        $transaksi->supir = $request->supir;
-        if ($request->supir == "Yes") {
-            $biayaSupir = 80000;
-        } elseif ($request->supir == "No") {
-            $biayaSupir = 0;
-        }
-        $total_bayar = ($days * $mobil->harga) + $biayaSupir;
-        $transaksi->total_bayar = $total_bayar;
-        $transaksi->id_mobil = $request->id_mobil;
-        $transaksi->status = "Pending";
-        $transaksi->id_user = Auth::user()->id;
-
-        $mobil->save();
-        $transaksi->save();
-        toast('Pesanan Berhasil', 'success');
-        return redirect()->route('cars');
     }
 
     /**
@@ -195,7 +197,6 @@ class TransaksiController extends Controller
         $transaksi = Transaksi::findOrFail($id);
         return view('transaksi.show', compact('transaksi'));
     }
-
 
     /**
      * Show the form for editing the specified resource.

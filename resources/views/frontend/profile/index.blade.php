@@ -106,9 +106,8 @@
                     </div>
                     <div class="col-sm-6 col-md-6 mt-3">
                         <p class="text-muted">Alamat</p>
-                        <input type="text" name="alamat" placeholder="alamat"
-                            class="form-control @error('alamat') is-invalid @enderror"
-                            value="{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->alamat }}">
+                        <textarea name="alamat" id="" cols="30" rows="2" placeholder="alamat"
+                            class="form-control @error('alamat') is-invalid @enderror" value="">{{ Auth::user()->detailUser == null ? '' : Auth::user()->detailUser->alamat }}</textarea>
                         @error('alamat')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

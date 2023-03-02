@@ -60,7 +60,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'isAdmin']], function(){
     Route::post('laporan', [LaporanController::class, 'index'])->name('laporan');
     Route::get('transaksis/records', [LaporanController::class, 'records'])->name('transaksis/records');
     Route::get('profileadmin', [ProfileAdminController::class,'index'])->name('profileadmin.index');
-    Route::post('profileadmin/create', [ProfileAdminController::class,'store'])->name('profileadmin.create');
+    Route::post('profileadmin/store', [ProfileAdminController::class,'store'])->name('profileadmin.store');
     Route::post('profileadmin/update', [ProfileAdminController::class,'update'])->name('profileadmin.update');
     Route::post('profileadmin/updatedetail', [ProfileAdminController::class,'updateDetail'])->name('profileadmin.updatedetail');
 });
