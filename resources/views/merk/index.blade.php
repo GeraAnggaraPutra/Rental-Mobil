@@ -37,6 +37,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Merk</th>
+                                        <th>Jumlah Mobil</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -46,6 +47,7 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->merk }}</td>
+                                            <td>{{ $mobil->where('id_merk', $data->id)->get()->count()}}</td>
                                             <td>
                                                 <form action="{{ route('merk.destroy', $data->id) }}" method="post">
                                                     @csrf

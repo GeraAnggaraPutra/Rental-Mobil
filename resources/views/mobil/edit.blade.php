@@ -32,6 +32,16 @@
                             @csrf
                             @method('put')
                             <div class="mb-3">
+                                <label class="form-label">Nama Mobil</label>
+                                <input type="text" class="form-control  @error('nama_mobil') is-invalid @enderror"
+                                    name="nama_mobil" value="{{ $mobil->nama_mobil }}">
+                                @error('nama_mobil')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Merk</label>
                                 <select class="form-control" name="id_merk">
                                     @foreach($merks as $merk)
@@ -39,16 +49,6 @@
                                     @endforeach
                                 </select>
                                 @error('merk')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Nama Mobil</label>
-                                <input type="text" class="form-control  @error('nama_mobil') is-invalid @enderror"
-                                    name="nama_mobil" value="{{ $mobil->nama_mobil }}">
-                                @error('nama_mobil')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

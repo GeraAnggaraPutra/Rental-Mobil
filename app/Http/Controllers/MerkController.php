@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merk;
+use App\Models\Mobil;
 use Illuminate\Http\Request;
 
 class MerkController extends Controller
@@ -14,8 +15,9 @@ class MerkController extends Controller
      */
     public function index()
     {
+        $mobil = new Mobil();
         $merk = Merk::All();
-        return view('merk.index',compact('merk'));
+        return view('merk.index',compact('merk', 'mobil'));
     }
 
     /**

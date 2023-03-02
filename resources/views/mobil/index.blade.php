@@ -41,8 +41,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Merk</th>
                                         <th>Nama Mobil</th>
+                                        <th>Merk</th>
                                         <th>Foto</th>
                                         <th>Status</th>
                                         <th>Harga</th>
@@ -54,8 +54,8 @@
                                     @foreach ($mobil as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->merk->merk }}</td>
                                             <td>{{ $data->nama_mobil }}</td>
+                                            <td>{{ $data->merk->merk }}</td>
                                             <td>
                                             <img src="{{ $data->image() }}" style="width: 140px; height: 140px; border-radius: 12px;">
                                             </td>

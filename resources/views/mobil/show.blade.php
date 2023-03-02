@@ -28,12 +28,12 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">Merk</label>
-                            <input type="text" class="form-control " name="merk" value="{{ $mobil->merk->merk }}" readonly>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label">Nama Mobil</label>
                             <input type="text" class="form-control " name="nama_mobil" value="{{ $mobil->nama_mobil }}" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Merk</label>
+                            <input type="text" class="form-control " name="merk" value="{{ $mobil->merk->merk }}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Foto Mobil</label>
