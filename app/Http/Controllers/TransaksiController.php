@@ -76,13 +76,13 @@ class TransaksiController extends Controller
 
         $search = Transaksi::where('tgl_sewa', '<=', $request->tgl_sewa)->where('tgl_kembali', '>=', $request->tgl_sewa)
             ->where('id_mobil', $request->id_mobil)->exists();
-        
+
         if ($search) {
             Alert::error('Maaf mobil tidak tersedia pada tanggal tersebut', 'Oops!')->persistent("Ok");
             return redirect()->back();
         } else {
 
-            if ($request->tgl_sewa >= $request->tgl_kembali) {
+            if ($request->tgl_sewa > $request->tgl_kembali) {
                 Alert::error('Tanggal yang anda masukkan tidak valid', 'Oops!')->persistent("Ok");
                 return redirect()->back();
             } elseif ($request->tgl_sewa <= $request->tgl_kembali) {
