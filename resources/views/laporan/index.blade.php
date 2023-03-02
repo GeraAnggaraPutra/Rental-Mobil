@@ -113,15 +113,15 @@
                                                                 <td>
                                                                     {{ $data->user->detailUser->nama }}</td>
                                                                 <td>
-
-                                                                    @if ($data->status == 'Process')
+                                                                    @if ($data->status == 'Selesai')
                                                                         @php $color = "success";@endphp
-                                                                    @elseif($data->status == 'Selesai')
+                                                                    @elseif($data->status == 'Pending')
                                                                         @php $color = "secondary";@endphp
+                                                                    @elseif($data->status == 'On Rent')
+                                                                        @php $color = "primary";@endphp
                                                                     @elseif($data->status == 'Dibatalkan')
                                                                         @php $color = "danger";@endphp
                                                                     @endif
-
                                                                     <span class="bg-{{ $color }} p-1"
                                                                         style="border-radius: 4px">{{ $data->status }}</span>
                                                                 </td>

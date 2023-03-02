@@ -44,8 +44,9 @@
                             <div class="mb-3">
                                 <label class="form-label">Merk</label>
                                 <select class="form-control" name="id_merk">
+                                    <option disabled></option>
                                     @foreach($merks as $merk)
-                                        <option value="{{ $merk->id }}" {{$merk->merk_id == $mobil->id_merk  ? 'selected' : ''}}>{{ $merk->merk}}</option>
+                                        <option value="{{ $merk->id }}" {{$merk->id == $mobil->id_merk  ? 'selected' : ''}}>{{ $merk->merk}}</option>
                                     @endforeach
                                 </select>
                                 @error('merk')
