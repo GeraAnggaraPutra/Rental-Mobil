@@ -215,7 +215,15 @@
                                             @enderror
                                         </div>
                                     </div>
-
+                                </div>
+                                <div class="row">
+                                    {!! NoCaptcha::renderJs() !!}
+                                    {!! NoCaptcha::display() !!}
+                                    @if ($errors->has('g-recaptcha-response'))
+                                        <span class="help-block">
+                                            <strong class="text-danger">{{ $errors->first('g-recaptcha-response') }}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                                 <input class="form-control" type="hidden" name="id_mobil" readonly
                                     value="{{ $mobil->id }}">

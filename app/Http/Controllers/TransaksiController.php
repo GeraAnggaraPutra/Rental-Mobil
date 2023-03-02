@@ -98,6 +98,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
+                        'g-recaptcha-response' => 'required|captcha'
                     ];
 
                     $messages = [
@@ -111,6 +112,7 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
+                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.'
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);
@@ -136,6 +138,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
+                        'g-recaptcha-response' => 'required|captcha'
                     ];
 
                     $messages = [
@@ -143,11 +146,12 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
+                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.'
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);
                     if ($validated->fails()) {
-                        Alert::error('data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
+                        Alert::error('Data yang anda input ada kesalahan', 'Oops!')->persistent("Ok");
                         return back()->withErrors($validated)->withInput();
                     }
 
