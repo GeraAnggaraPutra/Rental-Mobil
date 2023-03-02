@@ -80,7 +80,7 @@
                                 <div>
                                     @if ($mobil->status == "Tidak Tersedia")
                                         <p class="d-flex mb-0 d-block"><a href="#"
-                                                class="btn btn-primary py-2 mr-1">Tidak
+                                                class="btn btn-primary py-2 mr-1 disabled">Tidak
                                                 Tersedia</a>
                                         </p>
                                     @else

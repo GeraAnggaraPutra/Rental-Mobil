@@ -75,7 +75,7 @@ class TransaksiController extends Controller
     {
 
         $search = Transaksi::where('tgl_sewa', '<=', $request->tgl_sewa)->where('tgl_kembali', '>=', $request->tgl_sewa)
-            ->where('id_mobil', $request->id_mobil)->exists();
+            ->where('id_mobil', $request->id_mobil)->where('status', ['Pending', 'On Rent'])->exists();
 
         if ($search) {
             Alert::error('Maaf mobil tidak tersedia pada tanggal tersebut', 'Oops!')->persistent("Ok");

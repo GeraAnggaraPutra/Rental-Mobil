@@ -222,7 +222,12 @@
                                 <div class="row m-0">
                                     <div class="col-12 mt-4 mb-4 p-0">
                                         <div>
+                                            @if ($mobil->status == "Tersedia")
                                             <input type="submit" class="proces btn btn-primary" value="Rental ">
+                                            @else
+                                            {{-- <button class="proces btn btn-primary">Tidak Tersedia</button> --}}
+                                            <input type="submit" disabled class="proces btn btn-primary" value="Tidak Tersedia">
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

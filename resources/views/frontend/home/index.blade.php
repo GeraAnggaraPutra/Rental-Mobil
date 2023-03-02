@@ -42,11 +42,12 @@
                                         <div class="d-flex mb-3">
                                             <span class="cat">{{ $data->merk->merk }}</span>
                                             <p class="price ml-auto">Rp. {{ number_format($data->harga, 0, ',', '.') }}
-                                                <span>/hari</span></p>
+                                                <span>/hari</span>
+                                            </p>
                                         </div>
                                         @if ($data->status == 'Tidak Tersedia')
                                             <p class="d-flex mb-0 d-block"><a href="#"
-                                                    class="btn btn-primary py-2 mr-1">Tidak
+                                                    class="btn btn-primary py-2 mr-1 disabled">Tidak
                                                     Tersedia</a>
                                                 <a href="{{ route('car.detail', $data->slug) }}"
                                                     class="btn btn-secondary py-2 ml-1">Details</a>
