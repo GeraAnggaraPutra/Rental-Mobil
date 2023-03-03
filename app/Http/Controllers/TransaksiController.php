@@ -98,7 +98,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
-                        'g-recaptcha-response' => 'required|captcha'
+                        'g-recaptcha-response' => 'required|captcha',
                     ];
 
                     $messages = [
@@ -112,7 +112,7 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
-                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.'
+                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);
@@ -138,7 +138,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
-                        'g-recaptcha-response' => 'required|captcha'
+                        'g-recaptcha-response' => 'required|captcha',
                     ];
 
                     $messages = [
@@ -146,7 +146,7 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
-                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.'
+                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);
@@ -184,7 +184,23 @@ class TransaksiController extends Controller
 
                 $mobil->save();
                 $transaksi->save();
-                toast('Pesanan Berhasil', 'success');
+                alert()->html('Success', "Pesanan untuk mobil <b>".$request->nama_mobil.
+                " </b>Pada Tanggal <br>
+                <table>
+                <tr>
+                <td>". date('d-m-Y', strtotime($request->tgl_sewa)) ."</td>
+                <td>-</td>
+                <td>". date('d-m-Y', strtotime($request->tgl_kembali)) ."</td>
+                </tr>
+                <tr>
+                <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
+                </tr>
+                <tr>
+                <td colspan='3'><b>Terima Kasih!</b></td>
+                </tr>
+                </table>", 'success')->persistent("Ok");
+
+                // Alert::success('Pesanan untuk mobil ' . $request->nama_mobil . ' pada tanggal ' . $request->tgl_sewa . ' - ' . $request->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
                 return redirect()->route('cars');
             }
         }

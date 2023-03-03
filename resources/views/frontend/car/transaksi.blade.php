@@ -227,6 +227,8 @@
                                 </div>
                                 <input class="form-control" type="hidden" name="id_mobil" readonly
                                     value="{{ $mobil->id }}">
+                                <input class="form-control" type="hidden" name="nama_mobil" readonly
+                                    value="{{ $mobil->nama_mobil }}">
                                 <div class="row m-0">
                                     <div class="col-12 mt-4 mb-4 p-0">
                                         <div>
