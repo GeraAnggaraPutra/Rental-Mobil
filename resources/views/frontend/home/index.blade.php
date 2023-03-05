@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="row">
-
+@if($mobil == !null)
                 <div class="col-md-12">
                     <div class="carousel-car owl-carousel">
                         @foreach ($mobil as $data)
@@ -66,7 +66,8 @@
                         @endforeach
                     </div>
                 </div>
-
+@else
+@endif
             </div>
         </div>
     </section>

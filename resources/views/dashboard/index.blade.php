@@ -34,7 +34,7 @@
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -98,7 +98,7 @@
 {{ $transaksiChart->script() }}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+<script src="{{ asset('chartjs/chart.umd.js') }}"></script>
 <script type="text/javascript">
 
     var labels =  {{ Js::from($labels) }};

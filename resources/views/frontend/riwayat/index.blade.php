@@ -59,11 +59,11 @@
                                                 @elseif($data->status == "Dibatalkan")
                                                    @php $color = "danger";@endphp
                                                 @endif
-                                           <span class="bg-{{ $color }} p-1" style="border-radius: 4px">{{ $data->status }}</span>
+                                           <span class="bg-{{ $color }} p-1 text-white fw-bold" style="border-radius: 4px">{{ $data->status }}</span>
                                                 @if ($data->status == "Pending")
                                                 <form action="{{ route('batal', $data->id) }}" method="post">
                                                     @csrf
-                                                    <button type="submit" class="mt-1 btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Batalkan'>
+                                                    <button type="submit" class="mt-1 fw-bold btn btn-sm btn-outline-danger show_confirm" data-toggle="tooltip" title='Batalkan'>
                                                         Batalkan
                                                     </button>
                                                 </form>

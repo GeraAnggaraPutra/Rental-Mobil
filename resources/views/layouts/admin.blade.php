@@ -105,7 +105,8 @@
     <!-- Bootstrap 4 -->
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ChartJS -->
-    <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script>
+    <!-- <script src="{{ asset('assets/plugins/chart.js/Chart.min.js') }}"></script> -->
+    <script src="{{ asset('chartjs/chart.umd.js') }}"></script>
     <!-- Sparkline -->
     <script src="{{ asset('assets/plugins/sparklines/sparkline.js') }}"></script>
     <!-- JQVMap -->

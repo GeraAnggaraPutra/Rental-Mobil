@@ -71,7 +71,7 @@
                                 <p class="fs-14 fw-bold">Rp. {{ number_format($mobil->harga, 0, ',', '.') }}/hari</p>
                             </div>
                             <div class="d-flex justify-content-between mb-3">
-                                <p class="textmuted fw-bold">Biaya Tambahan JIka Dengan Supir Rp. 80.000</p>
+                                <p class="textmuted fw-bold">Biaya Tambahan JIka Dengan Supir Rp. 80.000/hari</p>
                             </div>
                         </div>
                         @csrf

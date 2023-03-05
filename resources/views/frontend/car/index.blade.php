@@ -19,7 +19,7 @@
 
     <section class="ftco-section bg-light">
         <div class="container">
-
+@if($mobil == !null)
             <div class="row">
                 @foreach ($mobil as $data)
                     <div class="col-md-4">
@@ -52,7 +52,8 @@
                     </div>
                 @endforeach
             </div>
-
+@else
+@endif
             <div class="row mt-4">
             </div>
         </div>

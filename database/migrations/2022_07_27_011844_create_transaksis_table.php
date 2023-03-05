@@ -25,7 +25,7 @@ class CreateTransaksisTable extends Migration
             $table->unsignedbigInteger('id_mobil');
             $table->foreign('id_mobil')->references('id')->on('mobils')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedbigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
         });

@@ -32,6 +32,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
+                            @if($merk == !null)
                             <table class="table align-middle" id="dataTable">
                                 <thead>
                                     <tr>
@@ -66,6 +67,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                            <p>Tidak ada data</p>
+                            @endif
                         </div>
                     </div>
                 </div>

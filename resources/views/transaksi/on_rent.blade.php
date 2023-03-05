@@ -30,6 +30,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
+                            @if($transaksi == !null)
                                 <table class="table align-middle">
                                     <thead>
                                         <tr class="text-center">
@@ -86,6 +87,9 @@
                                         @endforeach
                                     </tbody>
                                 </table>
+                                @else
+                                <p>Tidak ada data</p>
+                                @endif
                             </div>
                         </div>
                     </div>

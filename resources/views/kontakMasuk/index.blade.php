@@ -30,6 +30,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
+                            @if($contact == !null)
                             <table class="table align-middle" id="dataTable">
                                 <thead>
                                     <tr>
@@ -37,6 +38,7 @@
                                         <th>Nama</th>
                                         <th>Email</th>
                                         <th>Subject</th>
+                                        <th>Message</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -48,6 +50,7 @@
                                             <td>{{ $data->name }}</td>
                                             <td>{{ $data->email }}</td>
                                             <td>{{ $data->subject }}</td>
+                                            <td>{{ Str::limit($data->message, 45) }}</td>
                                             <td>
                                                 <form action="{{ route('contact.destroy', $data->id) }}" method="post">
                                                     @csrf
@@ -66,6 +69,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @else
+                            <p>Tidak ada data</p>
+                            @endif
                         </div>
                     </div>
                 </div>

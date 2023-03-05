@@ -172,7 +172,7 @@ class TransaksiController extends Controller
                 $transaksi->tgl_kembali = $request->tgl_kembali;
                 $transaksi->supir = $request->supir;
                 if ($request->supir == "Yes") {
-                    $biayaSupir = 80000;
+                    $biayaSupir = 80000 * $days;
                 } elseif ($request->supir == "No") {
                     $biayaSupir = 0;
                 }
