@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'saldo',
         'id_google',
         'id_facebook',
     ];
@@ -54,6 +55,11 @@ class User extends Authenticatable
     public function detailUser(){
 
         return $this->hasOne(DetailUser::class, 'id_user');
+    }
+
+    public function topup()
+    {
+        return $this->hasMany(TopUp::class, 'id_user');
     }
 
 }

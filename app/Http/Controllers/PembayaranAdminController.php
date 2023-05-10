@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
-use App\Models\User;
 use App\Models\Pembayaran;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class RiwayatController extends Controller
+class PembayaranAdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,29 +18,8 @@ class RiwayatController extends Controller
      */
     public function index()
     {
-
-        return view('frontend.riwayat.index',[
-            'title' => 'Riwayat'
-          ]);
-    }
-
-    public function batal($id){
-        $transaksi = Transaksi::findOrFail($id);
-
-        if ($transaksi->pembayaran->metode_pembayaran == "Wallet") {
-            $user = User::findOrFail($transaksi->id_user);
-            $user->saldo += $transaksi->total_bayar; 
-            $user->save();
-            
-            $pembayaran = Pembayaran::where('id_transaksi', $transaksi->id)->first();
-            $pembayaran->status = "Dibatalkan";
-            $pembayaran->save();
-        }
-
-        $transaksi->status = "Dibatalkan";
-        $transaksi->save();
-        toast('Pesanan dibatalkan','success');
-        return back();
+        $pembayaran = Pembayaran::all();
+        return view('pembayaran.index', compact('pembayaran'));
     }
 
     /**

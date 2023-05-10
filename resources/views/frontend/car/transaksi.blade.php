@@ -194,25 +194,27 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-md-6 mt-3">
                                             <p class="text-muted">Supir?</p>
-                                            <div class="form-check">
-                                                <input class="form-check-input @error('supir') is-invalid @enderror"
-                                                    type="radio" name="supir" value="Yes">
-                                                <label class="form-check-label">
-                                                    Dengan Supir
-                                                </label>
+                                            <div class="d-flex gap-5">
+                                                <div class="form-check">
+                                                    <input class="form-check-input @error('supir') is-invalid @enderror"
+                                                        type="radio" name="supir" value="Yes">
+                                                    <label class="form-check-label">
+                                                        Dengan Supir
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input @error('supir') is-invalid @enderror"
+                                                        type="radio" name="supir" value="No">
+                                                    <label class="form-check-label">
+                                                        Tanpa Supir
+                                                    </label>
+                                                </div>
+                                                @error('supir')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input @error('supir') is-invalid @enderror"
-                                                    type="radio" name="supir" value="No">
-                                                <label class="form-check-label">
-                                                    Tanpa Supir
-                                                </label>
-                                            </div>
-                                            @error('supir')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
                                         </div>
                                     </div>
                                 </div>

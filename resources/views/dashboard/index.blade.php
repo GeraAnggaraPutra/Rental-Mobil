@@ -112,38 +112,37 @@
 
         const data = {
             labels: labels,
-            datasets: [
-              {
-                label: 'Jumlah Perentalan',
-                backgroundColor: 'yellow',
-                borderColor: 'yellow',
-                data: transaksis,
-              },
-              {
-                label: 'Pending',
-                backgroundColor: 'grey',
-                borderColor: 'grey',
-                data: pending,
-              },
-              {
-                label: 'On Rent',
-                backgroundColor: 'blue',
-                borderColor: 'blue',
-                data: onrent,
-              },
-              {
-                label: 'Selesai',
-                backgroundColor: 'green',
-                borderColor: 'green',
-                data: selesai,
-              },
-              {
-                label: 'Dibatalkan',
-                backgroundColor: 'red',
-                borderColor: 'red',
-                data: dibatalkan,
-              }
-          ]
+            datasets: [{
+                    label: 'Jumlah Perentalan',
+                    backgroundColor: 'yellow',
+                    borderColor: 'yellow',
+                    data: transaksis,
+                },
+                {
+                    label: 'Pending',
+                    backgroundColor: 'grey',
+                    borderColor: 'grey',
+                    data: pending,
+                },
+                {
+                    label: 'On Rent',
+                    backgroundColor: 'blue',
+                    borderColor: 'blue',
+                    data: onrent,
+                },
+                {
+                    label: 'Selesai',
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    data: selesai,
+                },
+                {
+                    label: 'Dibatalkan',
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    data: dibatalkan,
+                }
+            ]
         };
 
         const config = {

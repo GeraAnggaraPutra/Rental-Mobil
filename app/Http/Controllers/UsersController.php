@@ -54,6 +54,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
+        $user->saldo = 0;
         $user->save();
         toast('Data berhasil dibuat', 'success');
         return redirect()->route('users.index');

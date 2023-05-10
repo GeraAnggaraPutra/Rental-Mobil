@@ -9,15 +9,26 @@ class Pembayaran extends Model
 {
     use HasFactory;
 
-    public $fillable = ['total_bayar', 'id_user'];
+    public $fillable = ['id_transaksi','bukti_transfer', 'metode_pembayaran', 'status']; 
+
     public $timestamps = true;
 
-    public function customer(){
-        
-        return $this->belongsTo(Customer::class, 'id_user');
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class, 'id_transaksi');
     }
-    public function transaksi(){
-        
-        return $this->hasOne(Transaksi::class, 'id_pembayaran');
+
+    public function image(){
+        if($this->bukti_transfer && file_exists(public_path('images/bukti-transfer/'. $this->bukti_transfer))){
+            return asset('images/bukti-transfer/'. $this->bukti_transfer);
+        }else{
+            return asset('images/no_image.jpg');
+        }
+    }
+    
+    public function deleteImage(){
+        if($this->bukti_transfer && file_exists(public_path('images/bukti-transfer/'.$this->bukti_transfer))){
+            return unlink(public_path('images/bukti-transfer/'. $this->bukti_transfer));
+        }
     }
 }

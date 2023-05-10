@@ -139,6 +139,54 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="#" class="nav-link  {{ Request::is('admin/pembayaran*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-tags"></i>
+                        <p style="color: white">
+                            Pembayaran
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('pembayaran.index') }}"
+                                class="nav-link  {{ Request::is('admin/pembayaran') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Semua pembayaran</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pembayaran.cod') }}"
+                                class="nav-link  {{ Request::is('admin/pembayaran-cod*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">COD</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pembayaran.wallet') }}"
+                                class="nav-link  {{ Request::is('admin/pembayaran-wallet*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Wallet</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pembayaran.transfer') }}"
+                                class="nav-link  {{ Request::is('admin/pembayaran-transfer*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Transfer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('topup.index') }}"
+                        class="nav-link  {{ Request::is('admin/topup*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-wallet"></i>
+                        <p style="color: white">
+                            Top Up
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('contact.index') }}"
                         class="nav-link  {{ Request::is('admin/contact*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tasks"></i>

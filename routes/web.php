@@ -17,6 +17,12 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SupirController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\PembayaranAdminController;
+use App\Http\Controllers\TopUpController;
+use App\Http\Controllers\CodController;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +68,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
     Route::post('profileadmin/store', [ProfileAdminController::class, 'store'])->name('profileadmin.store');
     Route::post('profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
     Route::post('profileadmin/updatedetail', [ProfileAdminController::class, 'updateDetail'])->name('profileadmin.updatedetail');
+    Route::get('topup', [TopUpController::class, 'index'])->name('topup.index');
+    Route::get('pembayaran', [PembayaranAdminController::class, 'index'])->name('pembayaran.index');
+    Route::post('topup/storeadmin', [TopUpController::class, 'storeAdmin'])->name('topupadmin.store');
+    Route::get('pembayaran-wallet', [WalletController::class, 'index'])->name('pembayaran.wallet');
+    Route::get('pembayaran-wallet/dibayar/{id}', [WalletController::class, 'dibayar'])->name('wallet.dibayar');
+    Route::get('pembayaran-wallet/dibatalkan/{id}', [WalletController::class, 'dibatalkan'])->name('wallet.dibatalkan');
+    Route::get('pembayaran-cod', [CodController::class, 'index'])->name('pembayaran.cod');
+    Route::get('pembayaran-cod/dibayar/{id}', [CodController::class, 'dibayar'])->name('cod.dibayar');
+    Route::get('pembayaran-cod/dibatalkan/{id}', [CodController::class, 'dibatalkan'])->name('cod.dibatalkan');
+    Route::get('pembayaran-transfer', [TransferController::class, 'index'])->name('pembayaran.transfer');
+    Route::get('pembayaran-transfer/dibayar/{id}', [TransferController::class, 'dibayar'])->name('transfer.dibayar');
+    Route::get('pembayaran-transfer/dibatalkan/{id}', [TransferController::class, 'dibatalkan'])->name('transfer.dibatalkan');
 });
 Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat');
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
@@ -85,6 +103,9 @@ Route::get('cars', [CarController::class, 'index'])->name('cars');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('cars-transaksi/{slug}', [CarController::class, 'create'])->name('cars-transaksi');
     Route::post('cars-transaksi/store/', [TransaksiController::class, 'store'])->name('cars.store');
+    Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+    Route::post('pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
+    Route::post('topup/store', [TopUpController::class, 'store'])->name('topup.store');
 });
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);

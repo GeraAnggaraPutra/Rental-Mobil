@@ -41,9 +41,9 @@
             	<h2 class="ftco-heading-2">Have a Questions?</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Cibiuk St. Cangkuang, Bandung, INA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 899 6159 510</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">anggaragera@gmail.com</span></a></li>
 	              </ul>
 	            </div>
             </div>
@@ -53,7 +53,7 @@
           <div class="col-md-12 text-center">
 
             <p>
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="#" target="_blank">CarRent</a></p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
           </div>
         </div>
       </div>

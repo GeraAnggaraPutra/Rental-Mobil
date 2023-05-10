@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
-use App\Models\Transaksi;
-use App\Models\User;
 use App\Models\Pembayaran;
-use RealRashid\SweetAlert\Facades\Alert;
-
-class RiwayatController extends Controller
+class TransferController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,28 +13,23 @@ class RiwayatController extends Controller
      */
     public function index()
     {
-
-        return view('frontend.riwayat.index',[
-            'title' => 'Riwayat'
-          ]);
+        $pembayaran = Pembayaran::where('metode_pembayaran', 'Transfer')->get();
+        return view('pembayaran.transfer', compact('pembayaran'));
+    }
+    
+    public function dibayar($id) {
+        $pembayaran = Pembayaran::findOrFail($id);
+        $pembayaran->status = "Dibayar";
+        $pembayaran->save();
+        toast('Pembayaran selesai', 'success');
+        return back();
     }
 
-    public function batal($id){
-        $transaksi = Transaksi::findOrFail($id);
-
-        if ($transaksi->pembayaran->metode_pembayaran == "Wallet") {
-            $user = User::findOrFail($transaksi->id_user);
-            $user->saldo += $transaksi->total_bayar; 
-            $user->save();
-            
-            $pembayaran = Pembayaran::where('id_transaksi', $transaksi->id)->first();
-            $pembayaran->status = "Dibatalkan";
-            $pembayaran->save();
-        }
-
-        $transaksi->status = "Dibatalkan";
-        $transaksi->save();
-        toast('Pesanan dibatalkan','success');
+    public function dibatalkan($id) {
+        $pembayaran = Pembayaran::findOrFail($id);
+        $pembayaran->status = "Dibatalkan";
+        $pembayaran->save();
+        toast('Pembayaran telah dibatalkan', 'success');
         return back();
     }
 

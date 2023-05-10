@@ -16,6 +16,7 @@
         </div>
     </section>
 
+    @include('frontend.profile.components.topup')
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             @if (Auth::user()->detailUser == null)
@@ -26,6 +27,12 @@
             @csrf
             <div class="col-md-12">
                 @include('layouts/_flash')
+                <div class="row">
+                    <div class="col-sm-12 mb-5">
+                        <p class="fw-bold" style="font-size: 30px; color: rgb(39, 36, 36);"><i class="nav-icon fas fa-wallet"></i> Saldo Anda : Rp. {{ number_format(Auth::user()->saldo, 0, ',', '.') }}</p>
+                        <button class="btn btn-success shadow-lg" type="button" data-toggle="modal" data-target="#topup">Isi Saldo</button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6 mb-3">
                         <p class="form-label fw-bold">Nama</p>

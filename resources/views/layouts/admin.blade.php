@@ -200,7 +200,7 @@
             swal({
                     title: `Selesai`,
                     text: "Rental Mobil Selesai?",
-                    icon: "warning",
+                    icon: "info",
                     buttons: true,
                     dangerMode: true,
                 })
@@ -220,7 +220,65 @@
             swal({
                     title: `On Rent`,
                     text: "Mulai Perentalan Sekarang?",
-                    icon: "warning",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    }
+                })
+        });
+    </script>
+
+    <script type="text/javascript">
+        $('.show_wallet1').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Dibayar`,
+                    text: "Pembayaran selesai?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    }
+                })
+        });
+    </script>
+    <script type="text/javascript">
+        $('.show_cod1').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Dibayar`,
+                    text: "Pembayaran selesai?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    }
+                })
+        });
+    </script>
+    <script type="text/javascript">
+        $('.show_transfer1').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                    title: `Dibayar`,
+                    text: "Pembayaran selesai?",
+                    icon: "info",
                     buttons: true,
                     dangerMode: true,
                 })

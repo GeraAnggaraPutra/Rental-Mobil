@@ -32,8 +32,9 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label class="form-label">Username</label>
-                                    <input type="text" class="form-control form-profile @error('name') is-invalid @enderror"
-                                        name="name" value="{{ Auth::user()->name }}">
+                                    <input type="text"
+                                        class="form-control form-profile @error('name') is-invalid @enderror" name="name"
+                                        value="{{ Auth::user()->name }}">
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -42,7 +43,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control form-profile @error('email') is-invalid @enderror"
+                                    <input type="email"
+                                        class="form-control form-profile @error('email') is-invalid @enderror"
                                         name="email" value="{{ Auth::user()->email }}">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -52,7 +54,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Password</label>
-                                    <input type="password" class="form-control form-profile @error('password') is-invalid @enderror"
+                                    <input type="password"
+                                        class="form-control form-profile @error('password') is-invalid @enderror"
                                         name="password" placeholder="kosongkan jika password tidak akan diubah">
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -72,14 +75,21 @@
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 @if (Auth::user()->detailUser == null)
-                                <form action="{{ route('profileadmin.store') }}" method="post">
-                                @else
-                                <form action="{{ route('profileadmin.updatedetail') }}" method="post">
+                                    <form action="{{ route('profileadmin.store') }}" method="post">
+                                    @else
+                                        <form action="{{ route('profileadmin.updatedetail') }}" method="post">
                                 @endif
                                 @csrf
                                 @include('layouts/_flash')
                                 <div class="col-md-12">
                                     <div class="row">
+                                        <div class="col-sm-12 col-md-12">
+                                            <div class="mb-3">
+                                                <p class="fw-bold" style="font-size: 22px; color: rgb(39, 36, 36);"><i
+                                                        class="nav-icon fas fa-wallet"></i> Saldo Anda : Rp.
+                                                    {{ number_format(Auth::user()->saldo, 0, ',', '.') }}</p>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-6 mb-3">
                                             <p class="form-label fw-bold">Nama</p>
                                             <input type="text" name="nama" placeholder="nama"
@@ -132,7 +142,8 @@
                                         <div class="col-sm-6 col-md-6 mt-3">
                                             <p class="form-label fw-bold">Jenis Kelamin</p>
                                             <div class="form-check">
-                                                <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                                <input
+                                                    class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
                                                     type="radio" name="jenis_kelamin" value="Laki-laki"
                                                     @if (Auth::user()->detailUser == null) @elseif(Auth::user()->detailUser->jenis_kelamin == 'Laki-laki')
                                                     checked @endif>
@@ -141,7 +152,8 @@
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
+                                                <input
+                                                    class="form-check-input @error('jenis_kelamin') is-invalid @enderror"
                                                     type="radio" name="jenis_kelamin" value="Perempuan"
                                                     @if (Auth::user()->detailUser == null) @elseif(Auth::user()->detailUser->jenis_kelamin == 'Perempuan')
                                                     checked @endif>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSupirsTable extends Migration
+class CreateTopUpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateSupirsTable extends Migration
      */
     public function up()
     {
-        Schema::create('supirs', function (Blueprint $table) {
+        Schema::create('top_ups', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->enum('jenis_kelamin', ['Laki-laki','Perempuan']);
-            $table->string('no_telp');
-            $table->enum('status', ['Online', 'Offline']);
-            $table->string('alamat');
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('jumlah_saldo');
+            $table->string('metode_pembayaran');
             $table->timestamps();
         });
     }
@@ -31,7 +30,6 @@ class CreateSupirsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supirs');
+        Schema::dropIfExists('top_ups');
     }
 }
-

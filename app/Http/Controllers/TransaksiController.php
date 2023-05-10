@@ -7,6 +7,7 @@ use App\Models\DetailUser;
 use App\Models\Mobil;
 use App\Models\Transaksi;
 use App\Models\User;
+use App\Models\Pembayaran;
 use Auth;
 use DateTime;
 use Excel;
@@ -184,24 +185,24 @@ class TransaksiController extends Controller
 
                 $mobil->save();
                 $transaksi->save();
-                alert()->html('Success', "Pesanan untuk mobil <b>".$request->nama_mobil.
-                " </b>Pada Tanggal <br>
-                <table>
-                <tr>
-                <td>". date('d-m-Y', strtotime($request->tgl_sewa)) ."</td>
-                <td>-</td>
-                <td>". date('d-m-Y', strtotime($request->tgl_kembali)) ."</td>
-                </tr>
-                <tr>
-                <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
-                </tr>
-                <tr>
-                <td colspan='3'><b>Terima Kasih!</b></td>
-                </tr>
-                </table>", 'success')->persistent("Ok");
+                // alert()->html('Success', "Pesanan untuk mobil <b>".$request->nama_mobil.
+                // " </b>Pada Tanggal <br>
+                // <table>
+                // <tr>
+                // <td>". date('d-m-Y', strtotime($request->tgl_sewa)) ."</td>
+                // <td>-</td>
+                // <td>". date('d-m-Y', strtotime($request->tgl_kembali)) ."</td>
+                // </tr>
+                // <tr>
+                // <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
+                // </tr>
+                // <tr>
+                // <td colspan='3'><b>Terima Kasih!</b></td>
+                // </tr>
+                // </table>", 'success')->persistent("Ok");
 
                 // Alert::success('Pesanan untuk mobil ' . $request->nama_mobil . ' pada tanggal ' . $request->tgl_sewa . ' - ' . $request->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
-                return redirect()->route('cars');
+                return redirect()->route('pembayaran');
             }
         }
     }
@@ -216,29 +217,6 @@ class TransaksiController extends Controller
     {
         $transaksi = Transaksi::findOrFail($id);
         return view('transaksi.show', compact('transaksi'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
@@ -282,7 +260,17 @@ class TransaksiController extends Controller
     public function status3($id)
     {
         $transaksi = Transaksi::findOrFail($id);
-        $mobil = Mobil::findOrFail($transaksi->id_mobil);
+        
+        if ($transaksi->pembayaran->metode_pembayaran == "Wallet") {
+            $user = User::findOrFail($transaksi->id_user);
+            $user->saldo += $transaksi->total_bayar; 
+            $user->save();
+            
+            $pembayaran = Pembayaran::where('id_transaksi', $transaksi->id)->first();
+            $pembayaran->status = "Dibatalkan";
+            $pembayaran->save();
+        }
+
         $transaksi->status = "Dibatalkan";
         $transaksi->save();
         toast('Rental mobil dibatalkan', 'success');

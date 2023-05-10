@@ -49,6 +49,7 @@
                                             <th>No</th>
                                             <th>Username</th>
                                             <th>Email</th>
+                                            <th>Saldo</th>
                                             <th>Role</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -63,6 +64,8 @@
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $data->name }}</td>
                                                         <td>{{ $data->email }}</td>
+                                                        <td>Rp. {{ number_format($data->saldo, 0, ',', '.') }}
+                                                        </td>
                                                         @if ($data->role == 'admin')
                                                             <td class="fw-bold text-primary">{{ $data->role }}</td>
                                                         @else
@@ -121,6 +124,7 @@
                                                             <td>{{ $no++ }}</td>
                                                             <td>{{ $data->name }}</td>
                                                             <td>{{ $data->email }}</td>
+                                                            <td>Rp. {{ number_format($data->saldo, 0, ',', '.') }}
                                                             <td class="fw-bold text-success">{{ $data->role }}</td>
                                                             <td>
                                                                 <form action="{{ route('users.destroy', $data->id) }}"
