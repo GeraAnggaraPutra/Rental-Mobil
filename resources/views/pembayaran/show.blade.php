@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('admin') }}">Dashboard</a></li>
-              <li class="breadcrumb-item active">Show Pembayaran</li>
+              <li class="breadcrumb-item active">Pembayaran Transaksi</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,11 +24,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Pembayaran
+                        Pembayaran Transaksi
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label class="form-label">User</label>
+                            <label class="form-label">Nama</label>
                             <input type="text" class="form-control " value="{{ $pembayaran->transaksi->user->name }}" readonly>
                         </div>
                         <div class="mb-3">
@@ -36,8 +36,12 @@
                             <input type="text" class="form-control " value="{{ $pembayaran->transaksi->invoice_no }}" readonly>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Total Yang Harus Dibayar</label>
+                            <input type="text" class="form-control " value="Rp. {{ number_format($pembayaran->transaksi->total_bayar, 0, ',', '.') }}" readonly>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Foto Bukti Transfer</label>
-                            @if(isset($pembayaran) && $pembayaran->foto)
+                            @if(isset($pembayaran) && $pembayaran->bukti_transfer)
                                 <p>
                                     <img src="{{ asset('images/bukti-transfer/'. $pembayaran->bukti_transfer) }}" class="img-rounded img-responsive"
                                     style="width: 400px; height: 400px;" alt="">

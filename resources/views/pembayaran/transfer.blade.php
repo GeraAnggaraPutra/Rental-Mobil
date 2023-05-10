@@ -100,6 +100,11 @@
                                                         </a>
                                                     </form>
                                                     @endif
+                                                    &nbsp;&nbsp;
+                                                    <a href="{{ route('transfer.show', $data->id) }}"
+                                                        class="btn btn-sm btn-outline-warning">
+                                                        <i class="nav-icon fas fa-eye"></i>
+                                                    </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

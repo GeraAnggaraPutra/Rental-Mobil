@@ -62,7 +62,8 @@ class TransferController extends Controller
      */
     public function show($id)
     {
-        //
+        $pembayaran = Pembayaran::findOrFail($id);
+        return view('pembayaran.show', compact('pembayaran'));
     }
 
     /**

@@ -78,6 +78,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
     Route::get('pembayaran-cod/dibayar/{id}', [CodController::class, 'dibayar'])->name('cod.dibayar');
     Route::get('pembayaran-cod/dibatalkan/{id}', [CodController::class, 'dibatalkan'])->name('cod.dibatalkan');
     Route::get('pembayaran-transfer', [TransferController::class, 'index'])->name('pembayaran.transfer');
+    Route::get('pembayaran-transfer/detail/{id}', [TransferController::class, 'show'])->name('transfer.show');
     Route::get('pembayaran-transfer/dibayar/{id}', [TransferController::class, 'dibayar'])->name('transfer.dibayar');
     Route::get('pembayaran-transfer/dibatalkan/{id}', [TransferController::class, 'dibatalkan'])->name('transfer.dibatalkan');
 });
