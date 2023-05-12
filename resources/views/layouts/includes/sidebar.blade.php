@@ -175,6 +175,13 @@
                                 <p style="color: white">Transfer</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('pembayaran.midtrans') }}"
+                                class="nav-link  {{ Request::is('admin/pembayaran-midtrans*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon text-white"></i>
+                                <p style="color: white">Midtrans</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">

@@ -19,6 +19,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PembayaranAdminController;
+use App\Http\Controllers\MidtransAdminController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\CodController;
 use App\Http\Controllers\WalletController;
@@ -69,8 +70,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
     Route::post('profileadmin/update', [ProfileAdminController::class, 'update'])->name('profileadmin.update');
     Route::post('profileadmin/updatedetail', [ProfileAdminController::class, 'updateDetail'])->name('profileadmin.updatedetail');
     Route::get('topup', [TopUpController::class, 'index'])->name('topup.index');
-    Route::get('pembayaran', [PembayaranAdminController::class, 'index'])->name('pembayaran.index');
     Route::post('topup/storeadmin', [TopUpController::class, 'storeAdmin'])->name('topupadmin.store');
+    Route::get('pembayaran', [PembayaranAdminController::class, 'index'])->name('pembayaran.index');
+    Route::get('pembayaran-midtrans', [MidtransAdminController::class, 'index'])->name('pembayaran.midtrans');
     Route::get('pembayaran-wallet', [WalletController::class, 'index'])->name('pembayaran.wallet');
     Route::get('pembayaran-wallet/dibayar/{id}', [WalletController::class, 'dibayar'])->name('wallet.dibayar');
     Route::get('pembayaran-wallet/dibatalkan/{id}', [WalletController::class, 'dibatalkan'])->name('wallet.dibatalkan');
@@ -82,14 +84,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'isAdmin']], functio
     Route::get('pembayaran-transfer/dibayar/{id}', [TransferController::class, 'dibayar'])->name('transfer.dibayar');
     Route::get('pembayaran-transfer/dibatalkan/{id}', [TransferController::class, 'dibatalkan'])->name('transfer.dibatalkan');
 });
+Route::get('generate-PDF/', [PdfController::class, 'generatePdf'])->name('pdf.print');
+
+// Frontend Route
 Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat');
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
 Route::post('profile/create/{id}', [ProfileController::class, 'create'])->name('profile.create');
 Route::post('batal/{id}', [RiwayatController::class, 'batal'])->name('batal');
-Route::get('generate-PDF/', [PdfController::class, 'generatePdf'])->name('pdf.print');
-
-// Frontend Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('about', [AboutController::class, 'index'])->name('about');
 Route::get('contact', function () {

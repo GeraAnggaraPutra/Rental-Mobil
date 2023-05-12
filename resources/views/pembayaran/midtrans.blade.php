@@ -25,7 +25,7 @@
                     @include('layouts/_flash')
                     <div class="card">
                         <div class="card-header">
-                            Pembayaran
+                            Pembayaran Midtrans
                             {{-- <a href="{{ route('pdf.print') }}" class="btn btn-success text-bold" style="float: right">
                                  Print PDF</a>
 

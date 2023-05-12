@@ -23,7 +23,7 @@ class PembayaranController extends Controller
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config("midtrans.server_key");
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = config("midtrans.is_production");
         // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
@@ -35,7 +35,8 @@ class PembayaranController extends Controller
                 'gross_amount' => $transaksi->total_bayar,
             ),
             'customer_details' => array(
-                'name' => Auth::user()->name,
+                'first_name' => Auth::user()->name,
+                'last_name' => ' ',
                 'email' => Auth::user()->email,
                 'phone' => Auth::user()->detailUser->no_telp,
             ),
@@ -56,7 +57,7 @@ class PembayaranController extends Controller
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config("midtrans.server_key");
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = config("midtrans.is_production");
         // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
@@ -68,7 +69,8 @@ class PembayaranController extends Controller
                 'gross_amount' => $transaksi->total_bayar,
             ),
             'customer_details' => array(
-                'name' => Auth::user()->name,
+                'first_name' => Auth::user()->name,
+                'last_name' => ' ',
                 'email' => Auth::user()->email,
                 'phone' => Auth::user()->detailUser->no_telp,
             ),
@@ -86,27 +88,18 @@ class PembayaranController extends Controller
         $serverKey = config('midtrans.server_key');
         $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
         if ($hashed == $request->signature_key){
-            if ($request->transaction_status == 'capture'){
+            if ($request->transaction_status == 'capture' or $request->transaction_status == 'settlement'){
                 $pembayaran = new Pembayaran;
                 $pembayaran->id_transaksi = $request->order_id;
-                $pembayaran->metode_pembayaran = "Midtrans";
+                $pembayaran->metode_pembayaran = $request->payment_type;
                 $pembayaran->status = "Dibayar";
                 $pembayaran->save();
-                alert()->html('Success', "Pesanan untuk mobil <b>".$pembayaran->transaksi->mobil->nama_mobil.
-                " </b>Pada Tanggal <br>
-                <table>
-                <tr>
-                <td>". date('d-m-Y', strtotime($pembayaran->transaksi->tgl_sewa)) ."</td>
-                <td>-</td>
-                <td>". date('d-m-Y', strtotime($pembayaran->transaksi->tgl_kembali)) ."</td>
-                </tr>
-                <tr>
-                <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
-                </tr>
-                <tr>
-                <td colspan='3'><b>Terima Kasih!</b></td>
-                </tr>
-                </table>", 'success')->persistent("Ok");
+            }else{
+                $pembayaran = new Pembayaran;
+                $pembayaran->id_transaksi = $request->order_id;
+                $pembayaran->metode_pembayaran = $request->payment_type;
+                $pembayaran->status = $request->transaction_status;
+                $pembayaran->save();
             }
         }
     }
