@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\MobilController;
+use App\Http\Controllers\PembayaranController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +20,8 @@ use App\Http\Controllers\Api\MobilController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('midtrans-callback', [PembayaranController::class, 'callback']);
 
 Route::group(['prefix' => 'v1'], function () {
     Route::get('get-user', [UsersController::class, 'getUser']);

@@ -109,7 +109,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
     Route::post('pembayaran/store2', [PembayaranController::class, 'store2'])->name('bayar.store');
     Route::post('topup/store', [TopUpController::class, 'store'])->name('topup.store');
-    Route::post('midtrans-callback', [PembayaranController::class, 'callback']);
 });
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);

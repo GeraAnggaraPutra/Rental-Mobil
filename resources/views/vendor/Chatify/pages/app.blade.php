@@ -5,7 +5,7 @@
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                <a href="/"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">RentCar</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
@@ -78,7 +78,11 @@
         {{-- Messaging area --}}
         <div class="m-body messages-container app-scroll">
             <div class="messages">
-                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                @if(Auth::user()->role == 'user')
+                    <p class="message-hint center-el"><span>If you have questions,Please search or select admin and chat</span></p>
+                @else
+                    <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                @endif
             </div>
             {{-- Typing indicator --}}
             <div class="typing-indicator">

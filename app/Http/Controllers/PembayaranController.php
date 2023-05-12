@@ -87,18 +87,18 @@ class PembayaranController extends Controller
         $hashed = hash('sha512', $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
         if ($hashed == $request->signature_key){
             if ($request->transaction_status == 'capture'){
-                $pembayaran = Pembayaran::find($request->order_id);
+                $pembayaran = new Pembayaran;
                 $pembayaran->id_transaksi = $request->order_id;
                 $pembayaran->metode_pembayaran = "Midtrans";
                 $pembayaran->status = "Dibayar";
                 $pembayaran->save();
-                alert()->html('Success', "Pesanan untuk mobil <b>".$pembayarn->transaksi->mobil->nama_mobil.
+                alert()->html('Success', "Pesanan untuk mobil <b>".$pembayaran->transaksi->mobil->nama_mobil.
                 " </b>Pada Tanggal <br>
                 <table>
                 <tr>
-                <td>". date('d-m-Y', strtotime($pembayarn->transaksi->tgl_sewa)) ."</td>
+                <td>". date('d-m-Y', strtotime($pembayaran->transaksi->tgl_sewa)) ."</td>
                 <td>-</td>
-                <td>". date('d-m-Y', strtotime($pembayarn->transaksi->tgl_kembali)) ."</td>
+                <td>". date('d-m-Y', strtotime($pembayaran->transaksi->tgl_kembali)) ."</td>
                 </tr>
                 <tr>
                 <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
@@ -172,21 +172,6 @@ class PembayaranController extends Controller
         $pembayaran->metode_pembayaran = $request->metode_pembayaran;
         $pembayaran->status = "Pending";
         $pembayaran->save();
-        alert()->html('Success', "Pesanan untuk mobil <b>".$transaksi->mobil->nama_mobil.
-                " </b>Pada Tanggal <br>
-                <table>
-                <tr>
-                <td>". date('d-m-Y', strtotime($transaksi->tgl_sewa)) ."</td>
-                <td>-</td>
-                <td>". date('d-m-Y', strtotime($transaksi->tgl_kembali)) ."</td>
-                </tr>
-                <tr>
-                <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
-                </tr>
-                <tr>
-                <td colspan='3'><b>Terima Kasih!</b></td>
-                </tr>
-                </table>", 'success')->persistent("Ok");
 
         // Alert::success('Pesanan untuk mobil ' . $transaksi->mobil->nama_mobil . ' pada tanggal ' . $transaksi->tgl_sewa . ' - ' . $transaksi->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
         return redirect()->route("cars");

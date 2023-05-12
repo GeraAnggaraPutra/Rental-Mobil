@@ -99,7 +99,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
-                        'g-recaptcha-response' => 'required|captcha',
+                        // 'g-recaptcha-response' => 'required|captcha',
                     ];
 
                     $messages = [
@@ -113,7 +113,7 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
-                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
+                        // 'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);
@@ -139,7 +139,7 @@ class TransaksiController extends Controller
                         'tgl_kembali' => 'required',
                         'supir' => 'required',
                         'id_mobil' => 'required',
-                        'g-recaptcha-response' => 'required|captcha',
+                        // 'g-recaptcha-response' => 'required|captcha',
                     ];
 
                     $messages = [
@@ -147,7 +147,7 @@ class TransaksiController extends Controller
                         'tgl_kembali.required' => 'Tgl kembali harus di isi!',
                         'supir.required' => 'Supir harus di isi!',
                         'id_mobil.required' => 'id_mobil harus di isi!',
-                        'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
+                        // 'g-recaptcha-response.required' => 'Please verify that you are not a robot.',
                     ];
 
                     $validated = Validator::make($request->all(), $rules, $messages);

@@ -66,18 +66,18 @@
                                                 <div class="col-4 form-check">
                                                     <input
                                                         class="form-check-input @error('metode_pembayaran') is-invalid @enderror" style="cursor: pointer"
-                                                        type="radio" name="metode_pembayaran" value="COD"
+                                                        type="radio" name="metode_pembayaran" value="COD" id="cod"
                                                         onclick="show1()">
-                                                    <label class="form-check-label">
+                                                    <label class="form-check-label" for="cod">
                                                         COD
                                                     </label>
                                                 </div>
                                                 <div class="col-4 form-check">
                                                     <input
                                                         class="form-check-input @error('metode_pembayaran') is-invalid @enderror" style="cursor: pointer"
-                                                        type="radio" name="metode_pembayaran" value="Wallet"
+                                                        type="radio" name="metode_pembayaran" value="Wallet" id="wallet"
                                                         onclick="show2()">
-                                                    <label class="form-check-label">
+                                                    <label class="form-check-label" for="wallet">
                                                         Wallet
                                                     </label>
                                                 </div>
@@ -86,7 +86,7 @@
                                                         class="form-check-input @error('metode_pembayaran') is-invalid @enderror" style="cursor: pointer"
                                                         type="radio" name="metode_pembayaran" value="Transfer"
                                                         id="transfer" onclick="show3()">
-                                                    <label class="form-check-label">
+                                                    <label class="form-check-label" for="transfer">
                                                         Transfer
                                                     </label>
                                                 </div>
@@ -96,8 +96,8 @@
                                                         type="radio" name="metode_pembayaran" value="Midtrans"
                                                         onclick="show1()" id="pay-button">
                                                     {{-- <a for="midtrans" class="btn btn-primary @error('metode_pembayaran') is-invalid @enderror" style="cursor: pointer"" id="pay-button">Midtrans</a> --}}
-                                                    <label class="form-check-label">
-                                                        Midtrans
+                                                    <label class="form-check-label" for="pay-button">
+                                                        Lainnya
                                                     </label>
                                                 </div>
                                                 @error('metode_pembayaran')
@@ -158,6 +158,7 @@
             onSuccess: function(result){
                 /* You may add your own implementation here */
                 alert("payment success!"); console.log(result);
+                window.location.assign("{{ route('cars') }}");
             },
             onPending: function(result){
                 /* You may add your own implementation here */
