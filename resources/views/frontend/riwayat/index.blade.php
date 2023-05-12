@@ -30,8 +30,7 @@
                                         <th>Mobil</th>
                                         <th>Supir Pribadi</th>
                                         <th>Lama Sewa</th>
-                                        <th>Tanggal Sewa</th>
-                                        <th>Tanggal Kembali</th>
+                                        <th class="text-center">Tanggal Sewa</th>
                                         <th>Total Bayar</th>
                                         <th class="text-center">Status</th>
                                     </tr>
@@ -46,10 +45,9 @@
                                             <td>{{ $data->mobil->nama_mobil }}</td>
                                             <td>{{ $data->supir }}</td>
                                             <td>{{ $data->lama_sewa }}</td>
-                                            <td>{{ $data->tgl_sewa }}</td>
-                                            <td>{{ $data->tgl_kembali }}</td>
+                                            <td>{{ $data->tgl_sewa }} - {{ $data->tgl_kembali }}</td>
                                             <td>Rp. {{ number_format($data->total_bayar,0,',','.') }}</td>
-                                            <td class="text-center">
+                                            <td class="text-center d-grid">
                                                 @if($data->status == "Selesai")
                                                    @php $color = "success";@endphp
                                                 @elseif($data->status == "Pending")
@@ -60,6 +58,9 @@
                                                    @php $color = "danger";@endphp
                                                 @endif
                                            <span class="bg-{{ $color }} p-1 text-white fw-bold" style="border-radius: 4px">{{ $data->status }}</span>
+                                                @if($data->pembayaran == null)
+                                                <a href="{{route('bayar', $data->id)}}" class="btn btn-outline-info fw-bold btn-sm mt-1">Bayar</a>
+                                                @endif
                                                 @if ($data->status == "Pending")
                                                 <form action="{{ route('batal', $data->id) }}" method="post">
                                                     @csrf

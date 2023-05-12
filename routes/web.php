@@ -106,7 +106,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('cars-transaksi/store/', [TransaksiController::class, 'store'])->name('cars.store');
     Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     Route::post('pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
+    Route::get('bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
+    Route::post('pembayaran/store2', [PembayaranController::class, 'store2'])->name('bayar.store');
     Route::post('topup/store', [TopUpController::class, 'store'])->name('topup.store');
+    Route::post('midtrans-callback', [PembayaranController::class, 'callback']);
 });
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
@@ -114,3 +117,5 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 
 Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook']);
 Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
+
+Route::get('back-chat', [HomeController::class, 'backChat'])->name('back-chat');

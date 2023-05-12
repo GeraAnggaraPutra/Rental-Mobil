@@ -185,23 +185,7 @@ class TransaksiController extends Controller
 
                 $mobil->save();
                 $transaksi->save();
-                // alert()->html('Success', "Pesanan untuk mobil <b>".$request->nama_mobil.
-                // " </b>Pada Tanggal <br>
-                // <table>
-                // <tr>
-                // <td>". date('d-m-Y', strtotime($request->tgl_sewa)) ."</td>
-                // <td>-</td>
-                // <td>". date('d-m-Y', strtotime($request->tgl_kembali)) ."</td>
-                // </tr>
-                // <tr>
-                // <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
-                // </tr>
-                // <tr>
-                // <td colspan='3'><b>Terima Kasih!</b></td>
-                // </tr>
-                // </table>", 'success')->persistent("Ok");
-
-                // Alert::success('Pesanan untuk mobil ' . $request->nama_mobil . ' pada tanggal ' . $request->tgl_sewa . ' - ' . $request->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
+                
                 return redirect()->route('pembayaran');
             }
         }
@@ -236,10 +220,10 @@ class TransaksiController extends Controller
     public function status1($id)
     {
         $transaksi = Transaksi::findOrFail($id);
-        $mobil = Mobil::findOrFail($transaksi->id_mobil);
+        // $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "On Rent";
-        $mobil->status = "Tidak Tersedia";
-        $mobil->save();
+        // $mobil->status = "Tidak Tersedia";
+        // $mobil->save();
         $transaksi->save();
         toast('Rental mobil dilakukan', 'success');
         return back();
@@ -248,10 +232,10 @@ class TransaksiController extends Controller
     public function status2($id)
     {
         $transaksi = Transaksi::findOrFail($id);
-        $mobil = Mobil::findOrFail($transaksi->id_mobil);
+        // $mobil = Mobil::findOrFail($transaksi->id_mobil);
         $transaksi->status = "Selesai";
-        $mobil->status = "Tersedia";
-        $mobil->save();
+        // $mobil->status = "Tersedia";
+        // $mobil->save();
         $transaksi->save();
         toast('Rental mobil selesai', 'success');
         return back();

@@ -1,0 +1,27 @@
+.floating-button {
+    display: block;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgb(7, 177, 7);
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.floating-button img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+}
+.floating-button:hover {
+    color: white;
+    background-color: green;
+}

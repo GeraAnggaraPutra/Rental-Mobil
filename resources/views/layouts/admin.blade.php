@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/chatbutton.css') }}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Daterange picker -->
@@ -298,5 +299,7 @@
     <!-- Datepicker -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
-
+<a href="{{ url('chat') }}" class="floating-button">
+      <img src="{{asset('assets/dist/img/chat.png')}}" alt="Chat">
+    </a>
 </html>

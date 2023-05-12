@@ -52,7 +52,7 @@
                                 <p class="col-6 fs-14 fw-bold">Rp. {{ number_format($transaksi->total_bayar, 0, ',', '.') }}</p>
                             </div>
                         </div>
-                        <form action={{ route("pembayaran.store") }} method="post" enctype="multipart/form-data">
+                        <form action={{ route("bayar.store") }} method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="col-12 px-0">
                                 <div class="row bg-light m-0">
@@ -130,6 +130,7 @@
                                        </div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="id_transaksi" value="{{$transaksi->id}}">
                                 <div class="row m-0">
                                     <div class="col-12 mt-4 mb-4 p-0">
                                         <div>

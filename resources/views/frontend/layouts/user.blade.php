@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{asset('frontend/css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/chatbutton.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/dist/img/car.png') }}" type="image/x-icon">
     <style>
         .form-profile {
@@ -46,8 +47,8 @@
         @yield('content')
     </section>
     <!-- /.content -->
-
-
+    
+    
     @include('frontend.layouts.includes.footer')
 
   <!-- loader -->
@@ -82,8 +83,8 @@
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-            })
-            .then((willDelete) => {
+              })
+              .then((willDelete) => {
               if (willDelete) {
                 form.submit();
               }
@@ -92,8 +93,11 @@
 
   </script>
   </body>
+    <a href="{{ url('chat') }}" class="floating-button">
+      <img src="{{asset('frontend/images/chat.png')}}" alt="Chat">
+    </a>
   <!--Start of Tawk.to Script-->
-   <script type="text/javascript">
+   {{-- <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
@@ -103,6 +107,6 @@
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
-    </script>
+    </script> --}}
     <!--End of Tawk.to Script-->
 </html>

@@ -26,20 +26,22 @@ class RiwayatController extends Controller
 
     public function batal($id){
         $transaksi = Transaksi::findOrFail($id);
-
-        if ($transaksi->pembayaran->metode_pembayaran == "Wallet") {
-            $user = User::findOrFail($transaksi->id_user);
-            $user->saldo += $transaksi->total_bayar; 
-            $user->save();
-            
-            $pembayaran = Pembayaran::where('id_transaksi', $transaksi->id)->first();
-            $pembayaran->status = "Dibatalkan";
-            $pembayaran->save();
+        
+        if ($transaksi->pembayaran != null) {
+            if ($transaksi->pembayaran->metode_pembayaran == "Wallet") {
+                $user = User::findOrFail($transaksi->id_user);
+                $user->saldo += $transaksi->total_bayar; 
+                $user->save();
+                
+                $pembayaran = Pembayaran::where('id_transaksi', $transaksi->id)->first();
+                $pembayaran->status = "Dibatalkan";
+                $pembayaran->save();
+            }
         }
 
         $transaksi->status = "Dibatalkan";
         $transaksi->save();
-        toast('Pesanan dibatalkan','success');
+        toast('Rental mobil dibatalkan', 'success');
         return back();
     }
 
