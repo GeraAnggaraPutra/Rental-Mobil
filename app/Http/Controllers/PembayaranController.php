@@ -104,22 +104,6 @@ class PembayaranController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $pembayaran = new Pembayaran;
@@ -165,12 +149,26 @@ class PembayaranController extends Controller
         $pembayaran->metode_pembayaran = $request->metode_pembayaran;
         $pembayaran->status = "Pending";
         $pembayaran->save();
+        alert()->html('Success', "Pesanan untuk mobil <b>".$transaksi->mobil->nama_mobil.
+                " </b>Pada Tanggal <br>
+                <table>
+                <tr>
+                <td>". date('d-m-Y', strtotime($transaksi->tgl_sewa)) ."</td>
+                <td>-</td>
+                <td>". date('d-m-Y', strtotime($transaksi->tgl_kembali)) ."</td>
+                </tr>
+                <tr>
+                <td colspan='3'><i>Silahkan datang ke kantor kami untuk mengambil mobil pada tanggal yang telah ditentukan</i></td>
+                </tr>
+                <tr>
+                <td colspan='3'><b>Terima Kasih!</b></td>
+                </tr>
+                </table>", 'success')->persistent("Ok");
 
-        // Alert::success('Pesanan untuk mobil ' . $transaksi->mobil->nama_mobil . ' pada tanggal ' . $transaksi->tgl_sewa . ' - ' . $transaksi->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
         return redirect()->route("cars");
     }
 
-    public function store2(Request $request)
+    public function pembayaranRiwayat(Request $request)
     {
         $pembayaran = new Pembayaran;
         $transaksi = Transaksi::findOrFail($request->id_transaksi);
@@ -231,7 +229,6 @@ class PembayaranController extends Controller
                 </tr>
                 </table>", 'success')->persistent("Ok");
 
-        // Alert::success('Pesanan untuk mobil ' . $transaksi->mobil->nama_mobil . ' pada tanggal ' . $transaksi->tgl_sewa . ' - ' . $transaksi->tgl_kembali . ' berhasil', 'Oops!')->persistent("Ok");
         return redirect()->route('riwayat');
     }
 

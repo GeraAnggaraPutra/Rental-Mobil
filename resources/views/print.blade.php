@@ -60,7 +60,7 @@
             </caption>
             <thead>
                 <tr>
-                    <th colspan="3">Transaksi <strong>#{{ $data->id }}</strong></th>
+                    <th colspan="3">Transaksi <strong>#{{ $data->invoice_no }}</strong></th>
                     <th>{{ $data->created_at->format('D, d M Y') }}</th>
                 </tr>
                 <tr>

@@ -44,7 +44,7 @@
                             @if(isset($pembayaran) && $pembayaran->bukti_transfer)
                                 <p>
                                     <img src="{{ asset('images/bukti-transfer/'. $pembayaran->bukti_transfer) }}" class="img-rounded img-responsive"
-                                    style="width: 400px; height: 400px;" alt="">
+                                    style="width: auto; height: 400px;" alt="">
                                 </p>
                             @endif
                         </div>

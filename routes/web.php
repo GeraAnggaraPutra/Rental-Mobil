@@ -88,6 +88,7 @@ Route::get('generate-PDF/', [PdfController::class, 'generatePdf'])->name('pdf.pr
 
 // Frontend Route
 Route::get('riwayat', [RiwayatController::class, 'index'])->name('riwayat');
+Route::get('riwayat-detail/{id}', [RiwayatController::class, 'detail'])->name('riwayat.detail');
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
 Route::post('profile/update/{id}', [ProfileController::class, 'update'])->name('profile.update');
 Route::post('profile/create/{id}', [ProfileController::class, 'create'])->name('profile.create');
@@ -109,7 +110,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     Route::post('pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
     Route::get('bayar/{id}', [PembayaranController::class, 'bayar'])->name('bayar');
-    Route::post('pembayaran/store2', [PembayaranController::class, 'store2'])->name('bayar.store');
+    Route::post('pembayaran/store2', [PembayaranController::class, 'pembayaranRiwayat'])->name('bayar.store');
     Route::post('topup/store', [TopUpController::class, 'store'])->name('topup.store');
 });
 
